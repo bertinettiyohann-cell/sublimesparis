@@ -433,10 +433,35 @@ header{
 <!-- HERO -->
 <section class="hero" id="top">
 <div class="hero-bg">
-<div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
-<iframe id="heroVideo" src="https://player.vimeo.com/video/1185680259?autoplay=1&loop=1&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:177.78vh;min-width:100%;height:56.25vw;min-height:100%;filter:brightness(.32) grayscale(.2);pointer-events:none;"></iframe>
+<div id="hero-vimeo-wrapper" style="position:absolute;inset:0;overflow:hidden;background:#000;pointer-events:none;">
+<iframe id="heroVideo"
+  src="https://player.vimeo.com/video/1185680259?autoplay=1&loop=1&muted=1&background=1&autopause=0"
+  frameborder="0"
+  allow="autoplay; fullscreen"
+  allowfullscreen
+  style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;pointer-events:none;filter:brightness(.32) grayscale(.2);">
+</iframe>
 </div>
 </div>
+<script>
+// Resize hero iframe to cover like object-fit:cover
+function resizeHeroVimeo(){
+  var wrap = document.getElementById('hero-vimeo-wrapper');
+  var iframe = document.getElementById('heroVideo');
+  if(!wrap || !iframe) return;
+  var W = wrap.offsetWidth;
+  var H = wrap.offsetHeight;
+  var ratio = 16/9;
+  var iW, iH;
+  if(W/H > ratio){ iW = W; iH = W/ratio; }
+  else { iH = H; iW = H*ratio; }
+  iframe.style.width = iW+'px';
+  iframe.style.height = iH+'px';
+}
+window.addEventListener('load', resizeHeroVimeo);
+window.addEventListener('resize', resizeHeroVimeo);
+resizeHeroVimeo();
+</script>
 <div class="hero-content">
 <h1 class="hero-title" data-i18n="hero_title">Quand<br/>l'élégance<br/><em>entre en scène</em></h1>
 <p class="hero-sub" data-i18n="hero_sub">Une explosion d’art captivant pour vos événements les plus précieux.</p>
