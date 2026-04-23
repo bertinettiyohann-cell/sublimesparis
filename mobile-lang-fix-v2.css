@@ -1,0 +1,27 @@
+/* ===============================
+   LANG MENU FIX v10 (CLICK FIX FINAL)
+   =============================== */
+
+/* Débloque les clics sur toute la couche hero */
+.hero::after{
+  pointer-events: none !important;
+}
+
+/* Sécurité : le menu doit passer au-dessus */
+.lang-dropdown{
+  position: relative;
+  z-index: 9999;
+}
+
+.lang-menu{
+  position: absolute !important;
+  bottom: calc(100% + 6px);
+  right: 0;
+  z-index: 10000;
+  pointer-events: auto !important;
+}
+
+/* Assure interaction */
+.lang-option{
+  cursor: pointer !important;
+}

@@ -3,376 +3,403 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sublimes Paris — Formulaire</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+<title>Déposer une demande — Sublimes Paris</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{--black:#0a0a0a;--white:#f5f3ef;--grey-mid:#999490;--grey-dark:#2a2826;--accent:#c8b89a;--serif:'Cormorant Garamond',serif;--sans:'Montserrat',sans-serif}
-  html{scroll-behavior:smooth}
-  body{background:var(--black);color:var(--white);font-family:var(--sans);font-weight:300;min-height:100vh}
+body {
+  margin:0;
+  font-family:'Montserrat', sans-serif;
+  background:#0a0a0a;
+  color:#f5f3ef;
+}
 
-  .form-header{position:fixed;top:0;left:0;right:0;padding:22px 56px;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);z-index:10;border-bottom:1px solid rgba(200,184,154,.1)}
-  .form-logo{font-family:var(--serif);font-size:1.1rem;letter-spacing:.35em;text-transform:uppercase;color:var(--white);text-decoration:none;font-weight:300;display:flex;align-items:center;gap:16px}
-  .form-logo span{font-family:var(--sans);font-size:.52rem;letter-spacing:.22em;color:var(--accent);border-left:1px solid rgba(200,184,154,.4);padding-left:16px}
-  .header-right{display:flex;align-items:center;gap:16px}
-  .form-back{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey-mid);text-decoration:none;transition:color .3s}
-  .form-back:hover{color:var(--white)}
+.container {
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+}
 
-  /* LANG IN HEADER */
-  .lang-dropdown{position:relative}
-  .lang-trigger{display:flex;align-items:center;gap:5px;font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);background:rgba(0,0,0,.4);border:1px solid rgba(200,184,154,.25);padding:6px 10px;cursor:pointer;font-family:var(--sans);transition:border-color .3s}
-  .lang-trigger:hover{border-color:rgba(200,184,154,.6)}
-  .lang-arrow{font-size:.35rem;transition:transform .3s;display:inline-block}
-  .lang-dropdown.open .lang-arrow{transform:rotate(180deg)}
-  .lang-menu{display:none;position:absolute;top:calc(100% + 5px);right:0;background:rgba(10,10,10,.97);border:1px solid rgba(200,184,154,.18);min-width:130px}
-  .lang-dropdown.open .lang-menu{display:block}
-  .lang-option{display:flex;align-items:center;gap:8px;padding:9px 14px;font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,243,239,.55);cursor:pointer;transition:background .2s,color .2s;border-bottom:1px solid rgba(255,255,255,.04)}
-  .lang-option:last-child{border-bottom:none}
-  .lang-option:hover{background:rgba(200,184,154,.08);color:var(--white)}
-  .lang-option.active{color:var(--accent)}
-  .lang-flag{font-size:12px}
-  .lang-check{font-size:.35rem;color:var(--accent);margin-left:auto}
+.step {
+  display:none;
+  width:600px;
+  max-width:95%;
+}
 
-  .progress-bar{position:fixed;top:69px;left:0;right:0;height:1px;background:var(--grey-dark);z-index:10}
-  .progress-fill{height:100%;background:var(--accent);transition:width .6s cubic-bezier(0.25,0.46,0.45,0.94);width:20%}
+.step.active {
+  display:block;
+}
 
-  .container{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:110px 24px 80px}
-  .step{display:none;width:640px;max-width:100%;animation:stepIn .5s ease forwards}
-  .step.active{display:block}
-  @keyframes stepIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+h1 {
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-size:2.3rem;
+  line-height:1.2;
+  margin-bottom:8px;
+}
 
-  .step-label{font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;display:flex;align-items:center;gap:16px}
-  .step-label::before{content:'';display:block;width:30px;height:1px;background:var(--accent)}
-  h1{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,5vw,3.2rem);line-height:1.1;margin-bottom:48px;letter-spacing:-.01em}
-  h1 em{font-style:italic;color:var(--grey-mid)}
+label {
+  display:block;
+  margin:20px 0 8px;
+  font-size:.7rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#c8b89a;
+}
 
-  .field{margin-bottom:28px}
-  label{display:block;margin-bottom:10px;font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent)}
-  select,input,textarea{width:100%;padding:14px 0;background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.2);color:var(--white);font-family:var(--sans);font-size:.85rem;font-weight:300;letter-spacing:.05em;outline:none;transition:border-color .3s;-webkit-appearance:none;appearance:none}
-  select{cursor:pointer}
-  select option{background:#1a1a1a;color:var(--white)}
-  input::placeholder,textarea::placeholder{color:rgba(255,255,255,.25)}
-  input:focus,select:focus,textarea:focus{border-bottom-color:var(--accent)}
-  textarea{resize:none;height:100px;line-height:1.8}
-  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-  .hint{margin-top:12px;font-size:.7rem;color:var(--grey-mid);font-style:italic;display:none;line-height:1.7}
-  .note{margin-top:20px;font-size:.68rem;color:#666;line-height:1.9;letter-spacing:.04em;border-left:1px solid var(--grey-dark);padding-left:16px}
+select, input, textarea {
+  width:100%;
+  padding:12px;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.2);
+  color:white;
+  font-family:'Montserrat', sans-serif;
+  font-size:.8rem;
+  box-sizing:border-box;
+}
 
-  .btn-next{margin-top:48px;display:inline-flex;align-items:center;gap:16px;font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--white);background:none;border:none;cursor:pointer;padding:0;transition:gap .3s}
-  .btn-next::after{content:'';display:block;width:40px;height:1px;background:var(--white);transition:width .3s}
-  .btn-next:hover{gap:22px}
-  .btn-next:hover::after{width:60px}
-  .btn-submit{margin-top:48px;display:inline-flex;align-items:center;gap:16px;font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--black);background:var(--accent);border:none;cursor:pointer;padding:16px 32px;transition:background .3s}
-  .btn-submit:hover{background:var(--white)}
+select option {
+  background:#0a0a0a;
+  color:white;
+}
 
-  .success{display:none;text-align:center;padding:60px 0}
-  .success h2{font-family:var(--serif);font-size:3rem;font-weight:300;font-style:italic;margin-bottom:20px}
-  .success p{font-size:.72rem;color:var(--grey-mid);letter-spacing:.1em;line-height:2}
-  .success-line{width:1px;height:60px;background:linear-gradient(to bottom,var(--accent),transparent);margin:32px auto}
-  .success a{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);text-decoration:none}
+textarea {
+  min-height:100px;
+  resize:vertical;
+}
 
-  @media(max-width:600px){.form-header{padding:18px 24px}.form-logo span{display:none}.field-row{grid-template-columns:1fr;gap:0}}
+button {
+  margin-top:30px;
+  padding:12px 24px;
+  border:1px solid #c8b89a;
+  background:none;
+  color:#c8b89a;
+  cursor:pointer;
+  font-family:'Montserrat', sans-serif;
+  font-size:.65rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  transition:background .3s, color .3s;
+}
+
+button:hover {
+  background:#c8b89a;
+  color:black;
+}
+
+.hint {
+  margin-top:15px;
+  font-size:.75rem;
+  color:#999;
+  display:none;
+  line-height:1.6;
+}
+
+.note {
+  margin-top:20px;
+  font-size:.75rem;
+  color:#888;
+  line-height:1.8;
+}
+
+#success {
+  display:none;
+  text-align:center;
+  width:600px;
+  max-width:95%;
+}
+
+#success h1 {
+  font-size:2.8rem;
+  margin-bottom:16px;
+}
+
+#success p {
+  font-size:.75rem;
+  color:#999;
+  letter-spacing:.1em;
+  line-height:2;
+}
+
+/* ── INDICATEUR D'ÉTAPES ── */
+.step-indicator {
+  display:flex;
+  gap:6px;
+  margin-bottom:28px;
+}
+.step-dot {
+  width:18px;
+  height:1px;
+  background:rgba(255,255,255,.2);
+  transition:background .4s;
+}
+.step-dot.active {
+  background:#c8b89a;
+}
+
+/* ── MOBILE ── */
+@media(max-width:480px){
+
+  .container {
+    padding:32px 20px;
+    align-items:flex-start;
+    padding-top:48px;
+  }
+
+  .step,
+  #success {
+    width:100%;
+    max-width:100%;
+  }
+
+  h1 {
+    font-size:1.75rem;
+    line-height:1.25;
+    margin-bottom:12px;
+  }
+
+  #success h1 {
+    font-size:2rem;
+  }
+
+  label {
+    font-size:.62rem;
+    margin:16px 0 6px;
+  }
+
+  select, input, textarea {
+    font-size:16px; /* évite le zoom auto iOS */
+    padding:11px 10px;
+  }
+
+  textarea {
+    min-height:80px;
+  }
+
+  button {
+    width:100%;
+    margin-top:24px;
+    padding:14px 20px;
+    font-size:.6rem;
+    text-align:center;
+  }
+
+  .note {
+    font-size:.68rem;
+    line-height:1.7;
+  }
+
+  .hint {
+    font-size:.68rem;
+  }
+}
+
+@media(max-width:768px){
+
+.container{
+  padding:22px 14px;
+}
+
+.step,
+#success{
+  width:100%;
+  max-width:100%;
+}
+
+h1{
+  font-size:1.45rem;
+  line-height:1.25;
+}
+
+label{
+  margin:12px 0 4px;
+  font-size:.55rem;
+}
+
+select, input, textarea{
+  padding:9px 8px;
+  font-size:14px;
+}
+
+button{
+  margin-top:18px;
+  padding:12px;
+  font-size:.55rem;
+}
+
+}
+
 </style>
 </head>
+
 <body>
-
-<header class="form-header">
-  <a href="index.html" class="form-logo">Sublimes Paris <span>High Glamour Entertainment</span></a>
-  <div class="header-right">
-    <div class="lang-dropdown" id="langDropdown">
-      <button class="lang-trigger" onclick="toggleLangDropdown()">
-        <span id="currentLangLabel">🇫🇷 FR</span>
-        <span class="lang-arrow">▼</span>
-      </button>
-      <div class="lang-menu">
-        <div class="lang-option active" onclick="setLang('fr','🇫🇷 FR',this)"><span class="lang-flag">🇫🇷</span> Français <span class="lang-check">✓</span></div>
-        <div class="lang-option" onclick="setLang('en','🇬🇧 EN',this)"><span class="lang-flag">🇬🇧</span> English</div>
-        <div class="lang-option" onclick="setLang('it','🇮🇹 IT',this)"><span class="lang-flag">🇮🇹</span> Italiano</div>
-        <div class="lang-option" onclick="setLang('zh','🇨🇳 中文',this)"><span class="lang-flag">🇨🇳</span> 中文</div>
-      </div>
-    </div>
-    <a href="index.html" class="form-back" id="back-link">← Retour</a>
-  </div>
-</header>
-
-<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
-
 <div class="container">
+
 <form id="form">
 
+  <!-- Indicateur d'étapes -->
+  <div class="step-indicator" id="stepIndicator">
+    <div class="step-dot active"></div>
+    <div class="step-dot"></div>
+    <div class="step-dot"></div>
+    <div class="step-dot"></div>
+    <div class="step-dot"></div>
+  </div>
+
   <div class="step active">
-    <div class="step-label" id="lbl-step0">Formulaire de demande</div>
-    <h1 id="h-intro">Chaque projet<br>est une <em>création<br>unique.</em></h1>
-    <p style="font-size:.78rem;color:var(--grey-mid);line-height:2;max-width:420px;" id="p-intro">Décrivez-nous votre vision en quelques étapes. Nous vous répondrons avec une proposition sur-mesure.</p>
-    <button type="button" class="btn-next" onclick="nextStep()" id="btn-start">Commencer l'expérience</button>
+    <h1>Chaque projet est une création unique.</h1>
+    <button type="button" onclick="nextStep()">Commencer l'expérience</button>
   </div>
 
   <div class="step">
-    <div class="step-label" id="lbl-step1">Étape 1 — Votre projet</div>
-    <h1 id="h-step1">Parlez-nous<br>de votre <em>événement</em></h1>
-    <div class="field">
-      <label id="lbl-type">Type d'événement</label>
-      <select name="event" id="sel-event">
-        <option id="opt-corporate">Corporate</option>
-        <option id="opt-wedding">Mariage</option>
-        <option id="opt-private">Soirée privée</option>
-        <option id="opt-hotel">Hôtel / Palace</option>
-      </select>
-    </div>
-    <div class="field">
-      <label id="lbl-lieu">Lieu (ville + pays)</label>
-      <input name="lieu" id="inp-lieu" placeholder="Paris, France">
-    </div>
-    <div class="field">
-      <label id="lbl-date">Date envisagée</label>
-      <input type="date" name="date">
-    </div>
-    <button type="button" class="btn-next" onclick="nextStep()" id="btn-next1">Suivant</button>
+    <h1>Votre projet</h1>
+
+    <label>Type d'événement</label>
+    <select name="event">
+      <option>Corporate</option>
+      <option>Mariage</option>
+      <option>Privé</option>
+      <option>Hôtel / Palace</option>
+    </select>
+
+    <label>Lieu (ville + pays)</label>
+    <input name="location" placeholder="Ex : Paris, France">
+
+    <label>Date</label>
+    <input type="date" name="date">
+
+    <button type="button" onclick="nextStep()">Suivant</button>
   </div>
 
   <div class="step">
-    <div class="step-label" id="lbl-step2">Étape 2 — Rythme de la soirée</div>
-    <h1 id="h-step2">Composez<br>votre <em>programme</em></h1>
-    <div class="field">
-      <label id="lbl-artists">Nombre d'artistes</label>
-      <select id="artistes" name="artistes"><option>2</option><option>3</option><option>5</option><option>7</option><option>9</option><option>11</option></select>
+    <h1>Le rythme de l'événement</h1>
+
+    <label>Nombre d'artistes</label>
+    <select id="artistes" name="artistes">
+      <option>2</option>
+      <option>3</option>
+      <option>5</option>
+      <option>7</option>
+      <option>9</option>
+      <option>11</option>
+    </select>
+
+    <label>Performances</label>
+    <select id="performances" name="performances">
+      <option>Accueil</option>
+      <option>1 performance</option>
+      <option>2 performances</option>
+      <option>3 performances</option>
+      <option>Accueil + 2 performances</option>
+      <option>Accueil + 3 performances</option>
+    </select>
+
+    <div class="hint" id="hint">
+      Ce type de configuration nécessite généralement un budget plus élevé.
     </div>
-    <div class="field">
-      <label id="lbl-perfs">Performances souhaitées</label>
-      <select id="performances" name="performances">
-        <option id="opt-welcome">Accueil</option>
-        <option id="opt-1perf">1 performance</option>
-        <option id="opt-2perf">2 performances</option>
-        <option id="opt-3perf">3 performances</option>
-        <option id="opt-w2perf">Accueil + 2 performances</option>
-        <option id="opt-w3perf">Accueil + 3 performances</option>
-      </select>
-    </div>
-    <div class="hint" id="hint">Ce type de configuration correspond généralement à une enveloppe plus élevée.</div>
-    <button type="button" class="btn-next" onclick="nextStep()" id="btn-next2">Suivant</button>
+
+    <button type="button" onclick="nextStep()">Suivant</button>
   </div>
 
   <div class="step">
-    <div class="step-label" id="lbl-step3">Étape 3 — Enveloppe</div>
-    <h1 id="h-step3">Votre budget<br><em>estimatif</em></h1>
-    <div class="field">
-      <label id="lbl-budget">Fourchette budgétaire</label>
-      <select name="budget">
-        <option>1 000 – 3 000 €</option><option>3 000 – 5 000 €</option>
-        <option>5 000 – 10 000 €</option><option>10 000 – 20 000 €</option><option>20 000 € +</option>
-      </select>
+    <h1>Budget estimé</h1>
+
+    <select name="budget">
+      <option>1k – 3k</option>
+      <option>3k – 5k</option>
+      <option>5k – 10k</option>
+      <option>10k – 20k</option>
+      <option>20k+</option>
+    </select>
+
+    <div class="note">
+      À Paris : les tarifs sont indiqués TTC.<br>
+      Hors Paris : frais de déplacement, hébergement et restauration en supplément.
     </div>
-    <div class="note" id="note-budget">Sur Paris : tarifs TTC.<br>Hors Paris : frais de VHR (voyage, hébergement, restauration) en supplément.</div>
-    <button type="button" class="btn-next" onclick="nextStep()" id="btn-next3">Suivant</button>
+
+    <button type="button" onclick="nextStep()">Suivant</button>
   </div>
 
   <div class="step">
-    <div class="step-label" id="lbl-step4">Étape 4 — Vos coordonnées</div>
-    <h1 id="h-step4">Finalisons<br>votre <em>projet</em></h1>
-    <div class="field-row">
-      <div class="field"><label id="lbl-nom">Nom</label><input name="nom" id="inp-nom" placeholder="Dupont"></div>
-      <div class="field"><label id="lbl-prenom">Prénom</label><input name="prenom" id="inp-prenom" placeholder="Marie"></div>
-    </div>
-    <div class="field-row">
-      <div class="field"><label id="lbl-email">Email</label><input type="email" name="email" placeholder="marie@example.com"></div>
-      <div class="field"><label id="lbl-tel">Téléphone</label><input type="tel" name="tel" placeholder="+33 6 00 00 00 00"></div>
-    </div>
-    <div class="field">
-      <label id="lbl-vision">Votre vision</label>
-      <textarea name="vision" id="inp-vision" placeholder="Décrivez l'émotion que vous souhaitez créer…"></textarea>
-    </div>
-    <button type="submit" class="btn-submit" id="btn-submit">Créer mon expérience</button>
+    <h1>Dernière étape</h1>
+
+    <label>Nom</label>
+    <input name="nom">
+
+    <label>Prénom</label>
+    <input name="prenom">
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Téléphone</label>
+    <input name="phone">
+
+    <label>Votre vision</label>
+    <textarea name="vision" placeholder="Décrivez l'émotion que vous souhaitez créer"></textarea>
+
+    <button type="submit">Créer mon expérience</button>
   </div>
 
 </form>
 
-<div class="success" id="success">
-  <div class="success-line"></div>
-  <h2 id="success-title">Merci pour votre<br>confiance.</h2>
-  <p id="success-sub">Nous avons bien reçu votre demande.<br>Notre équipe vous contactera dans les plus brefs délais.</p>
-  <div class="success-line"></div>
-  <a href="index.html" id="success-back">← Retour au site</a>
+<div id="success">
+  <h1>Merci.</h1>
+  <p>Votre demande a bien été reçue.<br>Nous vous répondons dans les plus brefs délais.</p>
 </div>
+
 </div>
 
 <script>
-const translations = {
-  fr:{
-    back:'← Retour',lbl_step0:'Formulaire de demande',h_intro:'Chaque projet<br>est une <em>création<br>unique.</em>',
-    p_intro:'Décrivez-nous votre vision en quelques étapes. Nous vous répondrons avec une proposition sur-mesure.',
-    btn_start:'Commencer l\'expérience',lbl_step1:'Étape 1 — Votre projet',h_step1:'Parlez-nous<br>de votre <em>événement</em>',
-    lbl_type:'Type d\'événement',opt_corporate:'Corporate',opt_wedding:'Mariage',opt_private:'Soirée privée',opt_hotel:'Hôtel / Palace',
-    lbl_lieu:'Lieu (ville + pays)',ph_lieu:'Paris, France',lbl_date:'Date envisagée',btn_next:'Suivant',
-    lbl_step2:'Étape 2 — Rythme de la soirée',h_step2:'Composez<br>votre <em>programme</em>',
-    lbl_artists:'Nombre d\'artistes',lbl_perfs:'Performances souhaitées',
-    opt_welcome:'Accueil',opt_1perf:'1 performance',opt_2perf:'2 performances',opt_3perf:'3 performances',
-    opt_w2perf:'Accueil + 2 performances',opt_w3perf:'Accueil + 3 performances',
-    hint:'Ce type de configuration correspond généralement à une enveloppe plus élevée.',
-    lbl_step3:'Étape 3 — Enveloppe',h_step3:'Votre budget<br><em>estimatif</em>',lbl_budget:'Fourchette budgétaire',
-    note_budget:'Sur Paris : tarifs TTC.<br>Hors Paris : frais de VHR (voyage, hébergement, restauration) en supplément.',
-    lbl_step4:'Étape 4 — Vos coordonnées',h_step4:'Finalisons<br>votre <em>projet</em>',
-    lbl_nom:'Nom',lbl_prenom:'Prénom',ph_nom:'Dupont',ph_prenom:'Marie',
-    lbl_email:'Email',lbl_tel:'Téléphone',lbl_vision:'Votre vision',ph_vision:'Décrivez l\'émotion que vous souhaitez créer…',
-    btn_submit:'Créer mon expérience',
-    success_title:'Merci pour votre<br>confiance.',success_sub:'Nous avons bien reçu votre demande.<br>Notre équipe vous contactera dans les plus brefs délais.',
-    success_back:'← Retour au site'
-  },
-  en:{
-    back:'← Back',lbl_step0:'Request form',h_intro:'Every project<br>is a <em>unique<br>creation.</em>',
-    p_intro:'Tell us your vision in a few steps. We will respond with a bespoke proposal.',
-    btn_start:'Start the experience',lbl_step1:'Step 1 — Your project',h_step1:'Tell us<br>about your <em>event</em>',
-    lbl_type:'Event type',opt_corporate:'Corporate',opt_wedding:'Wedding',opt_private:'Private party',opt_hotel:'Hotel / Palace',
-    lbl_lieu:'Location (city + country)',ph_lieu:'London, UK',lbl_date:'Planned date',btn_next:'Next',
-    lbl_step2:'Step 2 — Event rhythm',h_step2:'Compose<br>your <em>programme</em>',
-    lbl_artists:'Number of performers',lbl_perfs:'Desired performances',
-    opt_welcome:'Welcome',opt_1perf:'1 performance',opt_2perf:'2 performances',opt_3perf:'3 performances',
-    opt_w2perf:'Welcome + 2 performances',opt_w3perf:'Welcome + 3 performances',
-    hint:'This type of configuration generally requires a higher budget.',
-    lbl_step3:'Step 3 — Budget',h_step3:'Your estimated<br><em>budget</em>',lbl_budget:'Budget range',
-    note_budget:'In Paris: prices include VAT.<br>Outside Paris: travel, accommodation and catering costs apply.',
-    lbl_step4:'Step 4 — Your details',h_step4:'Let\'s finalise<br>your <em>project</em>',
-    lbl_nom:'Last name',lbl_prenom:'First name',ph_nom:'Smith',ph_prenom:'Jane',
-    lbl_email:'Email',lbl_tel:'Phone',lbl_vision:'Your vision',ph_vision:'Describe the emotion you want to create…',
-    btn_submit:'Create my experience',
-    success_title:'Thank you for<br>your trust.',success_sub:'We have received your request.<br>Our team will be in touch shortly.',
-    success_back:'← Back to the site'
-  },
-  it:{
-    back:'← Indietro',lbl_step0:'Modulo di richiesta',h_intro:'Ogni progetto<br>è una <em>creazione<br>unica.</em>',
-    p_intro:'Descriveteci la vostra visione in pochi passi. Vi risponderemo con una proposta su misura.',
-    btn_start:'Inizia l\'esperienza',lbl_step1:'Passo 1 — Il vostro progetto',h_step1:'Parlateci<br>del vostro <em>evento</em>',
-    lbl_type:'Tipo di evento',opt_corporate:'Corporate',opt_wedding:'Matrimonio',opt_private:'Festa privata',opt_hotel:'Hotel / Palace',
-    lbl_lieu:'Luogo (città + paese)',ph_lieu:'Roma, Italia',lbl_date:'Data prevista',btn_next:'Avanti',
-    lbl_step2:'Passo 2 — Ritmo della serata',h_step2:'Componete<br>il vostro <em>programma</em>',
-    lbl_artists:'Numero di artisti',lbl_perfs:'Performance desiderate',
-    opt_welcome:'Accoglienza',opt_1perf:'1 performance',opt_2perf:'2 performance',opt_3perf:'3 performance',
-    opt_w2perf:'Accoglienza + 2 performance',opt_w3perf:'Accoglienza + 3 performance',
-    hint:'Questo tipo di configurazione richiede generalmente un budget più elevato.',
-    lbl_step3:'Passo 3 — Budget',h_step3:'Il vostro budget<br><em>stimato</em>',lbl_budget:'Fascia di budget',
-    note_budget:'A Parigi: prezzi IVA inclusa.<br>Fuori Parigi: spese di viaggio, alloggio e ristorazione in aggiunta.',
-    lbl_step4:'Passo 4 — I vostri dati',h_step4:'Finalizziamo<br>il vostro <em>progetto</em>',
-    lbl_nom:'Cognome',lbl_prenom:'Nome',ph_nom:'Rossi',ph_prenom:'Maria',
-    lbl_email:'Email',lbl_tel:'Telefono',lbl_vision:'La vostra visione',ph_vision:'Descrivete l\'emozione che volete creare…',
-    btn_submit:'Crea la mia esperienza',
-    success_title:'Grazie per la<br>vostra fiducia.',success_sub:'Abbiamo ricevuto la vostra richiesta.<br>Il nostro team vi contatterà al più presto.',
-    success_back:'← Torna al sito'
-  },
-  zh:{
-    back:'← 返回',lbl_step0:'申请表',h_intro:'每个项目<br>都是一个<em>独特的<br>创作。</em>',
-    p_intro:'请用几个步骤描述您的愿景。我们将以量身定制的方案回复您。',
-    btn_start:'开始体验',lbl_step1:'第1步 — 您的项目',h_step1:'请告诉我们<br>您的<em>活动</em>',
-    lbl_type:'活动类型',opt_corporate:'企业活动',opt_wedding:'婚礼',opt_private:'私人派对',opt_hotel:'酒店 / 宫殿',
-    lbl_lieu:'地点（城市+国家）',ph_lieu:'上海，中国',lbl_date:'计划日期',btn_next:'下一步',
-    lbl_step2:'第2步 — 活动节奏',h_step2:'安排<br>您的<em>节目</em>',
-    lbl_artists:'表演者人数',lbl_perfs:'所需演出',
-    opt_welcome:'迎宾',opt_1perf:'1场演出',opt_2perf:'2场演出',opt_3perf:'3场演出',
-    opt_w2perf:'迎宾 + 2场演出',opt_w3perf:'迎宾 + 3场演出',
-    hint:'此类配置通常需要更高的预算。',
-    lbl_step3:'第3步 — 预算',h_step3:'您的<br><em>预算估算</em>',lbl_budget:'预算范围',
-    note_budget:'巴黎境内：含税价格。<br>巴黎以外：另加交通、住宿和餐饮费用。',
-    lbl_step4:'第4步 — 您的联系方式',h_step4:'完成<br>您的<em>项目</em>',
-    lbl_nom:'姓',lbl_prenom:'名',ph_nom:'张',ph_prenom:'伟',
-    lbl_email:'电子邮件',lbl_tel:'电话',lbl_vision:'您的愿景',ph_vision:'描述您希望创造的情感体验…',
-    btn_submit:'创建我的体验',
-    success_title:'感谢您的<br>信任。',success_sub:'我们已收到您的请求。<br>我们的团队将尽快与您联系。',
-    success_back:'← 返回网站'
-  }
-};
+let current = 0;
+const steps = document.querySelectorAll('.step');
+const dots = document.querySelectorAll('.step-dot');
 
-let currentLang = 'fr';
-
-function applyLang(lang) {
-  const t = translations[lang];
-  if(!t) return;
-  currentLang = lang;
-  document.documentElement.lang = lang;
-  const map = {
-    'back-link':t.back,'lbl-step0':t.lbl_step0,'h-intro':t.h_intro,'p-intro':t.p_intro,
-    'btn-start':t.btn_start,'lbl-step1':t.lbl_step1,'h-step1':t.h_step1,
-    'lbl-type':t.lbl_type,'lbl-lieu':t.lbl_lieu,'lbl-date':t.lbl_date,
-    'btn-next1':t.btn_next,'lbl-step2':t.lbl_step2,'h-step2':t.h_step2,
-    'lbl-artists':t.lbl_artists,'lbl-perfs':t.lbl_perfs,
-    'opt-welcome':t.opt_welcome,'opt-1perf':t.opt_1perf,'opt-2perf':t.opt_2perf,
-    'opt-3perf':t.opt_3perf,'opt-w2perf':t.opt_w2perf,'opt-w3perf':t.opt_w3perf,
-    'hint':t.hint,'btn-next2':t.btn_next,'lbl-step3':t.lbl_step3,'h-step3':t.h_step3,
-    'lbl-budget':t.lbl_budget,'note-budget':t.note_budget,'btn-next3':t.btn_next,
-    'lbl-step4':t.lbl_step4,'h-step4':t.h_step4,
-    'lbl-nom':t.lbl_nom,'lbl-prenom':t.lbl_prenom,'lbl-email':t.lbl_email,
-    'lbl-tel':t.lbl_tel,'lbl-vision':t.lbl_vision,'btn-submit':t.btn_submit,
-    'success-title':t.success_title,'success-sub':t.success_sub,'success-back':t.success_back,
-    'opt-corporate':t.opt_corporate,'opt-wedding':t.opt_wedding,'opt-private':t.opt_private,'opt-hotel':t.opt_hotel
-  };
-  Object.entries(map).forEach(([id,val])=>{ const el=document.getElementById(id); if(el) el.innerHTML=val; });
-  const phMap = {'inp-lieu':t.ph_lieu,'inp-nom':t.ph_nom,'inp-prenom':t.ph_prenom,'inp-vision':t.ph_vision};
-  Object.entries(phMap).forEach(([id,ph])=>{ const el=document.getElementById(id); if(el) el.placeholder=ph; });
+function nextStep(){
+  steps[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current++;
+  steps[current].classList.add('active');
+  dots[current].classList.add('active');
+  window.scrollTo(0,0);
 }
 
-function setLang(lang, label, el) {
-  document.querySelectorAll('.lang-option').forEach(o=>{ o.classList.remove('active'); const c=o.querySelector('.lang-check'); if(c) c.remove(); });
-  el.classList.add('active');
-  const chk=document.createElement('span'); chk.className='lang-check'; chk.textContent='✓'; el.appendChild(chk);
-  document.getElementById('currentLangLabel').textContent=label;
-  document.getElementById('langDropdown').classList.remove('open');
-  applyLang(lang);
+const artistes = document.getElementById("artistes");
+const performances = document.getElementById("performances");
+const hint = document.getElementById("hint");
+
+function checkLogic(){
+  const a = parseInt(artistes.value);
+  const p = performances.value;
+  hint.style.display = (a <= 3 && p.includes("3")) ? "block" : "none";
 }
 
-function toggleLangDropdown() { document.getElementById('langDropdown').classList.toggle('open'); }
-document.addEventListener('click', e=>{ if(!document.getElementById('langDropdown').contains(e.target)) document.getElementById('langDropdown').classList.remove('open'); });
+artistes.addEventListener("change", checkLogic);
+performances.addEventListener("change", checkLogic);
 
-// Steps
-let current=0;
-const steps=document.querySelectorAll('.step');
-const progress=document.getElementById('progress');
-function updateProgress(){ progress.style.width=((current+1)/steps.length*100)+'%'; }
-updateProgress();
-function nextStep(){ steps[current].classList.remove('active'); current++; steps[current].classList.add('active'); updateProgress(); window.scrollTo({top:0,behavior:'smooth'}); }
-
-// Hint
-const artistes=document.getElementById('artistes');
-const performances=document.getElementById('performances');
-const hint=document.getElementById('hint');
-function checkLogic(){ const a=parseInt(artistes.value),p=performances.value; hint.style.display=(a<=3&&p.includes('3'))?'block':'none'; }
-artistes.addEventListener('change',checkLogic);
-performances.addEventListener('change',checkLogic);
-
-// Submit
-document.getElementById('form').addEventListener('submit', async e=>{
+document.getElementById('form').addEventListener('submit', async e => {
   e.preventDefault();
-  const data=new FormData(e.target);
-  const t=translations[currentLang];
-  try{
-    await fetch('https://formspree.io/f/xwvawvqe',{method:'POST',headers:{'Accept':'application/json'},body:data});
-  }catch(err){ console.log(err); }
-  const msg=encodeURIComponent(
-    `🎭 *Sublimes Paris*\n\n`+
-    `👤 *${data.get('prenom')||''} ${data.get('nom')||''}*\n`+
-    `📧 ${data.get('email')||''}\n📞 ${data.get('tel')||''}\n\n`+
-    `🎪 ${data.get('event')||''}\n📍 ${data.get('lieu')||''}\n📅 ${data.get('date')||''}\n`+
-    `👯 ${data.get('artistes')||''} — ${data.get('performances')||''}\n`+
-    `💰 ${data.get('budget')||''}\n\n✨ ${data.get('vision')||''}`
-  );
-  document.getElementById('form').style.display='none';
-  document.getElementById('success').style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
-  setTimeout(()=>{ window.open(`https://wa.me/33667174466?text=${msg}`,'_blank'); },1000);
-});
+  const data = new FormData(e.target);
 
-// Auto-detect lang from URL param
-const urlLang = new URLSearchParams(window.location.search).get('lang');
-if(urlLang && translations[urlLang]){
-  const labels={fr:'🇫🇷 FR',en:'🇬🇧 EN',it:'🇮🇹 IT',zh:'🇨🇳 中文'};
-  document.getElementById('currentLangLabel').textContent=labels[urlLang];
-  document.querySelectorAll('.lang-option').forEach(o=>{
-    o.classList.remove('active');
-    const c=o.querySelector('.lang-check'); if(c) c.remove();
-    if(o.getAttribute('onclick').includes(`'${urlLang}'`)){
-      o.classList.add('active');
-      const chk=document.createElement('span'); chk.className='lang-check'; chk.textContent='✓'; o.appendChild(chk);
-    }
-  });
-  applyLang(urlLang);
-}
+  try {
+    const res = await fetch('https://formspree.io/f/xwvawvqe', {
+      method:'POST',
+      headers:{'Accept':'application/json'},
+      body:data
+    });
+    if(!res.ok){ alert("Erreur d'envoi, merci de réessayer."); return; }
+  } catch(err) {
+    alert("Problème réseau, merci de réessayer."); return;
+  }
+
+  e.target.style.display = 'none';
+  document.getElementById('stepIndicator').style.display = 'none';
+  document.getElementById('success').style.display = 'block';
+});
 </script>
+
 </body>
 </html>

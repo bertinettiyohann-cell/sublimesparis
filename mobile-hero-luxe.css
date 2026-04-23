@@ -1,0 +1,83 @@
+
+/* === MOBILE HERO LUXE v11 (FINAL SAFE iPhone SE) === */
+@media(max-width:768px){
+
+.nav{
+  padding:0 12px;
+}
+
+/* LOGO LINE */
+.nav-logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  white-space:nowrap;
+  width:100%;
+  overflow:hidden;
+}
+
+/* SUBLIMES PARIS slightly reduced */
+.nav-logo{
+  font-size:.74rem;
+  letter-spacing:.23em;
+}
+
+/* HIGH GLAMOUR ENTERTAINMENT protected */
+.nav-logo span{
+  font-size:.44rem;
+  letter-spacing:.16em;
+  opacity:.85;
+  margin-left:6px;
+  margin-right:34px; /* more space for burger (SE safe) */
+  flex-shrink:1;
+  min-width:0;
+}
+
+/* HERO */
+.hero{
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 18px;
+}
+
+.hero-content{
+  max-width:90%;
+  position:relative;
+  z-index:2;
+}
+
+/* animations */
+.hero-title,
+.hero-sub,
+.hero-cta{
+  opacity:0;
+  transform:translateY(20px);
+}
+
+.hero-title{ animation:fadeUp 1s ease forwards; animation-delay:.2s; }
+.hero-sub{   animation:fadeUp 1s ease forwards; animation-delay:.5s; }
+.hero-cta{   animation:fadeUp 1s ease forwards; animation-delay:.8s; }
+
+.hero-badges,
+.hero-scroll{ display:none; }
+
+.hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,.2) 0%,
+    rgba(0,0,0,.55) 55%,
+    rgba(0,0,0,.85) 100%
+  );
+  z-index:1;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+}

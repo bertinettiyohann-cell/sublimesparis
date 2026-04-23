@@ -6,7 +6,9 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Sublimes Paris — High Glamour Entertainment</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Montserrat:wght@200;300;400;500&amp;display=swap" rel="stylesheet"/>
+<script src="https://player.vimeo.com/api/player.js"></script>
 <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
@@ -47,18 +49,18 @@
 
     /* BOTTOM RIGHT — Son + Langue */
     .hero-bottom-right{position:absolute;bottom:90px;right:160px;display:flex;align-items:center;gap:6px;z-index:10;opacity:0;animation:fadeIn 1s 1.8s forwards}
-    .hero-sound-btn{background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.2);color:var(--white);font-family:var(--sans);font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;padding:5px 9px;cursor:none;transition:background .3s}
+    .hero-sound-btn{background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.2);color:var(--white);font-family:var(--sans);font-size:.48rem;letter-spacing:.15em;text-transform:uppercase;padding:5px 9px;cursor:pointer;transition:background .3s}
     .hero-sound-btn:hover{background:rgba(0,0,0,.8)}
 
     /* LANGUE DROPDOWN */
     .lang-dropdown{position:relative}
-    .lang-trigger{display:flex;align-items:center;gap:5px;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(0,0,0,.4);border:1px solid rgba(200,184,154,.2);padding:5px 9px;cursor:none;font-family:var(--sans);transition:border-color .3s}
+    .lang-trigger{display:flex;align-items:center;gap:5px;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(0,0,0,.4);border:1px solid rgba(200,184,154,.2);padding:5px 9px;cursor:pointer;font-family:var(--sans);transition:border-color .3s}
     .lang-trigger:hover{border-color:rgba(200,184,154,.55)}
     .lang-arrow{font-size:.35rem;transition:transform .3s;display:inline-block}
     .lang-dropdown.open .lang-arrow{transform:rotate(180deg)}
     .lang-menu{display:none;position:absolute;bottom:calc(100% + 5px);right:0;background:rgba(10,10,10,.97);border:1px solid rgba(200,184,154,.18);min-width:120px}
     .lang-dropdown.open .lang-menu{display:block}
-    .lang-option{display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,243,239,.5);cursor:none;transition:background .2s,color .2s;border-bottom:1px solid rgba(255,255,255,.04)}
+    .lang-option{display:flex;align-items:center;gap:8px;padding:8px 12px;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,243,239,.5);cursor:pointer;transition:background .2s,color .2s;border-bottom:1px solid rgba(255,255,255,.04)}
     .lang-option:last-child{border-bottom:none}
     .lang-option:hover{background:rgba(200,184,154,.07);color:var(--white)}
     .lang-option.active{color:var(--accent)}
@@ -78,13 +80,14 @@
     .adn .section-label{color:var(--grey-mid)}
     .adn .section-label::before{background:var(--grey-mid)}
     .adn-intro{font-size:.85rem;line-height:2;color:#444;max-width:760px;margin-bottom:70px;letter-spacing:.03em;text-align:justify}
+    .adn-intro + .adn-intro{margin-top:-50px}
     .adn-intro strong{color:var(--black);font-weight:500}
     .adn-grid{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
     .adn-text h2{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.2rem);font-weight:300;line-height:1.05;margin-bottom:32px}
     .adn-text h2 em{font-style:italic}
     .adn-text p{font-size:.78rem;line-height:2.1;color:#555;margin-bottom:16px;letter-spacing:.03em;text-align:justify}
     .adn-text blockquote{font-family:var(--serif);font-size:1.25rem;font-style:italic;color:#333;border-left:2px solid var(--accent);padding-left:22px;margin:32px 0;line-height:1.7;text-align:justify}
-    .adn-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+    .adn-tags{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:36px}
     .adn-tags span{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid #ccc;padding:7px 16px;color:#666}
     .adn-stats{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px;padding-top:36px;border-top:1px solid #e5e2dd}
     .adn-stat h3{font-family:var(--serif);font-size:2.2rem;font-weight:300;line-height:1}
@@ -163,7 +166,8 @@
     .contact{background:var(--black);text-align:center}
     .contact .section-label{justify-content:center}
     .contact .section-label::before{display:none}
-    .contact h2{font-family:var(--serif);font-size:clamp(3rem,7vw,6rem);font-weight:300;font-style:italic;margin-bottom:18px;line-height:1}
+    .contact h2{font-family:var(--serif);font-size:clamp(3rem,7vw,6rem);font-weight:300;font-style:italic;margin-top:0;margin-bottom:48px;line-height:1}
+    .contact .section-label{margin-bottom:24px}
     .contact-sub{font-size:.7rem;letter-spacing:.1em;color:var(--grey-mid);margin-bottom:64px;line-height:2}
     .contact-grid{display:flex;justify-content:center;gap:80px;margin-bottom:64px;flex-wrap:wrap}
     .contact-item h4{font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:var(--grey-mid);margin-bottom:12px}
@@ -194,13 +198,26 @@
       section{padding:80px 24px}
       .hero{padding:0 24px}
       .adn-grid,.creations-intro,.tv-grid{grid-template-columns:1fr;gap:50px}
+      .adn-text h2{text-align:center !important}
+      .adn-text p{text-align:center !important}
+      .adn-text blockquote{text-align:center !important;border-left:none !important;border-top:1px solid var(--accent);padding-left:0 !important;padding-top:22px}
+      .adn-tags{justify-content:center !important;text-align:center !important;display:grid !important;grid-template-columns:1fr 1fr;gap:8px}
+      .adn-tags span{text-align:center !important}
+      .adn-intro{text-align:center !important}
       .adn-image{order:-1}
-      .adn-stats{grid-template-columns:1fr 1fr;gap:16px}
+      .adn-stats{grid-template-columns:1fr 1fr;gap:16px;text-align:center !important}
+      .adn-stat{text-align:center !important;display:flex !important;flex-direction:column !important;align-items:center !important}
+      .adn-stat h3{text-align:center !important;width:100%}
+      .adn-stat p{text-align:center !important;width:100%}
       .team-grid{grid-template-columns:1fr 1fr}
       .video-grid{grid-template-columns:1fr}
       .video-card.featured{grid-column:span 1}
       .creations-masonry{grid-template-columns:1fr 1fr}
-      .contact-grid{flex-direction:column;gap:36px}
+      .contact-grid{flex-direction:column;gap:24px}
+      .contact-item a{font-size:1rem;letter-spacing:.04em}
+      .contact-item h4{font-size:.48rem;margin-bottom:6px}
+      .contact h2{font-size:2.4rem;margin-bottom:32px}
+      .btn-dl{font-size:.52rem;padding:11px 20px}
       .shows-header{flex-direction:column;align-items:flex-start;gap:20px}
       .shows-header p{text-align:left}
       footer{flex-direction:column;gap:10px;text-align:center;padding:24px}
@@ -274,8 +291,16 @@ section{
 
 .hero{
   padding:0 24px;
-  align-items:flex-end;
-  padding-bottom:60px;
+  align-items:flex-end !important;
+  justify-content:flex-start !important;
+  padding-bottom:120px;
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:90%;
+  text-align:left;
 }
 
 .hero-title{
@@ -305,6 +330,9 @@ section{
 
 .hero-badges{
   margin-top:18px;
+  display:grid !important;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
 }
 
 /* Bouton son visible en permanence sur mobile */
@@ -325,6 +353,15 @@ input,select,textarea{
   .sound-btn{cursor:none;}
 }
 
+/* cursor:none sur les éléments interactifs — uniquement avec souris */
+@media (hover: hover){
+  .hero-sound-btn,
+  .lang-trigger,
+  .lang-option{
+    cursor:none;
+  }
+}
+
 /* MOBILE THUMBNAILS — remplacent les iframes sur smartphone */
 .mobile-thumb{
   display:none;
@@ -333,10 +370,18 @@ input,select,textarea{
   object-fit:cover;
   z-index:0;
   filter:brightness(.75);
+  transition:opacity .3s;
 }
 @media(max-width:768px){
   .mobile-thumb{display:block;}
+  /* iframe cachée par défaut sur mobile, révélée au tap */
   .vimeo-bg{display:none !important;}
+  .vimeo-bg.playing{
+    display:block !important;
+    opacity:1 !important;
+    z-index:3 !important;
+    pointer-events:auto !important;
+  }
   .video-overlay{display:none !important;}
   .sound-btn{display:none !important;}
   .video-card-title{
@@ -346,7 +391,11 @@ input,select,textarea{
     justify-content:flex-end;
     padding-bottom:20px;
     z-index:2;
+    transition:opacity .3s;
   }
+  /* Quand la vidéo joue : cache le titre et la thumbnail */
+  .video-card.playing .video-card-title{opacity:0 !important;}
+  .video-card.playing .mobile-thumb{opacity:0;}
   .video-card{cursor:pointer;}
 }
 
@@ -380,17 +429,6 @@ input,select,textarea{
 }
 
 
-/* ===== HEADER CLEAN FIX ===== */
-header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  z-index:9999;
-  display:flex;
-  align-items:center;
-}
-
 /* ===== TEAM ROLE CENTER FIX (clean, no hack) ===== */
 .team-card{
   display:flex;
@@ -415,7 +453,28 @@ header{
 .team-card p{
   text-align:center !important;
 }
+
+
+/* ===== LANG MENU POSITION — FINAL ===== */
+/* Mobile : menu fixé en bas à gauche au-dessus du bouton Son */
+@media(max-width:768px){
+  .lang-menu{
+    display:none;
+    position:fixed !important;
+    bottom:80px !important;
+    left:24px !important;
+    right:auto !important;
+    z-index:999999 !important;
+  }
+
+  .lang-dropdown.open .lang-menu{
+    display:block !important;
+  }
+}
+
 </style>
+  <link rel="stylesheet" href="mobile-hero-luxe.css">
+  <link rel="stylesheet" href="mobile-lang-fix-v2.css">
 </head>
 <body>
 <div class="cursor" id="cursor"></div>
@@ -434,7 +493,7 @@ header{
 <section class="hero" id="top">
 <div class="hero-bg">
 <video id="heroVideo" autoplay muted loop playsinline
-  style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:max(100vw, 177.78vh);height:max(100vh, 56.25vw);pointer-events:none;filter:brightness(.32) grayscale(.2);object-fit:cover;">
+  style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:max(100vw, 177.78vh);height:max(100vh, 56.25vw);pointer-events:none;object-fit:cover;">
   <source src="hero-bg.webm" type="video/webm">
   <source src="hero-bg.mp4" type="video/mp4">
 </video>
@@ -472,7 +531,8 @@ header{
 <!-- ADN -->
 <section class="adn" id="adn">
 <div class="section-label reveal" data-i18n="adn_label">Notre ADN</div>
-<p class="adn-intro reveal"><strong>Sublimes Paris</strong> — <span data-i18n="adn_intro">une explosion d’art captivant qui apporte un éclat exceptionnel à chaque occasion. Nous incarnons l’essence incontestée du High Glamour, où chaque représentation devient une expérience immersive dans l'élégance et le spectaculaire. Des créations conçues pour inspirer, émouvoir et émerveiller.</span></p>
+<p class="adn-intro reveal"><strong>Sublimes Paris</strong> — <span data-i18n="adn_intro">une explosion d’art captivant qui apporte un éclat exceptionnel à chaque occasion.</span></p>
+<p class="adn-intro reveal"><span data-i18n="adn_intro2">Nous incarnons l’essence incontestée du High Glamour, où chaque représentation devient une expérience immersive dans l'élégance et le spectaculaire. Des créations conçues pour inspirer, émouvoir et émerveiller.</span></p>
 <div class="adn-grid">
 <div class="adn-text reveal reveal-delay-1">
 <h2 data-i18n="adn_title">L'élégance<br/>comme <em>art<br/>de vivre</em></h2>
@@ -527,63 +587,69 @@ header{
 </div>
 <div class="video-grid">
 <div class="video-card featured reveal" id="vc-red">
-<div class="video-card-title"><h3>Red Feathers</h3><span data-i18n="show_tag_signature">Show Signature</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<div class="video-card-title"><h3>Red Feathers</h3><span data-i18n="show_tag_signature">Show Signature</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680385.jpg" alt="Red Feathers" onerror="this.src='https://i.vimeocdn.com/video/1185680385-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680385?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Red Feathers</div><div class="video-tag" data-i18n="show_tag_signature">Show Signature</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680385')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-1" id="vc-cancan">
-<div class="video-card-title"><h3>French Cancan</h3><span data-i18n="show_tag_cabaret">Cabaret Parisien</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<div class="video-card-title"><h3>French Cancan</h3><span data-i18n="show_tag_cabaret">Cabaret Parisien</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680213.jpg" alt="French Cancan" onerror="this.src='https://i.vimeocdn.com/video/1185680213-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680213?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">French Cancan</div><div class="video-tag" data-i18n="show_tag_cabaret">Cabaret Parisien</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680213')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal" id="vc-gatsby">
-<div class="video-card-title"><h3>Gatsby Gold</h3><span data-i18n="show_tag_gatsby">Années Folles</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<div class="video-card-title"><h3>Gatsby Gold</h3><span data-i18n="show_tag_gatsby">Années Folles</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680582.jpg" alt="Gatsby Gold" onerror="this.src='https://i.vimeocdn.com/video/1185680582-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680582?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Gatsby Gold</div><div class="video-tag" data-i18n="show_tag_gatsby">Années Folles</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680582')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-1" id="vc-fans">
-<div class="video-card-title"><h3>White Fans</h3><span data-i18n="show_tag_fans">Élégance Pure</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<div class="video-card-title"><h3>White Fans</h3><span data-i18n="show_tag_fans">Élégance Pure</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680424.jpg" alt="White Fans" onerror="this.src='https://i.vimeocdn.com/video/1185680424-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680424?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">White Fans</div><div class="video-tag" data-i18n="show_tag_fans">Élégance Pure</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680424')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-2" id="vc-love">
-<div class="video-card-title"><h3>Business of Love</h3><span data-i18n="show_tag_love">Show Original</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<div class="video-card-title"><h3>Business of Love</h3><span data-i18n="show_tag_love">Show Original</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680460.jpg" alt="Business of Love" onerror="this.src='https://i.vimeocdn.com/video/1185680460-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680460?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Business of Love</div><div class="video-tag" data-i18n="show_tag_love">Show Original</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680460')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card featured reveal" id="vc-intercont">
-<div class="video-card-title"><h3>Intercontinental<br/>Paris</h3><span data-i18n="show_tag_intercont">Luxury Hotel Event</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<div class="video-card-title"><h3>Intercontinental<br/>Paris</h3><span data-i18n="show_tag_intercont">Luxury Hotel Event</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680259.jpg" alt="Intercontinental Paris" onerror="this.src='https://i.vimeocdn.com/video/1185680259-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680259?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Intercontinental Paris</div><div class="video-tag" data-i18n="show_tag_intercont">Luxury Hotel Event</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680259')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-1" id="vc-velvet">
-<div class="video-card-title"><h3>Black Velvet</h3><span data-i18n="show_tag_velvet">Création Exclusive</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<div class="video-card-title"><h3>Black Velvet</h3><span data-i18n="show_tag_velvet">Création Exclusive</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680489.jpg" alt="Black Velvet" onerror="this.src='https://i.vimeocdn.com/video/1185680489-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680489?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Black Velvet</div><div class="video-tag" data-i18n="show_tag_velvet">Création Exclusive</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680489')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-2" id="vc-1h">
-<div class="video-card-title"><h3>1 Heure<br/>de Show</h3><span data-i18n="show_tag_1h">Programme Complet</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<div class="video-card-title"><h3>1 Heure<br/>de Show</h3><span data-i18n="show_tag_1h">Programme Complet</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680292.jpg" alt="1 Heure de Show" onerror="this.src='https://i.vimeocdn.com/video/1185680292-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680292?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title" data-i18n="show_1h_title">1 Heure de Show</div><div class="video-tag" data-i18n="show_tag_1h">Programme Complet</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680292')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 </div>
-<p class="sound-notice reveal" data-i18n="sound_notice">Survolez une vidéo pour la lire — cliquez <span data-i18n="sound">Son</span> pour activer l'audio</p>
+<p class="sound-notice reveal" data-i18n="sound_notice">Survolez une vidéo pour la lire — cliquez Son pour activer l'audio</p>
+
+<div style="margin-top:40px;display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+<a href="/spectacle-luxe-paris.html" class="btn-dl">Spectacle luxe Paris</a>
+<a href="/animation-mariage-luxe.html" class="btn-dl">Mariage haut de gamme</a>
+<a href="/cabaret-evenement-paris.html" class="btn-dl">Cabaret événement</a>
+</div>
 </section>
 <!-- CREATIONS -->
 <section class="creations" id="creations">
@@ -630,7 +696,7 @@ header{
 </div>
 <div class="contact-downloads reveal">
 <a class="btn-dl" href="formulaire.html" id="form-link" target="_blank">
-<svg viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path><rect height="4" rx="1" width="6" x="9" y="3"></rect></svg>
+<svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path><rect height="4" rx="1" width="6" x="9" y="3"></rect></svg>
 <span data-i18n="form_btn">Déposer une demande</span>
 </a>
 </div>
@@ -655,7 +721,8 @@ const i18n = {
     hero_sub:'Une explosion d\'art captivant pour vos événements les plus précieux.',
     hero_cta:'Nous contacter',hero_scroll:'Défiler',sound:'Son',
     adn_label:'Notre ADN',
-    adn_intro:'une explosion d\'art captivant qui apporte un éclat exceptionnel à chaque occasion. Nous incarnons l\'essence incontestée du High Glamour, où chaque représentation devient une expérience immersive dans l\'élégance et le spectaculaire. Des créations conçues pour inspirer, émouvoir et émerveiller.',
+    adn_intro:'une explosion d\'art captivant qui apporte un éclat exceptionnel à chaque occasion.',
+    adn_intro2:'Nous incarnons l\'essence incontestée du High Glamour, où chaque représentation devient une expérience immersive dans l\'élégance et le spectaculaire. Des créations conçues pour inspirer, émouvoir et émerveiller.',
     adn_title:'L\'élégance<br>comme <em>art<br>de vivre</em>',
     adn_quote:'« Comme le MET GALA, Sublimes Paris réinvente les classiques de la revue dans des contextes inattendus. »',
     adn_p1:'Notre ADN repose sur un engagement passionné envers l\'art de la scène, où l\'élégance est au cœur de chacune de nos créations. Nous célébrons l\'artisanat minutieux et créons des expériences qui évoquent un inoubliable "waouh".',
@@ -688,7 +755,8 @@ const i18n = {
     hero_sub:'A captivating explosion of art for your most precious events.',
     hero_cta:'Contact us',hero_scroll:'Scroll',sound:'Sound',
     adn_label:'Our DNA',
-    adn_intro:'a captivating explosion of art that brings exceptional brilliance to every occasion. We embody the undisputed essence of High Glamour, where every performance becomes an immersive experience of elegance and spectacle. Creations designed to inspire, move and amaze.',
+    adn_intro:'a captivating explosion of art that brings exceptional brilliance to every occasion.',
+    adn_intro2:'We embody the undisputed essence of High Glamour, where every performance becomes an immersive experience of elegance and spectacle. Creations designed to inspire, move and amaze.',
     adn_title:'Elegance<br>as an <em>art<br>of living</em>',
     adn_quote:'"Like the MET GALA, Sublimes Paris reinvents revue classics in unexpected contexts."',
     adn_p1:'Our DNA is rooted in a passionate commitment to the art of performance, where elegance is at the heart of every creation. We celebrate meticulous craftsmanship and create experiences that evoke an unforgettable "wow".',
@@ -721,7 +789,8 @@ const i18n = {
     hero_sub:'Un\'esplosione d\'arte avvincente per i vostri eventi più preziosi.',
     hero_cta:'Contattateci',hero_scroll:'Scorri',sound:'Suono',
     adn_label:'Il Nostro DNA',
-    adn_intro:'un\'esplosione d\'arte avvincente che porta un bagliore eccezionale ad ogni occasione. Incarniamo l\'essenza incontestata dell\'High Glamour, dove ogni rappresentazione diventa un\'esperienza immersiva nell\'eleganza e nello spettacolo. Creazioni pensate per ispirare, emozionare e meravigliare.',
+    adn_intro:'un\'esplosione d\'arte avvincente che porta un bagliore eccezionale ad ogni occasione.',
+    adn_intro2:'Incarniamo l\'essenza incontestata dell\'High Glamour, dove ogni rappresentazione diventa un\'esperienza immersiva nell\'eleganza e nello spettacolo. Creazioni pensate per ispirare, emozionare e meravigliare.',
     adn_title:'L\'eleganza<br>come <em>arte<br>di vivere</em>',
     adn_quote:'"Come il MET GALA, Sublimes Paris reinventa i classici della rivista in contesti inaspettati."',
     adn_p1:'Il nostro DNA si basa su un impegno appassionato verso l\'arte della scena, dove l\'eleganza è al centro di ogni nostra creazione. Celebriamo l\'artigianalità minuziosa e creiamo esperienze che evocano un indimenticabile "wow".',
@@ -754,7 +823,8 @@ const i18n = {
     hero_sub:'为您最珍贵的活动带来令人心动的艺术盛宴。',
     hero_cta:'联系我们',hero_scroll:'向下滚动',sound:'声音',
     adn_label:'我们的DNA',
-    adn_intro:'一场令人心动的艺术爆发，为每一个特殊场合带来非凡光彩。我们体现了高端魅力的精髓，每一场演出都成为沉浸于优雅与壮观中的体验。我们的创作旨在激励、感动和令人惊叹。',
+    adn_intro:'一场令人心动的艺术爆发，为每一个特殊场合带来非凡光彩。',
+    adn_intro2:'我们体现了高端魅力的精髓，每一场演出都成为沉浸于优雅与壮观中的体验。我们的创作旨在激励、感动和令人惊叹。',
     adn_title:'优雅<br>作为<em>生活<br>的艺术</em>',
     adn_quote:'「如同MET GALA，Sublimes Paris在意想不到的场景中重新演绎经典。」',
     adn_p1:'我们的DNA植根于对舞台艺术的热情承诺，优雅是我们每一件创作的核心。我们颂扬精湛工艺，创造令人难忘的"惊艳"体验。',
@@ -881,21 +951,38 @@ function closeMenu(){
 }
 
 
-// ── MOBILE : TAP SUR UNE CARTE = OUVRE VIMEO ─────────────────
+// ── MOBILE : TAP SUR UNE CARTE = LECTURE VIMEO INLINE ────────
 if(window.innerWidth <= 768){
   document.querySelectorAll('.video-card').forEach(card=>{
     const iframe = card.querySelector('iframe.vimeo-bg');
     if(!iframe) return;
-    const src = iframe.src;
-    const match = src.match(/video\/(\d+)/);
+    const match = iframe.src.match(/video\/(\d+)/);
     if(!match) return;
     const videoId = match[1];
-    card.addEventListener('click', ()=>{
-      window.open('https://vimeo.com/'+videoId, '_blank');
+
+    card.addEventListener('click', function(){
+      if(card.classList.contains('playing')) return;
+
+      // Stoppe toutes les autres vidéos en cours
+      document.querySelectorAll('.video-card.playing').forEach(other=>{
+        const otherIframe = other.querySelector('iframe.vimeo-bg');
+        if(otherIframe){
+          const otherId = otherIframe.src.match(/video\/(\d+)/);
+          if(otherId) otherIframe.src = 'https://player.vimeo.com/video/'+otherId[1]+'?loop=1&muted=1&background=1&playsinline=1';
+          otherIframe.classList.remove('playing');
+        }
+        other.classList.remove('playing');
+      });
+
+      // Lance le player Vimeo interactif avec autoplay + son
+      iframe.src = 'https://player.vimeo.com/video/'+videoId+'?autoplay=1&loop=1&playsinline=1';
+      iframe.classList.add('playing');
+      card.classList.add('playing');
     });
   });
 }
+</script>
 
-// MOBILE — pas d'action supplémentaire, les iframes Vimeo gèrent tout
-</script></body>
+
+</body>
 </html>
