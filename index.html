@@ -156,8 +156,8 @@
     .tv-text p{font-size:.78rem;color:#555;line-height:2;letter-spacing:.03em;margin-bottom:16px}
     .tv-logos{display:flex;gap:32px;margin-top:36px;align-items:center}
     .tv-logo{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:#333}
-    .tv-video{aspect-ratio:16/9;overflow:hidden}
-    .tv-video video{width:100%;height:100%;object-fit:cover;display:block}
+    .tv-video{aspect-ratio:16/9;overflow:hidden;position:relative;}
+    .tv-video iframe{position:absolute;inset:0;width:100%;height:100%;display:block;}
 
     /* CONTACT */
     .contact{background:var(--black);text-align:center}
@@ -337,13 +337,17 @@ input,select,textarea{
 @media(max-width:768px){
   .mobile-thumb{display:block;}
   .vimeo-bg{display:none !important;}
+  .video-overlay{display:none !important;}
+  .sound-btn{display:none !important;}
   .video-card-title{
     opacity:1 !important;
-    background:linear-gradient(to top, rgba(0,0,0,.6) 0%, rgba(0,0,0,.2) 60%, transparent 100%);
+    pointer-events:none;
+    background:linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,.2) 60%, transparent 100%);
     justify-content:flex-end;
     padding-bottom:20px;
+    z-index:2;
   }
-  .sound-btn{display:none;}
+  .video-card{cursor:pointer;}
 }
 
 /* HERO BG - assure le bon affichage */
@@ -354,9 +358,6 @@ input,select,textarea{
   opacity:0;transition:opacity .5s ease;z-index:1;
 }
 .video-card:hover .vimeo-bg{opacity:1;}
-@media(max-width:768px){
-  .vimeo-bg{opacity:1 !important;}
-}
 
 /* cursor fix — uniquement sur les appareils avec souris */
 @media (hover: hover){
@@ -386,7 +387,6 @@ header{
   left:0;
   width:100%;
   z-index:9999;
-  background:#0a0a0a;
   display:flex;
   align-items:center;
 }
@@ -433,35 +433,16 @@ header{
 <!-- HERO -->
 <section class="hero" id="top">
 <div class="hero-bg">
-<div id="hero-vimeo-wrapper" style="position:absolute;inset:0;overflow:hidden;background:#000;pointer-events:none;">
+<div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
 <iframe id="heroVideo"
-  src="https://player.vimeo.com/video/1185680259?autoplay=1&loop=1&muted=1&background=1&autopause=0"
+  src="https://player.vimeo.com/video/1185680259?autoplay=1&loop=1&muted=1&background=1&autopause=0&playsinline=1"
   frameborder="0"
-  allow="autoplay; fullscreen"
+  allow="autoplay; fullscreen; picture-in-picture"
   allowfullscreen
-  style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100%;height:100%;pointer-events:none;filter:brightness(.32) grayscale(.2);">
+  style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:max(100vw, 177.78vh);height:max(100vh, 56.25vw);pointer-events:none;filter:brightness(.32) grayscale(.2);">
 </iframe>
 </div>
 </div>
-<script>
-// Resize hero iframe to cover like object-fit:cover
-function resizeHeroVimeo(){
-  var wrap = document.getElementById('hero-vimeo-wrapper');
-  var iframe = document.getElementById('heroVideo');
-  if(!wrap || !iframe) return;
-  var W = wrap.offsetWidth;
-  var H = wrap.offsetHeight;
-  var ratio = 16/9;
-  var iW, iH;
-  if(W/H > ratio){ iW = W; iH = W/ratio; }
-  else { iH = H; iW = H*ratio; }
-  iframe.style.width = iW+'px';
-  iframe.style.height = iH+'px';
-}
-window.addEventListener('load', resizeHeroVimeo);
-window.addEventListener('resize', resizeHeroVimeo);
-resizeHeroVimeo();
-</script>
 <div class="hero-content">
 <h1 class="hero-title" data-i18n="hero_title">Quand<br/>l'élégance<br/><em>entre en scène</em></h1>
 <p class="hero-sub" data-i18n="hero_sub">Une explosion d’art captivant pour vos événements les plus précieux.</p>
@@ -551,57 +532,57 @@ resizeHeroVimeo();
 <div class="video-grid">
 <div class="video-card featured reveal" id="vc-red">
 <div class="video-card-title"><h3>Red Feathers</h3><span data-i18n="show_tag_signature">Show Signature</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
-<img class="mobile-thumb" src="https://vumbnail.com/1185680385.jpg" alt="Red Feathers"/>
-<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680385?loop=1&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<img class="mobile-thumb" src="https://vumbnail.com/1185680385.jpg" alt="Red Feathers" onerror="this.src='https://i.vimeocdn.com/video/1185680385-thumb.jpg'"/>
+<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680385?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Red Feathers</div><div class="video-tag" data-i18n="show_tag_signature">Show Signature</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680385')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-1" id="vc-cancan">
 <div class="video-card-title"><h3>French Cancan</h3><span data-i18n="show_tag_cabaret">Cabaret Parisien</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
-<img class="mobile-thumb" src="https://vumbnail.com/1185680213.jpg" alt="French Cancan"/>
-<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680213?loop=1&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<img class="mobile-thumb" src="https://vumbnail.com/1185680213.jpg" alt="French Cancan" onerror="this.src='https://i.vimeocdn.com/video/1185680213-thumb.jpg'"/>
+<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680213?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">French Cancan</div><div class="video-tag" data-i18n="show_tag_cabaret">Cabaret Parisien</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680213')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal" id="vc-gatsby">
 <div class="video-card-title"><h3>Gatsby Gold</h3><span data-i18n="show_tag_gatsby">Années Folles</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
-<img class="mobile-thumb" src="https://vumbnail.com/1185680582.jpg" alt="Gatsby Gold"/>
-<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680582?loop=1&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<img class="mobile-thumb" src="https://vumbnail.com/1185680582.jpg" alt="Gatsby Gold" onerror="this.src='https://i.vimeocdn.com/video/1185680582-thumb.jpg'"/>
+<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680582?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Gatsby Gold</div><div class="video-tag" data-i18n="show_tag_gatsby">Années Folles</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680582')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-1" id="vc-fans">
 <div class="video-card-title"><h3>White Fans</h3><span data-i18n="show_tag_fans">Élégance Pure</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
-<img class="mobile-thumb" src="https://vumbnail.com/1185680424.jpg" alt="White Fans"/>
-<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680424?loop=1&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<img class="mobile-thumb" src="https://vumbnail.com/1185680424.jpg" alt="White Fans" onerror="this.src='https://i.vimeocdn.com/video/1185680424-thumb.jpg'"/>
+<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680424?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">White Fans</div><div class="video-tag" data-i18n="show_tag_fans">Élégance Pure</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680424')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-2" id="vc-love">
 <div class="video-card-title"><h3>Business of Love</h3><span data-i18n="show_tag_love">Show Original</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
-<img class="mobile-thumb" src="https://vumbnail.com/1185680460.jpg" alt="Business of Love"/>
-<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680460?loop=1&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<img class="mobile-thumb" src="https://vumbnail.com/1185680460.jpg" alt="Business of Love" onerror="this.src='https://i.vimeocdn.com/video/1185680460-thumb.jpg'"/>
+<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680460?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Business of Love</div><div class="video-tag" data-i18n="show_tag_love">Show Original</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680460')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card featured reveal" id="vc-intercont">
 <div class="video-card-title"><h3>Intercontinental<br/>Paris</h3><span data-i18n="show_tag_intercont">Luxury Hotel Event</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
-<img class="mobile-thumb" src="https://vumbnail.com/1185680259.jpg" alt="Intercontinental Paris"/>
-<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680259?loop=1&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<img class="mobile-thumb" src="https://vumbnail.com/1185680259.jpg" alt="Intercontinental Paris" onerror="this.src='https://i.vimeocdn.com/video/1185680259-thumb.jpg'"/>
+<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680259?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Intercontinental Paris</div><div class="video-tag" data-i18n="show_tag_intercont">Luxury Hotel Event</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680259')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-1" id="vc-velvet">
 <div class="video-card-title"><h3>Black Velvet</h3><span data-i18n="show_tag_velvet">Création Exclusive</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
-<img class="mobile-thumb" src="https://vumbnail.com/1185680489.jpg" alt="Black Velvet"/>
-<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680489?loop=1&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<img class="mobile-thumb" src="https://vumbnail.com/1185680489.jpg" alt="Black Velvet" onerror="this.src='https://i.vimeocdn.com/video/1185680489-thumb.jpg'"/>
+<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680489?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Black Velvet</div><div class="video-tag" data-i18n="show_tag_velvet">Création Exclusive</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680489')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-2" id="vc-1h">
 <div class="video-card-title"><h3>1 Heure<br/>de Show</h3><span data-i18n="show_tag_1h">Programme Complet</span><div class="play-hint"><svg viewbox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
-<img class="mobile-thumb" src="https://vumbnail.com/1185680292.jpg" alt="1 Heure de Show"/>
-<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680292?loop=1&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<img class="mobile-thumb" src="https://vumbnail.com/1185680292.jpg" alt="1 Heure de Show" onerror="this.src='https://i.vimeocdn.com/video/1185680292-thumb.jpg'"/>
+<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680292?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title" data-i18n="show_1h_title">1 Heure de Show</div><div class="video-tag" data-i18n="show_tag_1h">Programme Complet</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680292')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
@@ -637,7 +618,7 @@ resizeHeroVimeo();
 <div class="tv-logos"><span class="tv-logo">TF1</span><span class="tv-logo">France 2</span><span class="tv-logo">TV Géorgie</span></div>
 </div>
 <div class="tv-video reveal reveal-delay-2">
-<iframe src="https://player.vimeo.com/video/1185679981?autoplay=1&loop=1&muted=1&background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:100%;"></iframe>
+<iframe src="https://player.vimeo.com/video/1185679981?autoplay=1&loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;position:absolute;inset:0;"></iframe>
 </div>
 </div>
 </section>
@@ -905,6 +886,21 @@ function closeMenu(){
   document.getElementById('mobileMenu').classList.remove('active');
 }
 
+
+// ── MOBILE : TAP SUR UNE CARTE = OUVRE VIMEO ─────────────────
+if(window.innerWidth <= 768){
+  document.querySelectorAll('.video-card').forEach(card=>{
+    const iframe = card.querySelector('iframe.vimeo-bg');
+    if(!iframe) return;
+    const src = iframe.src;
+    const match = src.match(/video\/(\d+)/);
+    if(!match) return;
+    const videoId = match[1];
+    card.addEventListener('click', ()=>{
+      window.open('https://vimeo.com/'+videoId, '_blank');
+    });
+  });
+}
 
 // MOBILE — pas d'action supplémentaire, les iframes Vimeo gèrent tout
 </script></body>
