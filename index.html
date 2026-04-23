@@ -433,15 +433,11 @@ header{
 <!-- HERO -->
 <section class="hero" id="top">
 <div class="hero-bg">
-<div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;">
-<iframe id="heroVideo"
-  src="https://player.vimeo.com/video/1185680259?autoplay=1&loop=1&muted=1&background=1&autopause=0&playsinline=1"
-  frameborder="0"
-  allow="autoplay; fullscreen; picture-in-picture"
-  allowfullscreen
-  style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:max(100vw, 177.78vh);height:max(100vh, 56.25vw);pointer-events:none;filter:brightness(.32) grayscale(.2);">
-</iframe>
-</div>
+<video id="heroVideo" autoplay muted loop playsinline
+  style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:max(100vw, 177.78vh);height:max(100vh, 56.25vw);pointer-events:none;filter:brightness(.32) grayscale(.2);object-fit:cover;">
+  <source src="videos/hero-bg.webm" type="video/webm">
+  <source src="videos/hero-bg.mp4" type="video/mp4">
+</video>
 </div>
 <div class="hero-content">
 <h1 class="hero-title" data-i18n="hero_title">Quand<br/>l'élégance<br/><em>entre en scène</em></h1>
@@ -494,7 +490,7 @@ header{
 </div>
 </div>
 <div class="adn-image reveal reveal-delay-2">
-<img alt="Création Sublimes Paris" src="images/YF-20220218-0034-Modifier-Modifier-Modifier_edited.jpg"/>
+<img alt="Création Sublimes Paris" src="images/creation-cristaux.jpg"/>
 </div>
 </div>
 </section>
@@ -503,19 +499,19 @@ header{
 <div class="section-label reveal" data-i18n="team_label">Executive Team</div>
 <div class="team-grid">
 <div class="team-card reveal">
-<div class="team-initial"><img alt="Nicolas" src="images/portrait nicolas.jpg"/></div>
+<div class="team-initial"><img alt="Nicolas" src="images/portrait-nicolas.jpg"/></div>
 <h3>Nicolas</h3><p data-i18n="role_nicolas">Fondateur · Directeur Artistique</p>
 </div>
 <div class="team-card reveal reveal-delay-1">
-<div class="team-initial"><img alt="Yohann" src="images/portrait yohann.jpg"/></div>
+<div class="team-initial"><img alt="Yohann" src="images/portrait-yohann.jpg"/></div>
 <h3>Yohann</h3><p data-i18n="role_yohann">Coordinateur Event</p>
 </div>
 <div class="team-card reveal reveal-delay-2">
-<div class="team-initial"><img alt="Pierrick" src="images/portrait pierrick.jpg"/></div>
+<div class="team-initial"><img alt="Pierrick" src="images/portrait-pierrick.jpg"/></div>
 <h3>Pierrick</h3><p data-i18n="role_pierrick">Administrateur Contrat</p>
 </div>
 <div class="team-card reveal reveal-delay-3">
-<div class="team-initial"><img alt="Alexandre" src="images/portrait alexandre.jpg"/></div>
+<div class="team-initial"><img alt="Alexandre" src="images/portrait-alexandre.jpg"/></div>
 <h3>Alexandre</h3><p data-i18n="role_alexandre">Styliste</p>
 </div>
 </div>
@@ -599,12 +595,12 @@ header{
 <p class="reveal reveal-delay-1" data-i18n="creations_sub">Conçus et réalisés dans notre propre atelier avec un souci méticuleux du détail. Chaque plume, chaque bijou, chaque tissu est soigneusement choisi. Certains tableaux nécessitent le sertissage minutieux de plus de <strong style="color:var(--white)">16 000 cristaux à la main</strong>.</p>
 </div>
 <div class="creations-masonry">
-<div class="creation-item reveal"><div class="creation-item-inner"><img alt="Cristaux Swarovski" src="images/YF-20220218-0034-Modifier-Modifier-Modifier_edited.jpg" style="object-position:center 15%"/></div><div class="creation-item-caption"><h4>Cristaux Swarovski</h4><span data-i18n="creat1_sub">16 000 cristaux sertis à la main</span></div></div>
-<div class="creation-item reveal reveal-delay-1"><div class="creation-item-inner"><img alt="Haute Bijouterie" src="images/Nico Bijoux (36 sur 1)_edited.jpg" style="object-position:center center"/></div><div class="creation-item-caption"><h4 data-i18n="creat2_title">Haute Bijouterie</h4><span data-i18n="creat2_sub">Artisan bijoutier — Atelier Paris</span></div></div>
-<div class="creation-item reveal reveal-delay-2"><div class="creation-item-inner"><img alt="Red Feathers" src="images/YF-20220218-0531-Modifier-Modifier.jpg" style="object-position:center top"/></div><div class="creation-item-caption"><h4>Red Feathers</h4><span data-i18n="creat3_sub">Plumes &amp; bijoux de scène</span></div></div>
-<div class="creation-item reveal reveal-delay-1"><div class="creation-item-inner"><img alt="Golden" src="images/YF-20220218-0585-Modifier-Modifier.jpg" style="object-position:center top"/></div><div class="creation-item-caption"><h4>Golden</h4><span data-i18n="creat4_sub">Haute couture du spectacle</span></div></div>
-<div class="creation-item reveal reveal-delay-2"><div class="creation-item-inner"><img alt="Bijoux de Scène" src="images/IMG_9701.JPG" style="object-position:center center"/></div><div class="creation-item-caption"><h4 data-i18n="creat5_title">Bijoux de Scène</h4><span data-i18n="creat5_sub">Savoir-faire français</span></div></div>
-<div class="creation-item reveal reveal-delay-3"><div class="creation-item-inner"><img alt="Atelier" src="images/IMG_4568_edited.jpg" style="object-position:center top"/></div><div class="creation-item-caption"><h4 data-i18n="creat6_title">L'Atelier</h4><span data-i18n="creat6_sub">Création sur-mesure</span></div></div>
+<div class="creation-item reveal"><div class="creation-item-inner"><img alt="Cristaux Swarovski" src="images/creation-cristaux.jpg" style="object-position:center 15%"/></div><div class="creation-item-caption"><h4>Cristaux Swarovski</h4><span data-i18n="creat1_sub">16 000 cristaux sertis à la main</span></div></div>
+<div class="creation-item reveal reveal-delay-1"><div class="creation-item-inner"><img alt="Haute Bijouterie" src="images/nico-bijoux-edited.jpg" style="object-position:center center"/></div><div class="creation-item-caption"><h4 data-i18n="creat2_title">Haute Bijouterie</h4><span data-i18n="creat2_sub">Artisan bijoutier — Atelier Paris</span></div></div>
+<div class="creation-item reveal reveal-delay-2"><div class="creation-item-inner"><img alt="Red Feathers" src="images/creation-red-feathers.jpg" style="object-position:center top"/></div><div class="creation-item-caption"><h4>Red Feathers</h4><span data-i18n="creat3_sub">Plumes &amp; bijoux de scène</span></div></div>
+<div class="creation-item reveal reveal-delay-1"><div class="creation-item-inner"><img alt="Golden" src="images/creation-golden.jpg" style="object-position:center top"/></div><div class="creation-item-caption"><h4>Golden</h4><span data-i18n="creat4_sub">Haute couture du spectacle</span></div></div>
+<div class="creation-item reveal reveal-delay-2"><div class="creation-item-inner"><img alt="Bijoux de Scène" src="images/creation-bijoux-scene.jpg" style="object-position:center center"/></div><div class="creation-item-caption"><h4 data-i18n="creat5_title">Bijoux de Scène</h4><span data-i18n="creat5_sub">Savoir-faire français</span></div></div>
+<div class="creation-item reveal reveal-delay-3"><div class="creation-item-inner"><img alt="Atelier" src="images/creation-atelier.jpg" style="object-position:center top"/></div><div class="creation-item-caption"><h4 data-i18n="creat6_title">L'Atelier</h4><span data-i18n="creat6_sub">Création sur-mesure</span></div></div>
 </div>
 </section>
 <!-- TV / MEDIAS -->
@@ -845,19 +841,17 @@ const obs = new IntersectionObserver(entries=>{
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-// ── VIMEO SOUND TOGGLE ───────────────────────────────────────
-const vimeoScript = document.createElement('script');
-vimeoScript.src = 'https://player.vimeo.com/api/player.js';
-document.head.appendChild(vimeoScript);
-
+// ── HERO SOUND TOGGLE (vidéo locale) ─────────────────────────
 function toggleHeroSound(){
   const icon = document.getElementById('heroSoundIcon');
-  const iframe = document.getElementById('heroVideo');
-  const player = new Vimeo.Player(iframe);
-  player.getVolume().then(v=>{
-    if(v === 0){ player.setVolume(1); icon.textContent='🔊'; }
-    else { player.setVolume(0); icon.textContent='🔇'; }
-  });
+  const video = document.getElementById('heroVideo');
+  if(video.muted){
+    video.muted = false;
+    icon.textContent = '🔊';
+  } else {
+    video.muted = true;
+    icon.textContent = '🔇';
+  }
 }
 
 function toggleVimeoSound(btn){
