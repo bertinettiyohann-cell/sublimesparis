@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
+*, *::before, *::after { box-sizing: border-box; }
+
 body {
   margin:0;
   font-family:'Montserrat', sans-serif;
@@ -50,15 +52,35 @@ label {
   color:#c8b89a;
 }
 
+/* ── CHAMPS UNIFORMES — rectangle strict partout ── */
 select, input, textarea {
   width:100%;
-  padding:12px;
-  background:transparent;
+  padding:12px 14px;
+  background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.2);
-  color:white;
+  color:#f5f3ef;
   font-family:'Montserrat', sans-serif;
   font-size:.8rem;
-  box-sizing:border-box;
+  border-radius:0;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  outline:none;
+  transition:border-color .3s;
+}
+
+select:focus, input:focus, textarea:focus {
+  border-color:rgba(200,184,154,.55);
+}
+
+/* Flèche custom dorée sur tous les selects */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c8b89a'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 14px center;
+  background-color:rgba(255,255,255,.03);
+  padding-right:36px;
+  cursor:pointer;
 }
 
 select option {
@@ -71,10 +93,23 @@ textarea {
   resize:vertical;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter:invert(0.7) sepia(1) saturate(0.4);
+  cursor:pointer;
+}
+
+/* Placeholder */
+::placeholder {
+  color:rgba(255,255,255,.3);
+  font-size:.75rem;
+}
+
 button {
   margin-top:30px;
-  padding:12px 24px;
+  padding:12px 28px;
   border:1px solid #c8b89a;
+  border-radius:0;
+  -webkit-appearance:none;
   background:none;
   color:#c8b89a;
   cursor:pointer;
@@ -87,12 +122,12 @@ button {
 
 button:hover {
   background:#c8b89a;
-  color:black;
+  color:#0a0a0a;
 }
 
 .hint {
   margin-top:15px;
-  font-size:.75rem;
+  font-size:.72rem;
   color:#999;
   display:none;
   line-height:1.6;
@@ -100,11 +135,56 @@ button:hover {
 
 .note {
   margin-top:20px;
-  font-size:.75rem;
+  font-size:.72rem;
   color:#888;
   line-height:1.8;
 }
 
+/* ── INDICATEUR D'ÉTAPES ── */
+.step-indicator {
+  display:flex;
+  gap:6px;
+  margin-bottom:28px;
+}
+.step-dot {
+  width:18px;
+  height:1px;
+  background:rgba(255,255,255,.2);
+  transition:background .4s;
+}
+.step-dot.active {
+  background:#c8b89a;
+}
+
+.btn-row {
+  display:flex;
+  gap:12px;
+  margin-top:30px;
+  align-items:center;
+}
+.btn-row button { margin-top:0; }
+.btn-back {
+  padding:12px 18px;
+  border:1px solid rgba(255,255,255,.18);
+  background:none;
+  color:rgba(245,243,239,.4);
+  cursor:pointer;
+  font-family:'Montserrat', sans-serif;
+  font-size:.6rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  transition:border-color .3s, color .3s;
+  border-radius:0;
+  -webkit-appearance:none;
+  flex-shrink:0;
+}
+.btn-back:hover {
+  border-color:rgba(255,255,255,.4);
+  color:rgba(245,243,239,.75);
+  background:none;
+}
+
+/* ── SUCCESS ── */
 #success {
   display:none;
   text-align:center;
@@ -124,114 +204,72 @@ button:hover {
   line-height:2;
 }
 
-/* ── INDICATEUR D'ÉTAPES ── */
-.step-indicator {
-  display:flex;
-  gap:6px;
-  margin-bottom:28px;
-}
-.step-dot {
-  width:18px;
-  height:1px;
-  background:rgba(255,255,255,.2);
-  transition:background .4s;
-}
-.step-dot.active {
-  background:#c8b89a;
-}
-
 /* ── MOBILE ── */
-@media(max-width:480px){
+@media(max-width:768px){
 
   .container {
-    padding:32px 20px;
+    padding:48px 24px 40px;
     align-items:flex-start;
-    padding-top:48px;
   }
 
-  .step,
-  #success {
+  .step, #success {
     width:100%;
-    max-width:100%;
+    max-width:420px;
+    margin:0 auto;
   }
 
   h1 {
-    font-size:1.75rem;
+    font-size:1.6rem;
     line-height:1.25;
-    margin-bottom:12px;
+    margin-bottom:14px;
   }
 
-  #success h1 {
-    font-size:2rem;
-  }
+  #success h1 { font-size:2rem; }
 
   label {
-    font-size:.62rem;
+    font-size:.58rem;
+    letter-spacing:.18em;
     margin:16px 0 6px;
   }
 
   select, input, textarea {
-    font-size:16px; /* évite le zoom auto iOS */
-    padding:11px 10px;
+    font-size:16px; /* évite zoom iOS */
+    padding:13px 12px;
   }
 
-  textarea {
-    min-height:80px;
+  select {
+    background-position:right 12px center;
+    padding-right:34px;
   }
+
+  textarea { min-height:90px; }
 
   button {
     width:100%;
-    margin-top:24px;
+    margin-top:22px;
     padding:14px 20px;
-    font-size:.6rem;
+    font-size:.58rem;
+    letter-spacing:.22em;
     text-align:center;
   }
 
-  .note {
-    font-size:.68rem;
-    line-height:1.7;
+  .btn-row {
+    flex-direction:row;
+    gap:8px;
+    margin-top:22px;
   }
+  .btn-row button { width:auto; flex:1; margin-top:0; }
+  .btn-back { padding:14px 12px; font-size:.55rem; flex:0 0 auto; }
 
-  .hint {
-    font-size:.68rem;
-  }
+  .note { font-size:.65rem; line-height:1.75; }
+  .hint { font-size:.65rem; }
+  .step-indicator { margin-bottom:24px; }
 }
 
-@media(max-width:768px){
-
-.container{
-  padding:22px 14px;
+@media(max-width:380px){
+  .step, #success { max-width:100%; }
+  h1 { font-size:1.35rem; }
 }
-
-.step,
-#success{
-  width:100%;
-  max-width:100%;
-}
-
-h1{
-  font-size:1.45rem;
-  line-height:1.25;
-}
-
-label{
-  margin:12px 0 4px;
-  font-size:.55rem;
-}
-
-select, input, textarea{
-  padding:9px 8px;
-  font-size:14px;
-}
-
-button{
-  margin-top:18px;
-  padding:12px;
-  font-size:.55rem;
-}
-
-}
-
 </style>
 </head>
 
@@ -240,7 +278,6 @@ button{
 
 <form id="form">
 
-  <!-- Indicateur d'étapes -->
   <div class="step-indicator" id="stepIndicator">
     <div class="step-dot active"></div>
     <div class="step-dot"></div>
@@ -256,7 +293,6 @@ button{
 
   <div class="step">
     <h1>Votre projet</h1>
-
     <label>Type d'événement</label>
     <select name="event">
       <option>Corporate</option>
@@ -264,19 +300,18 @@ button{
       <option>Privé</option>
       <option>Hôtel / Palace</option>
     </select>
-
     <label>Lieu (ville + pays)</label>
     <input name="location" placeholder="Ex : Paris, France">
-
     <label>Date</label>
     <input type="date" name="date">
-
-    <button type="button" onclick="nextStep()">Suivant</button>
+    <div class="btn-row">
+      <button type="button" class="btn-back" onclick="prevStep()">← Retour</button>
+      <button type="button" onclick="nextStep()">Suivant</button>
+    </div>
   </div>
 
   <div class="step">
     <h1>Le rythme de l'événement</h1>
-
     <label>Nombre d'artistes</label>
     <select id="artistes" name="artistes">
       <option>2</option>
@@ -286,7 +321,6 @@ button{
       <option>9</option>
       <option>11</option>
     </select>
-
     <label>Performances</label>
     <select id="performances" name="performances">
       <option>Accueil</option>
@@ -296,17 +330,17 @@ button{
       <option>Accueil + 2 performances</option>
       <option>Accueil + 3 performances</option>
     </select>
-
     <div class="hint" id="hint">
       Ce type de configuration nécessite généralement un budget plus élevé.
     </div>
-
-    <button type="button" onclick="nextStep()">Suivant</button>
+    <div class="btn-row">
+      <button type="button" class="btn-back" onclick="prevStep()">← Retour</button>
+      <button type="button" onclick="nextStep()">Suivant</button>
+    </div>
   </div>
 
   <div class="step">
     <h1>Budget estimé</h1>
-
     <select name="budget">
       <option>1k – 3k</option>
       <option>3k – 5k</option>
@@ -314,34 +348,32 @@ button{
       <option>10k – 20k</option>
       <option>20k+</option>
     </select>
-
     <div class="note">
       À Paris : les tarifs sont indiqués TTC.<br>
       Hors Paris : frais de déplacement, hébergement et restauration en supplément.
     </div>
-
-    <button type="button" onclick="nextStep()">Suivant</button>
+    <div class="btn-row">
+      <button type="button" class="btn-back" onclick="prevStep()">← Retour</button>
+      <button type="button" onclick="nextStep()">Suivant</button>
+    </div>
   </div>
 
   <div class="step">
     <h1>Dernière étape</h1>
-
     <label>Nom</label>
     <input name="nom">
-
     <label>Prénom</label>
     <input name="prenom">
-
     <label>Email</label>
     <input type="email" name="email" required>
-
     <label>Téléphone</label>
     <input name="phone">
-
     <label>Votre vision</label>
     <textarea name="vision" placeholder="Décrivez l'émotion que vous souhaitez créer"></textarea>
-
-    <button type="submit">Créer mon expérience</button>
+    <div class="btn-row">
+      <button type="button" class="btn-back" onclick="prevStep()">← Retour</button>
+      <button type="submit">Créer mon expérience</button>
+    </div>
   </div>
 
 </form>
@@ -367,6 +399,16 @@ function nextStep(){
   window.scrollTo(0,0);
 }
 
+function prevStep(){
+  if(current === 0) return;
+  steps[current].classList.remove('active');
+  dots[current].classList.remove('active');
+  current--;
+  steps[current].classList.add('active');
+  dots[current].classList.add('active');
+  window.scrollTo(0,0);
+}
+
 const artistes = document.getElementById("artistes");
 const performances = document.getElementById("performances");
 const hint = document.getElementById("hint");
@@ -383,7 +425,6 @@ performances.addEventListener("change", checkLogic);
 document.getElementById('form').addEventListener('submit', async e => {
   e.preventDefault();
   const data = new FormData(e.target);
-
   try {
     const res = await fetch('https://formspree.io/f/xwvawvqe', {
       method:'POST',
@@ -394,7 +435,6 @@ document.getElementById('form').addEventListener('submit', async e => {
   } catch(err) {
     alert("Problème réseau, merci de réessayer."); return;
   }
-
   e.target.style.display = 'none';
   document.getElementById('stepIndicator').style.display = 'none';
   document.getElementById('success').style.display = 'block';
