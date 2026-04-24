@@ -134,6 +134,9 @@
     .sound-notice{text-align:center;margin-top:28px;font-size:.6rem;letter-spacing:.12em;color:var(--grey-mid)}
     .sound-notice span{color:var(--accent)}
 
+
+
+
     /* CREATIONS */
     .creations{background:#111}
     .creations-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:90px;align-items:end}
@@ -426,70 +429,59 @@ input,select,textarea{
   .video-card.playing .mobile-thumb{opacity:0;}
   .video-card{cursor:pointer;}
 
-  /* ── CAROUSEL MOBILE ── */
+  
+  /* ── MOBILE VIDEO GRID STYLE INSTAGRAM ── */
   .video-grid{
-    display:flex !important;
-    flex-direction:row !important;
-    overflow-x:scroll;
-    scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch;
-    gap:10px !important;
-    scrollbar-width:none;
-    padding:0 6vw !important;
-    margin:0 -24px;
+    display:grid !important;
+    grid-template-columns:1fr 1fr 1fr !important;
+    gap:12px !important;
+    padding:0 !important;
+    margin:0 !important;
+    overflow:visible !important;
   }
-  .video-grid::-webkit-scrollbar{display:none;}
 
   .video-card,
   .video-card.featured{
     grid-column:unset !important;
-    flex:0 0 82vw;
-    max-width:82vw;
-    scroll-snap-align:center;
-    aspect-ratio:16/9 !important;
+    flex:none !important;
+    max-width:100% !important;
+    width:100%;
+    aspect-ratio:1/1 !important;
     margin:0;
     position:relative;
+    border:1px solid rgba(255,255,255,.05);
   }
 
-  /* Indicateur carousel */
-  .carousel-progress-wrap{
-    display:block;
-    margin:16px 24px 0;
-    height:2px;
-    background:rgba(255,255,255,.15);
-    position:relative;
-    border-radius:2px;
-  }
-  .carousel-progress-bar{
-    position:absolute;
-    left:0;top:0;
-    height:100%;
-    background:var(--accent);
-    transition:width .3s ease;
-    width:12.5%;
-    border-radius:2px;
-  }
-  .carousel-counter{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:10px 24px 0;
-  }
-  .carousel-counter-num{
-    font-size:.52rem;
-    letter-spacing:.2em;
-    color:var(--accent);
-    font-family:var(--sans);
-  }
-  .carousel-counter-hint{
-    font-size:.48rem;
-    letter-spacing:.15em;
-    color:rgba(255,255,255,.35);
-    font-family:var(--sans);
-    text-transform:uppercase;
+  .video-card-title{
+    opacity:1 !important;
+    pointer-events:none;
+    justify-content:flex-end;
+    padding:18px 14px;
+    background:linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.18) 60%, transparent 100%);
   }
 
-  .sound-notice{display:none !important;}
+  .video-card-title h3{
+    font-size:.78rem !important;
+    margin-bottom:6px;
+  }
+
+  .video-card-title span{
+    font-size:.42rem !important;
+    letter-spacing:.18em;
+  }
+
+  .play-hint{
+    width:32px !important;
+    height:32px !important;
+    margin-top:12px !important;
+  }
+
+  .carousel-progress-wrap,
+  .carousel-counter,
+  .sound-notice{
+    display:none !important;
+  }
+
 }
 
 .carousel-progress-wrap,
@@ -710,14 +702,13 @@ input,select,textarea{
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680424')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card reveal reveal-delay-2" id="vc-love">
-<div class="video-card-title"><h3>Business of Love</h3><span data-i18n="show_tag_love">Show Original</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
-<img class="mobile-thumb" src="https://vumbnail.com/1185680460.jpg" alt="Business of Love" onerror="this.src='https://i.vimeocdn.com/video/1185680460-thumb.jpg'"/>
-<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680460?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-<div class="video-overlay"><div class="video-title">Business of Love</div><div class="video-tag" data-i18n="show_tag_love">Show Original</div></div>
+<div class="video-card-title"><h3 style="display:none;">Sublimes Paris</h3><span data-i18n="show_tag_love">Show Original</span></div>
+<img class="mobile-thumb" src="images/SP CARRE NOIR 2024.png" alt="Business of Love" onerror="this.src='https://i.vimeocdn.com/video/1185680460-thumb.jpg'"/>
+<div class="video-overlay"><div class="video-title">Sublimes Paris</div><div class="video-tag" data-i18n="show_tag_love">Show Original</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680460')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
 <div class="video-card featured reveal" id="vc-intercont">
-<div class="video-card-title"><h3>Intercontinental<br/>Paris</h3><span data-i18n="show_tag_intercont">Luxury Hotel Event</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<div class="video-card-title"><h3>Intercontinental<br/>Paris</h3><span data-i18n="show_tag_intercont">Luxury Hotel Event</span></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680259.jpg" alt="Intercontinental Paris" onerror="this.src='https://i.vimeocdn.com/video/1185680259-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680259?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Intercontinental Paris</div><div class="video-tag" data-i18n="show_tag_intercont">Luxury Hotel Event</div></div>
@@ -737,6 +728,14 @@ input,select,textarea{
 <div class="video-overlay"><div class="video-title" data-i18n="show_1h_title">1 Heure de Show</div><div class="video-tag" data-i18n="show_tag_1h">Programme Complet</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680292')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
+
+<div class="video-card reveal" id="vc-love-bottom">
+<div class="video-card-title"><h3>Business of Love</h3><span data-i18n="show_tag_love">Show Original</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<img class="mobile-thumb" src="https://vumbnail.com/1185680460.jpg" alt="Business of Love"/>
+<iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680460?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+<div class="video-overlay"><div class="video-title">Business of Love</div><div class="video-tag" data-i18n="show_tag_love">Show Original</div></div>
+</div>
+
 </div>
 <p class="sound-notice reveal" data-i18n="sound_notice">Survolez une vidéo pour la lire — cliquez Son pour activer l'audio</p>
 
