@@ -1095,29 +1095,45 @@ if(window.innerWidth <= 768){
     });
   });
 
-  // ── CAROUSEL PROGRESS BAR ────────────────────────────────
+  // ── CAROUSEL : LOCK SCROLL + PROGRESS BAR ────────────────
   const grid = document.querySelector('.video-grid');
   const progressWrap = document.getElementById('carouselProgress');
   const bar = document.getElementById('carouselBar');
+  const counter = document.getElementById('carouselCounter');
+  const num = document.getElementById('carouselNum');
   const total = grid ? grid.querySelectorAll('.video-card').length : 0;
 
-  if(grid && total > 0){
-    progressWrap.style.display = 'block';
-    const counter = document.getElementById('carouselCounter');
-    const num = document.getElementById('carouselNum');
-    if(counter) counter.style.display = 'flex';
-    bar.style.width = (100 / total) + '%';
+  if(grid){
+    // Lock scroll vertical pendant swipe horizontal
+    let startX = 0, startY = 0, isHorizontal = null;
+    grid.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      isHorizontal = null;
+    }, { passive: true });
+    grid.addEventListener('touchmove', e => {
+      const dx = Math.abs(e.touches[0].clientX - startX);
+      const dy = Math.abs(e.touches[0].clientY - startY);
+      if(isHorizontal === null) isHorizontal = dx > dy;
+      if(isHorizontal) e.preventDefault();
+    }, { passive: false });
+    grid.addEventListener('touchend', () => { isHorizontal = null; });
 
-    grid.addEventListener('scroll', ()=>{
-      const scrollLeft = grid.scrollLeft;
-      const maxScroll = grid.scrollWidth - grid.clientWidth;
-      const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
-      const pct = (1 / total) + progress * (1 - 1 / total);
-      bar.style.width = (pct * 100) + '%';
-      // Update counter
-      const current = Math.round(progress * (total - 1)) + 1;
-      if(num) num.textContent = current + ' / ' + total;
-    });
+    // Progress bar + compteur
+    if(total > 0){
+      progressWrap.style.display = 'block';
+      if(counter) counter.style.display = 'flex';
+      bar.style.width = (100 / total) + '%';
+      grid.addEventListener('scroll', ()=>{
+        const scrollLeft = grid.scrollLeft;
+        const maxScroll = grid.scrollWidth - grid.clientWidth;
+        const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+        const pct = (1 / total) + progress * (1 - 1 / total);
+        bar.style.width = (pct * 100) + '%';
+        const current = Math.round(progress * (total - 1)) + 1;
+        if(num) num.textContent = current + ' / ' + total;
+      });
+    }
   }
 }
 </script>
