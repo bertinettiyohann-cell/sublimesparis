@@ -1012,6 +1012,10 @@ document.querySelectorAll('a,.video-card,.creation-item,button').forEach(el=>{
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', ()=>{ nav.classList.toggle('scrolled', window.scrollY>80); });
 
+// Force retour en haut au chargement
+if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 // ── REVEAL ───────────────────────────────────────────────────
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
