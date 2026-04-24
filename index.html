@@ -159,6 +159,38 @@
     .tv-text p{font-size:.78rem;color:#555;line-height:2;letter-spacing:.03em;margin-bottom:16px}
     .tv-logos{display:flex;gap:32px;margin-top:36px;align-items:center}
     .tv-logo{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:#333}
+    /* CLIENTS LIST */
+    .tv-trusted{font-family:var(--sans);font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:#aaa;margin-bottom:20px;margin-top:4px;}
+    .tv-clients{
+      display:flex;flex-direction:column;gap:0;border-top:1px solid #e0ddd8;margin-top:0;
+      max-height:175px;overflow:hidden;position:relative;transition:max-height .6s ease;
+    }
+    .tv-clients.expanded{max-height:600px;}
+    .tv-clients::after{
+      content:'';position:absolute;bottom:0;left:0;right:0;height:40px;
+      background:linear-gradient(to bottom,transparent,var(--white));
+      pointer-events:none;transition:opacity .4s;
+    }
+    .tv-clients.expanded::after{opacity:0;}
+    .tv-clients span{
+      font-family:var(--sans);
+      font-size:.62rem;
+      font-weight:500;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      color:#1a1a1a;
+      padding:13px 0;
+      border-bottom:1px solid #e8e5e0;
+      display:block;
+      transition:letter-spacing .3s, color .3s;
+    }
+    .tv-clients span:hover{letter-spacing:.38em;color:#000;}
+    .tv-clients-toggle{
+      display:inline-block;margin-top:12px;font-size:.52rem;letter-spacing:.22em;
+      text-transform:uppercase;color:#aaa;cursor:pointer;border:none;background:none;
+      font-family:var(--sans);padding:0;transition:color .3s;
+    }
+    .tv-clients-toggle:hover{color:#555;}
     .tv-video{aspect-ratio:16/9;overflow:hidden;position:relative;}
     .tv-video iframe{position:absolute;inset:0;width:100%;height:100%;display:block;}
 
@@ -210,8 +242,6 @@
       .adn-stat h3{text-align:center !important;width:100%}
       .adn-stat p{text-align:center !important;width:100%}
       .team-grid{grid-template-columns:1fr 1fr}
-      .video-grid{grid-template-columns:1fr}
-      .video-card.featured{grid-column:span 1}
       .creations-masonry{grid-template-columns:1fr 1fr}
       .contact-grid{flex-direction:column;gap:24px}
       .contact-item a{font-size:1rem;letter-spacing:.04em}
@@ -374,7 +404,6 @@ input,select,textarea{
 }
 @media(max-width:768px){
   .mobile-thumb{display:block;}
-  /* iframe cachée par défaut sur mobile, révélée au tap */
   .vimeo-bg{display:none !important;}
   .vimeo-bg.playing{
     display:block !important;
@@ -387,16 +416,60 @@ input,select,textarea{
   .video-card-title{
     opacity:1 !important;
     pointer-events:none;
-    background:linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,.2) 60%, transparent 100%);
+    background:linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.2) 60%, transparent 100%);
     justify-content:flex-end;
     padding-bottom:20px;
     z-index:2;
     transition:opacity .3s;
   }
-  /* Quand la vidéo joue : cache le titre et la thumbnail */
   .video-card.playing .video-card-title{opacity:0 !important;}
   .video-card.playing .mobile-thumb{opacity:0;}
   .video-card{cursor:pointer;}
+
+  /* ── CAROUSEL MOBILE ── */
+  .video-grid{
+    display:flex !important;
+    flex-direction:row !important;
+    overflow-x:scroll;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+    gap:10px !important;
+    scrollbar-width:none;
+    padding:0 6vw !important;
+    margin:0 -24px;
+  }
+  .video-grid::-webkit-scrollbar{display:none;}
+
+  .video-card,
+  .video-card.featured{
+    grid-column:unset !important;
+    flex:0 0 82vw;
+    max-width:82vw;
+    scroll-snap-align:center;
+    aspect-ratio:16/9 !important;
+    margin:0;
+    position:relative;
+  }
+
+  /* Barre de progression */
+  .carousel-progress-wrap{
+    display:block;
+    margin:14px 0 0;
+    height:1px;
+    background:rgba(255,255,255,.12);
+    position:relative;
+    overflow:hidden;
+  }
+  .carousel-progress-bar{
+    position:absolute;
+    left:0;top:0;
+    height:100%;
+    background:var(--accent);
+    transition:width .35s ease;
+    width:12.5%;
+  }
+
+  .sound-notice{display:none !important;}
 }
 
 /* HERO BG - assure le bon affichage */
@@ -644,6 +717,11 @@ input,select,textarea{
 </div>
 <p class="sound-notice reveal" data-i18n="sound_notice">Survolez une vidéo pour la lire — cliquez Son pour activer l'audio</p>
 
+<!-- Barre progression carousel mobile -->
+<div class="carousel-progress-wrap" id="carouselProgress" style="display:none;">
+  <div class="carousel-progress-bar" id="carouselBar"></div>
+</div>
+
 <div style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;" aria-hidden="true">
 <a href="/spectacle-luxe-paris.html" tabindex="-1">Spectacle luxe Paris</a>
 <a href="/animation-mariage-luxe.html" tabindex="-1">Mariage haut de gamme</a>
@@ -674,9 +752,12 @@ input,select,textarea{
 <div class="tv-grid">
 <div class="tv-text reveal reveal-delay-1">
 <h2 data-i18n="tv_title">Médias &amp;<br/><em>Lieux d'Exception</em></h2>
-<p data-i18n="tv_p1">Les créations de Sublimes Paris ont été sélectionnées par plusieurs grandes productions télévisuelles françaises et internationales — <em>Drag Race France</em>, <em>Danse avec les Stars</em>, France 2, <em>La Géorgie a un incroyable talent</em> — pour habiller leurs artistes et sublimer leurs performances.</p>
-<p data-i18n="tv_p2">Sur scène, Sublimes Paris s'est produit dans les plus beaux écrins en France et à l'international : l'Intercontinental Paris, le Ritz, le Plaza Athénée, Maxim's, l'Hôtel de Paris Monaco, l'Hippodrome de Cannes… Des adresses d'exception où chaque représentation devient une expérience inoubliable.</p>
-<div class="tv-logos"><span class="tv-logo">TF1</span><span class="tv-logo">France 2</span><span class="tv-logo">TV Géorgie</span></div>
+<p data-i18n="tv_p1">De la télévision aux palaces, Sublimes Paris s'est imposé là où l'exigence est une évidence.</p>
+<p data-i18n="tv_p2"></p>
+<div class="tv-clients" id="tvClients">
+<span>Hôtel Intercontinental Paris</span><span>Le Ritz</span><span>Plaza Athénée</span><span>Maxim's</span><span>Hôtel de Paris Monaco</span><span>Hippodrome de Cannes</span><span>Dubai Watch Week</span><span>Danse avec les Stars</span><span>France 2</span><span>La Géorgie a un incroyable talent</span>
+</div>
+<button class="tv-clients-toggle" id="tvToggle" onclick="toggleClients()">Voir tout ↓</button>
 </div>
 <div class="tv-video reveal reveal-delay-2">
 <iframe src="https://player.vimeo.com/video/1185679981?autoplay=1&loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;position:absolute;inset:0;"></iframe>
@@ -741,8 +822,8 @@ const i18n = {
     creat3_sub:'Plumes &amp; bijoux de scène',creat4_sub:'Haute couture du spectacle',
     creat5_title:'Bijoux de Scène',creat5_sub:'Savoir-faire français',creat6_title:'L\'Atelier',creat6_sub:'Création sur-mesure',
     tv_label:'Médias &amp; Références',tv_title:'Médias &amp;<br><em>Lieux d\'Exception</em>',
-    tv_p1:'Les créations de Sublimes Paris ont été sélectionnées par plusieurs grandes productions télévisuelles françaises et internationales — <em>Drag Race France</em>, <em>Danse avec les Stars</em>, France 2, <em>La Géorgie a un incroyable talent</em> — pour habiller leurs artistes et sublimer leurs performances.',
-    tv_p2:'Sur scène, Sublimes Paris s\'est produit dans les plus beaux écrins en France et à l\'international : l\'Intercontinental Paris, le Ritz, le Plaza Athénée, Maxim\'s, l\'Hôtel de Paris Monaco, l\'Hippodrome de Cannes… Des adresses d\'exception où chaque représentation devient une expérience inoubliable.',
+    tv_p1:'De la télévision aux palaces, Sublimes Paris s\'est imposé là où l\'exigence est une évidence.',
+    tv_p2:'',
     contact_label:'Contact',contact_title:'Travaillons<br>ensemble',
     contact_sub:'Une demande, un projet, une collaboration ?<br>Nous vous répondons dans les plus brefs délais.',
     form_btn:'Déposer une demande',form_file:'formulaire.html?lang=fr'
@@ -775,8 +856,8 @@ const i18n = {
     creat3_sub:'Feathers &amp; stage jewellery',creat4_sub:'Haute couture of performance',
     creat5_title:'Stage Jewels',creat5_sub:'French savoir-faire',creat6_title:'The Atelier',creat6_sub:'Bespoke creation',
     tv_label:'Media &amp; References',tv_title:'Media &amp;<br><em>Exceptional Venues</em>',
-    tv_p1:'Sublimes Paris creations have been selected by major French and international television productions — <em>Drag Race France</em>, <em>Dancing with the Stars</em>, France 2, <em>Georgia\'s Got Talent</em> — to dress their artists and elevate their performances.',
-    tv_p2:'On stage, Sublimes Paris has performed in the finest venues in France and internationally: the Intercontinental Paris, the Ritz, Plaza Athénée, Maxim\'s, Hôtel de Paris Monaco, Cannes Hippodrome… Exceptional addresses where every performance becomes an unforgettable experience.',
+    tv_p1:'From television to palaces, Sublimes Paris has established itself where excellence is a given.',
+    tv_p2:'',
     contact_label:'Contact',contact_title:'Let\'s work<br>together',
     contact_sub:'A request, a project, a collaboration?<br>We will get back to you as soon as possible.',
     form_btn:'Submit a request',form_file:'formulaire.html?lang=en'
@@ -809,8 +890,8 @@ const i18n = {
     creat3_sub:'Piume &amp; gioielli di scena',creat4_sub:'Alta moda dello spettacolo',
     creat5_title:'Gioielli di Scena',creat5_sub:'Savoir-faire francese',creat6_title:'L\'Atelier',creat6_sub:'Creazione su misura',
     tv_label:'Media &amp; Riferimenti',tv_title:'Media &amp;<br><em>Luoghi d\'Eccezione</em>',
-    tv_p1:'Le creazioni di Sublimes Paris sono state selezionate da importanti produzioni televisive francesi e internazionali — <em>Drag Race France</em>, <em>Ballando con le Stelle</em>, France 2, <em>Georgia\'s Got Talent</em> — per vestire i loro artisti e valorizzare le loro performance.',
-    tv_p2:'Sul palco, Sublimes Paris si è esibita nelle location più prestigiose in Francia e nel mondo: l\'Intercontinental Paris, il Ritz, il Plaza Athénée, Maxim\'s, l\'Hôtel de Paris Monaco, l\'Ippodromo di Cannes… Indirizzi d\'eccezione dove ogni rappresentazione diventa un\'esperienza indimenticabile.',
+    tv_p1:'Dalla televisione ai palazzi di lusso, Sublimes Paris si è imposto dove l\'esigenza è una certezza.',
+    tv_p2:'',
     contact_label:'Contatto',contact_title:'Lavoriamo<br>insieme',
     contact_sub:'Una richiesta, un progetto, una collaborazione?<br>Vi risponderemo al più presto.',
     form_btn:'Invia una richiesta',form_file:'formulaire.html?lang=it'
@@ -843,8 +924,8 @@ const i18n = {
     creat3_sub:'羽毛与舞台珠宝',creat4_sub:'舞台高级定制',
     creat5_title:'舞台珠宝',creat5_sub:'法式精湛技艺',creat6_title:'工作室',creat6_sub:'定制创作',
     tv_label:'媒体与参考',tv_title:'媒体与<br><em>顶级场所</em>',
-    tv_p1:'Sublimes Paris的创作已被多家法国和国际重要电视制作公司选中——<em>Drag Race France</em>、<em>与星共舞</em>、法国2台、<em>格鲁吉亚达人秀</em>——为其艺术家提供服装并提升表演效果。',
-    tv_p2:'在舞台上，Sublimes Paris已在法国及国际最美丽的场所演出：巴黎洲际酒店、丽兹酒店、雅典娜广场酒店、马克西姆餐厅、摩纳哥巴黎酒店、戛纳赛马场……每一场演出都成为难忘体验的顶级地址。',
+    tv_p1:'从电视到顶级宫殿，Sublimes Paris在卓越是标准的地方确立了自己的地位。',
+    tv_p2:'',
     contact_label:'联系',contact_title:'让我们<br>携手合作',
     contact_sub:'一个请求、一个项目、一次合作？<br>我们将尽快回复您。',
     form_btn:'提交申请',form_file:'formulaire.html?lang=zh'
@@ -941,7 +1022,14 @@ function toggleVimeoSound(btn){
 <a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
 <script>
-function toggleMenu(){
+function toggleClients(){
+  const list = document.getElementById('tvClients');
+  const btn = document.getElementById('tvToggle');
+  list.classList.toggle('expanded');
+  btn.textContent = list.classList.contains('expanded') ? 'Réduire ↑' : 'Voir tout ↓';
+}
+
+
   document.getElementById('mobileMenu').classList.toggle('active');
 }
 
@@ -979,6 +1067,26 @@ if(window.innerWidth <= 768){
       card.classList.add('playing');
     });
   });
+
+  // ── CAROUSEL PROGRESS BAR ────────────────────────────────
+  const grid = document.querySelector('.video-grid');
+  const progressWrap = document.getElementById('carouselProgress');
+  const bar = document.getElementById('carouselBar');
+  const total = grid ? grid.querySelectorAll('.video-card').length : 0;
+
+  if(grid && total > 0){
+    progressWrap.style.display = 'block';
+    bar.style.width = (100 / total) + '%';
+
+    grid.addEventListener('scroll', ()=>{
+      const scrollLeft = grid.scrollLeft;
+      const maxScroll = grid.scrollWidth - grid.clientWidth;
+      const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+      // On mappe 0→1 sur largeur barre : de 1/total à 100%
+      const pct = (1 / total) + progress * (1 - 1 / total);
+      bar.style.width = (pct * 100) + '%';
+    });
+  }
 }
 </script>
 
