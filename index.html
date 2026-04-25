@@ -3,8 +3,28 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sublimes Paris — High Glamour Entertainment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Sublimes Paris — High Glamour Entertainment | Spectacles & Performances de Luxe à Paris</title>
+
+<meta name="description" content="Performances artistiques d’exception pour mariages, palaces, hôtels de luxe, soirées privées et événements corporate à Paris et à l’international. Sublimes Paris crée des expériences immersives haut de gamme."/>
+
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="Sublimes Paris"/>
+<meta name="theme-color" content="#0a0a0a"/>
+
+<meta property="og:title" content="Sublimes Paris — High Glamour Entertainment"/>
+<meta property="og:description" content="Performances artistiques d’exception pour mariages, palaces et événements privés haut de gamme."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="images/creation-cristaux.jpg"/>
+<meta property="og:locale" content="fr_FR"/>
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Sublimes Paris — High Glamour Entertainment"/>
+<meta name="twitter:description" content="Spectacles de luxe et performances artistiques haut de gamme à Paris."/>
+<meta name="twitter:image" content="images/creation-cristaux.jpg"/>
+
+<link rel="canonical" href="https://www.sublimesparis.com/"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Montserrat:wght@200;300;400;500&amp;display=swap" rel="stylesheet"/>
@@ -137,6 +157,28 @@
     .sound-notice span{color:var(--accent)}
     @media(max-width:768px){
       .sound-notice{font-size:.44rem;letter-spacing:.04em;white-space:nowrap;}
+      #vc-bassins, #vc-bracelet{display:none !important;}
+    }
+
+    /* iPad PLAY BUTTON FIX */
+    @media(min-width:769px) and (max-width:1024px){
+      .video-card-title .play-hint{
+        width:48px !important;
+        height:48px !important;
+        min-width:48px !important;
+        min-height:48px !important;
+        border-radius:999px !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        border:1px solid rgba(200,184,154,.4) !important;
+      }
+      .video-card-title .play-hint svg{
+        fill:var(--accent);
+        width:12px !important;
+        height:12px !important;
+        margin-left:2px !important;
+      }
     }
 
     /* CREATIONS */
@@ -215,6 +257,14 @@
 
     footer{background:#050505;padding:34px 56px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--grey-dark)}
     footer p{font-size:.52rem;letter-spacing:.15em;color:var(--grey-mid);text-transform:uppercase}
+
+    .cloudinary-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.98);z-index:9999;align-items:center;justify-content:center;flex-direction:column;padding:40px 20px}
+    .cloudinary-modal.active{display:flex}
+    .cloudinary-modal-container{position:relative;width:100%;max-width:1000px;aspect-ratio:16/9;background:#000}
+    .cloudinary-modal video{width:100%;height:100%;object-fit:contain;display:block}
+    .cloudinary-modal-title{color:var(--white);font-family:var(--serif);font-size:1.1rem;margin-top:24px;text-align:center;font-style:italic}
+    .cloudinary-modal-close{position:absolute;top:16px;right:16px;background:rgba(0,0,0,.7);border:1px solid rgba(255,255,255,.3);color:var(--white);font-size:1.5rem;width:40px;height:40px;padding:0;cursor:pointer;transition:background .3s;z-index:10000}
+    .cloudinary-modal-close:hover{background:rgba(0,0,0,.95)}
 
     .reveal{opacity:0;transform:translateY(38px);transition:opacity .9s ease,transform .9s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
@@ -713,28 +763,28 @@ input,select,textarea{
 <p data-i18n="shows_sub">Des happenings artistiques éphémères,<br/>conçus pour captiver les sens<br/>et laisser une empreinte indélébile.</p>
 </div>
 <div class="video-grid">
-<div class="video-card featured reveal" id="vc-red">
+<div class="video-card featured reveal" id="vc-red" onclick="openCloudinaryModal('red-feathers')" style="cursor:pointer;">
 <div class="video-card-title"><h3>Red Feathers</h3><span data-i18n="show_tag_signature">Show Signature</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680385.jpg" alt="Red Feathers" onerror="this.src='https://i.vimeocdn.com/video/1185680385-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680385?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Red Feathers</div><div class="video-tag" data-i18n="show_tag_signature">Show Signature</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680385')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
-<div class="video-card reveal reveal-delay-1" id="vc-cancan">
+<div class="video-card reveal reveal-delay-1" id="vc-cancan" onclick="openCloudinaryModal('french-cancan')" style="cursor:pointer;">
 <div class="video-card-title"><h3>French Cancan</h3><span data-i18n="show_tag_cabaret">Cabaret Parisien</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680213.jpg" alt="French Cancan" onerror="this.src='https://i.vimeocdn.com/video/1185680213-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680213?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">French Cancan</div><div class="video-tag" data-i18n="show_tag_cabaret">Cabaret Parisien</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680213')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
-<div class="video-card reveal" id="vc-gatsby">
+<div class="video-card reveal" id="vc-gatsby" onclick="openCloudinaryModal('gatsby-gold')" style="cursor:pointer;">
 <div class="video-card-title"><h3>Gatsby Gold</h3><span data-i18n="show_tag_gatsby">Années Folles</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680582.jpg" alt="Gatsby Gold" onerror="this.src='https://i.vimeocdn.com/video/1185680582-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680582?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Gatsby Gold</div><div class="video-tag" data-i18n="show_tag_gatsby">Années Folles</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680582')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
-<div class="video-card reveal reveal-delay-1" id="vc-fans">
+<div class="video-card reveal reveal-delay-1" id="vc-fans" onclick="openCloudinaryModal('white-fans')" style="cursor:pointer;">
 <div class="video-card-title"><h3>White Fans</h3><span data-i18n="show_tag_fans">Élégance Pure</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680424.jpg" alt="White Fans" onerror="this.src='https://i.vimeocdn.com/video/1185680424-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680424?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
@@ -745,28 +795,38 @@ input,select,textarea{
 <div class="video-card video-card-logo-center" id="vc-logo-center" style="display:none;">
 <img src="images/Logo_Carre_noir_2024.png" alt="Sublimes Paris" style="width:100%;height:100%;object-fit:cover;display:block;"/>
 </div>
-<div class="video-card reveal reveal-delay-2" id="vc-love">
+<div class="video-card reveal reveal-delay-2" id="vc-love" onclick="openCloudinaryModal('business-of-love')" style="cursor:pointer;">
 <div class="video-card-title"><h3>Business of Love</h3><span data-i18n="show_tag_love">Show Original</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680460.jpg" alt="Business of Love" onerror="this.src='https://i.vimeocdn.com/video/1185680460-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680460?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Business of Love</div><div class="video-tag" data-i18n="show_tag_love">Show Original</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680460')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
-<div class="video-card featured reveal" id="vc-intercont">
+<div class="video-card featured reveal" id="vc-intercont" onclick="openCloudinaryModal('intercontinental-paris')" style="cursor:pointer;">
 <div class="video-card-title"><h3>Intercontinental<br/>Paris</h3><span data-i18n="show_tag_intercont">Luxury Hotel Event</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680259.jpg" alt="Intercontinental Paris" onerror="this.src='https://i.vimeocdn.com/video/1185680259-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680259?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Intercontinental Paris</div><div class="video-tag" data-i18n="show_tag_intercont">Luxury Hotel Event</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680259')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
-<div class="video-card reveal reveal-delay-1" id="vc-velvet">
+<div class="video-card reveal reveal-delay-1" id="vc-velvet" onclick="openCloudinaryModal('black-velvet')" style="cursor:pointer;">
 <div class="video-card-title"><h3>Black Velvet</h3><span data-i18n="show_tag_velvet">Création Exclusive</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680489.jpg" alt="Black Velvet" onerror="this.src='https://i.vimeocdn.com/video/1185680489-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680489?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 <div class="video-overlay"><div class="video-title">Black Velvet</div><div class="video-tag" data-i18n="show_tag_velvet">Création Exclusive</div></div>
 <button class="sound-btn" onclick="toggleVimeoSound(this,'1185680489')">🔇 <span data-i18n="sound">Son</span></button>
 </div>
-<div class="video-card reveal reveal-delay-2" id="vc-1h">
+<div class="video-card featured reveal reveal-delay-2" id="vc-bassins" onclick="openCloudinaryModal('bassins-des-lumieres')" style="cursor:pointer;">
+<div class="video-card-title"><h3>Light Mapping</h3><span data-i18n="show_tag_bassins">Création Originale</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<img class="mobile-thumb" src="https://via.placeholder.com/1920x1080" alt="Light Mapping"/>
+<div class="video-overlay"><div class="video-title">Light Mapping</div><div class="video-tag">Création Originale</div></div>
+</div>
+<div class="video-card reveal reveal-delay-2" id="vc-bracelet" onclick="openCloudinaryModal('bracelet-diamonds')" style="cursor:pointer;">
+<div class="video-card-title"><h3>Bracelet Diamonds</h3><span data-i18n="show_tag_bracelet">Création Orig.</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
+<img class="mobile-thumb" src="https://via.placeholder.com/1920x1080" alt="Bracelet Diamonds"/>
+<div class="video-overlay"><div class="video-title">Bracelet Diamonds</div><div class="video-tag">Création Orig.</div></div>
+</div>
+<div class="video-card reveal reveal-delay-2" id="vc-1h" onclick="openCloudinaryModal('1h-show')" style="cursor:pointer;">
 <div class="video-card-title"><h3>1 Heure<br/>de Show</h3><span data-i18n="show_tag_1h">Programme Complet</span><div class="play-hint"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg></div></div>
 <img class="mobile-thumb" src="https://vumbnail.com/1185680292.jpg" alt="1 Heure de Show" onerror="this.src='https://i.vimeocdn.com/video/1185680292-thumb.jpg'"/>
 <iframe class="vimeo-bg" src="https://player.vimeo.com/video/1185680292?loop=1&muted=1&background=1&playsinline=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
@@ -1069,6 +1129,23 @@ function toggleVimeoSound(btn){
   });
 }
 
+const cloudinaryVideos={
+  'red-feathers':{url:'https://res.cloudinary.com/dey3m4cik/video/upload/12_-_Red_Feathers_-_Sublimes_Paris_zspdjf.mp4',title:'Red Feathers'},
+  'french-cancan':{url:'https://res.cloudinary.com/dey3m4cik/video/upload/06_-_French_Cancan_-_Sublimes_Paris_g22dko.mp4',title:'French Cancan'},
+  'gatsby-gold':{url:'https://res.cloudinary.com/dey3m4cik/video/upload/08_-_Gatsby_Charleston_rwqjct.mp4',title:'Gatsby Gold'},
+  'white-fans':{url:'https://res.cloudinary.com/dey3m4cik/video/upload/17_-_White_Fans_-_Sublimes_Paris_wzxbi5.mp4',title:'White Fans'},
+  'business-of-love':{url:'https://res.cloudinary.com/dey3m4cik/video/upload/03_-_business_of_love_hn2rw1.mp4',title:'Business of Love'},
+  'intercontinental-paris':{url:'https://res.cloudinary.com/dey3m4cik/video/upload/14_-_sublimes_paris_-_Intercontinental_sans_mark_lhxu9i.mp4',title:'Intercontinental Paris'},
+  'black-velvet':{url:'https://res.cloudinary.com/dey3m4cik/video/upload/Black_Velvet_Diamonds_clb49p.mp4',title:'Black Velvet'},
+  '1h-show':{url:'https://res.cloudinary.com/dey3m4cik/video/upload/Main_Teaser_1H_Show_e3x0vg.mp4',title:'1 Heure de Show'},
+  'bassins-des-lumieres':{url:'https://res.cloudinary.com/dey3m4cik/video/upload/v1777124998/SublimesParis_-_Bassins_des_lumie%CC%80res_bandeau_sans_TLucas_eoehmd.mp4',title:'Light Mapping'},
+  'bracelet-diamonds':{url:'https://res.cloudinary.com/dey3m4cik/video/upload/v1777125022/VIDEO_BRACELET_6_ctf9dd.mp4',title:'Bracelet Diamonds'}
+};
+function openCloudinaryModal(videoId){const video=cloudinaryVideos[videoId];if(!video)return;const modal=document.getElementById('cloudinaryModal');if(!modal)return;const videoEl=document.getElementById('cloudinaryVideo');const title=document.getElementById('cloudinaryModalTitle');if(!videoEl||!title)return;videoEl.src=video.url;title.textContent=video.title;modal.classList.add('active');document.body.style.overflow='hidden'}
+function closeCloudinaryModal(){const modal=document.getElementById('cloudinaryModal');if(!modal)return;const videoEl=document.getElementById('cloudinaryVideo');const container=document.querySelector('.cloudinary-modal-container');if(!videoEl||!container)return;modal.classList.remove('active');videoEl.pause();videoEl.src='';document.body.style.overflow=''}
+const cloudinaryModalEl=document.getElementById('cloudinaryModal');if(cloudinaryModalEl){cloudinaryModalEl.addEventListener('click',function(e){if(e.target===this||e.target===this.querySelector('.cloudinary-modal-container')){closeCloudinaryModal()}})}
+document.addEventListener('keydown',function(e){const modal=document.getElementById('cloudinaryModal');if(modal&&e.key==='Escape'&&modal.classList.contains('active')){closeCloudinaryModal()}});
+
 </script>
 <!-- MODAL VIDEO FULLSCREEN MOBILE -->
 <div id="video-modal">
@@ -1140,7 +1217,13 @@ if(window.innerWidth <= 768){
   });
 }
 </script>
-
+<div class="cloudinary-modal" id="cloudinaryModal">
+  <div class="cloudinary-modal-container">
+    <button class="cloudinary-modal-close" onclick="closeCloudinaryModal()">✕</button>
+    <video id="cloudinaryVideo" controls autoplay></video>
+  </div>
+  <div class="cloudinary-modal-title" id="cloudinaryModalTitle"></div>
+</div>
 
 </body>
 </html>
