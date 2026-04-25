@@ -36,15 +36,159 @@ p{font-size:.78rem;color:#d8d3cc;max-width:760px;text-align:justify;text-justify
 .card span{font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
 .back{display:inline-block;margin-top:40px;color:var(--white);text-decoration:none;border:1px solid rgba(255,255,255,.2);padding:14px 22px;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase}
 @media(max-width:768px){
-p{text-align:justify !important}
-.stat p{text-align:center !important}
-.card span{text-align:center !important;display:block}
-.card h4{text-align:center !important}
-.quote{text-align:center !important;border-left:none !important;border-top:1px solid var(--accent);padding-left:0 !important;padding-top:20px}
-section{padding:70px 24px}
-.hero,.grid,.gallery{grid-template-columns:1fr}
-.hero img{height:auto}
-.stats{grid-template-columns:1fr}
+/* Mobile uniquement — desktop intact */
+
+section{
+padding:48px 18px;
+}
+
+p{
+font-size:.74rem;
+line-height:1.75;
+text-align:justify !important;
+}
+
+h1{
+font-size:2.3rem;
+margin-bottom:18px;
+text-align:center;
+}
+
+h2{
+font-size:2rem;
+margin-bottom:18px;
+text-align:center;
+}
+
+.eyebrow{
+font-size:.58rem;
+text-align:center;
+margin-bottom:14px;
+}
+
+/* HERO : image au-dessus */
+.hero{
+display:grid;
+grid-template-columns:1fr;
+gap:20px;
+min-height:auto;
+}
+
+.hero{
+align-items:start;
+}
+
+.hero > div:first-child{
+text-align:center;
+display:flex;
+flex-direction:column;
+}
+
+.hero img{
+width:100%;
+max-width:260px;
+margin:0 auto;
+display:block;
+aspect-ratio:4/5;
+object-fit:cover;
+height:auto;
+}
+
+.quote{
+font-size:1.05rem;
+text-align:center !important;
+border-left:none !important;
+border-top:1px solid var(--accent);
+padding-left:0 !important;
+padding-top:18px;
+margin:24px 0;
+}
+
+.back{
+width:100%;
+text-align:center;
+padding:14px 18px;
+font-size:.56rem;
+}
+
+/* blocs */
+.grid,
+.gallery{
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+align-items:start;
+}
+
+.image-block img{
+width:100%;
+max-width:300px;
+margin:0 auto;
+display:block;
+aspect-ratio:4/5;
+object-fit:cover;
+}
+
+.card img{
+width:100%;
+max-width:none;
+margin:0 auto;
+display:block;
+aspect-ratio:1/1;
+object-fit:cover;
+}
+
+.card h4{
+font-size:.78rem !important;
+margin-top:8px;
+line-height:1.2;
+}
+
+.card span{
+font-size:.42rem !important;
+letter-spacing:.12em;
+}
+
+.card h4,
+.card span,
+.stat p{
+text-align:center !important;
+}
+
+.stats{
+grid-template-columns:1fr;
+gap:14px;
+margin-top:28px;
+}
+
+/* Références & Collaborations : rendu plus premium mobile */
+.stat{
+padding:18px 14px;
+border:1px solid rgba(255,255,255,.08);
+background:rgba(255,255,255,.02);
+border-radius:10px;
+text-align:center;
+}
+
+.stat h3{
+font-size:1.35rem;
+line-height:1.2;
+margin-bottom:6px;
+}
+
+.stat p{
+font-size:.5rem;
+letter-spacing:.16em;
+max-width:none;
+}
+
+section:nth-of-type(3) h2{
+margin-bottom:22px;
+}
+
+section:nth-of-type(3) > p{
+margin-top:18px !important;
+font-size:.72rem;
+}
 }
 </style>
 </head>
@@ -54,12 +198,12 @@ section{padding:70px 24px}
 <div>
 <div class="eyebrow">Sublimes Paris — Maison de Création</div>
 <h1><span style="font-size:clamp(1.4rem,2vw,2rem); letter-spacing:.18em; text-transform:uppercase; display:block; margin-bottom:10px; font-family:var(--sans); color:var(--accent);">Nicolas Deschaux</span><em>L’Artisan Bijoutier</em></h1>
+<img src="images/IMG_0048.jpg" alt="Nicolas Deschaux artisan bijoutier">
 <p>Fondateur, directeur artistique et artisan joaillier, Nicolas Deschaux imagine des pièces de scène où la haute couture rencontre l’émotion du spectacle vivant. Chaque création naît dans l’atelier, pensée comme une œuvre sculptée pour la lumière, le mouvement et l’instant spectaculaire.</p>
 <div class="quote">« Chaque bijou doit raconter une histoire avant même d’entrer en scène. »</div>
 <a href="index.html" class="back">Retour au site</a>
 </div>
 <div>
-<img src="images/IMG_0048.jpg" alt="Nicolas Deschaux artisan bijoutier">
 </div>
 </section>
 
@@ -134,7 +278,7 @@ Votre navigateur ne supporte pas la lecture vidéo.
 <h2>Créer l’inoubliable</h2>
 <p>Au-delà du bijou, Nicolas conçoit une émotion visuelle. Chaque pièce doit provoquer ce moment suspendu où le public ressent immédiatement le luxe, la rareté et la puissance de l’instant. C’est cette exigence qui définit l’ADN de Sublimes Paris.</p>
 <div style="margin-top:40px; display:flex; flex-wrap:wrap; gap:18px; align-items:center;">
-<a href="https://wa.me/33667174466" class="back">WhatsApp — 06 67 17 44 66</a>
+<a href="https://wa.me/33667174466" class="back">WhatsApp</a>
 <a href="https://www.instagram.com/bijoutier.nicolasdeschaux/" target="_blank" class="back">Instagram — @bijoutier.nicolasdeschaux</a>
 <a href="mailto:deschauxnicolas@gmail.com" class="back">Contact Privé</a>
 </div>
