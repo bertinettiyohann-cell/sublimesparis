@@ -179,6 +179,39 @@
         height:12px !important;
         margin-left:2px !important;
       }
+      /* Sur iPad : désactiver iframe Vimeo et afficher juste le titre */
+      .video-card iframe.vimeo-bg{display:none !important}
+      .video-card video{display:none !important}
+      .video-card-title{background:#0d0d0d !important;opacity:1 !important;pointer-events:auto !important}
+      .video-overlay{display:none !important}
+      .sound-btn{display:none !important}
+      /* iPad : empêcher tout clic accidentel sur iframe */
+      .video-card{pointer-events:auto !important}
+    }
+
+    /* iPad PORTRAIT FIX */
+    @media(max-height:800px) and (min-width:769px){
+      .video-card-title{
+        padding:16px !important;
+      }
+      .video-card-title h3{
+        font-size:clamp(1.1rem,2vw,1.6rem) !important;
+        margin-bottom:8px !important;
+      }
+      .video-card-title span{
+        font-size:.45rem !important;
+      }
+      .video-card-title .play-hint{
+        width:42px !important;
+        height:42px !important;
+        min-width:42px !important;
+        min-height:42px !important;
+        margin-top:12px !important;
+      }
+      .video-card-title .play-hint svg{
+        width:10px !important;
+        height:10px !important;
+      }
     }
 
     /* CREATIONS */
@@ -1145,6 +1178,25 @@ function openCloudinaryModal(videoId){const video=cloudinaryVideos[videoId];if(!
 function closeCloudinaryModal(){const modal=document.getElementById('cloudinaryModal');if(!modal)return;const videoEl=document.getElementById('cloudinaryVideo');const container=document.querySelector('.cloudinary-modal-container');if(!videoEl||!container)return;modal.classList.remove('active');videoEl.pause();videoEl.src='';document.body.style.overflow=''}
 const cloudinaryModalEl=document.getElementById('cloudinaryModal');if(cloudinaryModalEl){cloudinaryModalEl.addEventListener('click',function(e){if(e.target===this||e.target===this.querySelector('.cloudinary-modal-container')){closeCloudinaryModal()}})}
 document.addEventListener('keydown',function(e){const modal=document.getElementById('cloudinaryModal');if(modal&&e.key==='Escape'&&modal.classList.contains('active')){closeCloudinaryModal()}});
+
+// iPad : empêcher lecture Vimeo et forcer modal directement
+if(window.innerWidth>=769&&window.innerWidth<=1024){
+  document.querySelectorAll('.video-card iframe.vimeo-bg').forEach(iframe=>{
+    iframe.style.pointerEvents='none';
+    iframe.style.display='none';
+  });
+  document.querySelectorAll('.video-card').forEach(card=>{
+    const onclick=card.getAttribute('onclick');
+    if(onclick&&onclick.includes('openCloudinaryModal')){
+      card.addEventListener('click',function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        const videoId=onclick.match(/'([^']+)'/)[1];
+        openCloudinaryModal(videoId);
+      });
+    }
+  });
+}
 
 </script>
 <!-- MODAL VIDEO FULLSCREEN MOBILE -->
