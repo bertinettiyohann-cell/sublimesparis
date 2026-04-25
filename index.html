@@ -1227,11 +1227,11 @@ if(window.innerWidth>=769&&window.innerWidth<=1024){
   <div id="video-modal-title"></div>
 </div>
 <div class="mobile-menu" id="mobileMenu">
-<a href="#adn" onclick="closeMenu()">ADN</a>
-<a href="#team" onclick="closeMenu()">Team</a>
-<a href="#shows" onclick="closeMenu()">Shows</a>
-<a href="#creations" onclick="closeMenu()">Créations</a>
-<a href="#contact" onclick="closeMenu()">Contact</a>
+<a href="#adn" data-i18n="nav_adn" onclick="closeMenu()">ADN</a>
+<a href="#team" data-i18n="nav_team" onclick="closeMenu()">Team</a>
+<a href="#shows" data-i18n="nav_shows" onclick="closeMenu()">Shows</a>
+<a href="#creations" data-i18n="nav_creations" onclick="closeMenu()">Créations</a>
+<a href="#contact" data-i18n="nav_contact" onclick="closeMenu()">Contact</a>
 </div>
 <script>
 function toggleClients(){
@@ -1299,34 +1299,24 @@ if(window.innerWidth <= 768){
 </div>
 
 </html>
-<!-- ===== LANGUAGE INTEGRATION FIX ===== -->
+<!-- LANGUAGE FIX FOR MOBILE MENU -->
 <script>
-// Capture la fonction setLang originale
-const originalSetLang = window.setLang || function() {};
-
-window.setLang = function(lang, display, element) {
-  // Appelle la fonction originale
-  if (originalSetLang && originalSetLang !== window.setLang) {
-    originalSetLang(lang, display, element);
-  }
-  
-  // Sauvegarde la langue correctement
+// Intercepte setLang pour mettre à jour aussi le menu mobile
+const originalSetLang = window.setLang;
+window.setLang = function(lang, label, el) {
+  originalSetLang(lang, label, el);
   localStorage.setItem('sublimes-lang', lang);
-  console.log('Langue définie à:', lang);
+  console.log('✅ Langue sauvegardée:', lang);
 };
 
-// Quand on clique sur un lien formulaire, passe la langue
+// Quand on clique formulaire, passe la langue
 document.addEventListener('click', function(e) {
   const link = e.target.closest('a[href*="formulaire"]');
   if (link) {
     const lang = localStorage.getItem('sublimes-lang') || 'fr';
-    console.log('Envoi vers formulaire avec langue:', lang);
-    
-    if (['fr', 'en', 'it', 'zh'].includes(lang)) {
-      const url = new URL(link.href, window.location.origin);
-      url.searchParams.set('lang', lang);
-      link.href = url.toString();
-    }
+    const url = new URL(link.href, window.location.origin);
+    url.searchParams.set('lang', lang);
+    link.href = url.toString();
   }
 });
 </script>
