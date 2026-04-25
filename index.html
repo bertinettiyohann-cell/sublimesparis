@@ -189,6 +189,27 @@
       .video-card{pointer-events:auto !important}
     }
 
+    /* iPad PORTRAIT - corrections texte + bouton */
+    @media(min-width:769px) and (max-width:1024px) and (orientation:portrait){
+      .video-card-title h3{
+        font-size:clamp(1rem,2vw,1.6rem) !important;
+        margin-bottom:8px !important;
+        line-height:1.2 !important;
+      }
+      .video-card-title span{
+        font-size:.45rem !important;
+        letter-spacing:.25em !important;
+      }
+      .video-card-title .play-hint{
+        margin-top:12px !important;
+        width:40px !important;
+        height:40px !important;
+      }
+      .video-card-title{
+        padding:16px !important;
+      }
+    }
+
     /* iPad PORTRAIT FIX */
     @media(max-height:800px) and (min-width:769px){
       .video-card-title{
