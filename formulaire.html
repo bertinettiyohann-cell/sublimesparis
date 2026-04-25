@@ -270,6 +270,27 @@ button:hover {
   .step, #success { max-width:100%; }
   h1 { font-size:1.35rem; }
 }
+
+/* ── BACK HOME LINK ── */
+.back-home {
+  width:100%; 
+  display:flex; 
+  justify-content:flex-end; 
+  margin-bottom:28px;
+}
+
+.back-home a {
+  font-family:'Cormorant Garamond', serif;
+  font-size:0.95rem;
+  font-weight:300;
+  color:#c8b89a;
+  text-decoration:none;
+  line-height:1;
+}
+
+.back-home a:hover {
+  opacity:0.8;
+}
 </style>
 <link rel="canonical" href="https://www.sublimesparis.com/formulaire.html">
 </head>
@@ -287,84 +308,63 @@ button:hover {
     <div class="step-dot"></div>
   </div>
 
+  <!-- STEP 1: INTRO -->
   <div class="step active">
-
-<div style="width:100%; display:flex; justify-content:flex-end; margin-bottom:28px;">
-  <a href="index.html" style="
-    font-family:'Cormorant Garamond', serif;
-    font-size:0.95rem;
-    font-weight:300;
-    color:#c8b89a;
-    text-decoration:none;
-    line-height:1;
-  ">← Retour vers le site</a>
-</div>
-
-    
-
-<h1>Chaque projet est une création unique.</h1>
-    <button type="button" onclick="nextStep()">Commencer l'expérience</button>
+    <div class="back-home">
+      <a href="index.html" data-key="back-home">← Retour vers le site</a>
+    </div>
+    <h1 data-key="step1-title">Chaque projet est une création unique.</h1>
+    <button type="button" onclick="nextStep()" data-key="step1-btn">Commencer l'expérience</button>
   </div>
 
+  <!-- STEP 2: PROJECT -->
   <div class="step">
-
-<div style="width:100%; display:flex; justify-content:flex-end; margin-bottom:28px;">
-  <a href="index.html" style="
-    font-family:'Cormorant Garamond', serif;
-    font-size:0.95rem;
-    font-weight:300;
-    color:#c8b89a;
-    text-decoration:none;
-    line-height:1;
-  ">← Retour vers le site</a>
-</div>
-
-    <h1>Votre projet</h1>
-    <label>Votre type de célébration *</label>
+    <div class="back-home">
+      <a href="index.html" data-key="back-home">← Retour vers le site</a>
+    </div>
+    <h1 data-key="step2-title">Votre projet</h1>
+    
+    <label data-key="step2-event-label">Votre type de célébration *</label>
     <select name="event" required>
-      <option>Mariage</option>
-      <option>Soirée privée</option>
-      <option>Événement corporate</option>
-      <option>Hôtel / Palace</option>
-      <option>Projet sur-mesure</option>
+      <option data-key="opt-wedding">Mariage</option>
+      <option data-key="opt-private">Soirée privée</option>
+      <option data-key="opt-corporate">Événement corporate</option>
+      <option data-key="opt-hotel">Hôtel / Palace</option>
+      <option data-key="opt-custom">Projet sur-mesure</option>
     </select>
-    <label>Nom du lieu</label>
-    <input name="venue" placeholder="Ex : Ritz Paris">
     
-    <label>Lieu (ville + pays) *</label>
-    <input name="location" placeholder="Ex : Paris, France" required>
-    <label>Nombre d'invités *</label>
+    <label data-key="step2-venue-label">Nom du lieu</label>
+    <input name="venue" data-key="step2-venue-placeholder" placeholder="Ex : Ritz Paris">
+    
+    <label data-key="step2-location-label">Lieu (ville + pays) *</label>
+    <input name="location" data-key="step2-location-placeholder" placeholder="Ex : Paris, France" required>
+    
+    <label data-key="step2-guests-label">Nombre d'invités *</label>
     <select name="guests" required>
-      <option>Moins de 50 invités</option>
-      <option>50 – 100 invités</option>
-      <option>100 – 200 invités</option>
-      <option>200 – 400 invités</option>
-      <option>400+</option>
+      <option data-key="opt-guests-50">Moins de 50 invités</option>
+      <option data-key="opt-guests-100">50 – 100 invités</option>
+      <option data-key="opt-guests-200">100 – 200 invités</option>
+      <option data-key="opt-guests-400">200 – 400 invités</option>
+      <option data-key="opt-guests-plus">400+</option>
     </select>
     
-    <label>Date *</label>
+    <label data-key="step2-date-label">Date *</label>
     <input type="date" name="date" required>
+    
     <div class="btn-row">
-      <button type="button" class="btn-back" onclick="prevStep()">← Retour</button>
-      <button type="button" onclick="nextStep()">Suivant</button>
+      <button type="button" class="btn-back" onclick="prevStep()" data-key="btn-back">← Retour</button>
+      <button type="button" onclick="nextStep()" data-key="btn-next">Suivant</button>
     </div>
   </div>
 
+  <!-- STEP 3: PERFORMANCES -->
   <div class="step">
-
-<div style="width:100%; display:flex; justify-content:flex-end; margin-bottom:28px;">
-  <a href="index.html" style="
-    font-family:'Cormorant Garamond', serif;
-    font-size:0.95rem;
-    font-weight:300;
-    color:#c8b89a;
-    text-decoration:none;
-    line-height:1;
-  ">← Retour vers le site</a>
-</div>
-
-    <h1>Le rythme de l'événement</h1>
-    <label>Nombre d'artistes</label>
+    <div class="back-home">
+      <a href="index.html" data-key="back-home">← Retour vers le site</a>
+    </div>
+    <h1 data-key="step3-title">Le rythme de l'événement</h1>
+    
+    <label data-key="step3-artistes-label">Nombre d'artistes</label>
     <select id="artistes" name="artistes">
       <option>2</option>
       <option>3</option>
@@ -373,105 +373,388 @@ button:hover {
       <option>9</option>
       <option>11</option>
     </select>
-    <label>Expérience souhaitée *</label>
+    
+    <label data-key="step3-perf-label">Expérience souhaitée *</label>
     <select id="performances" name="performances" required>
-      <option>Accueil élégant</option>
-      <option>Performance chorégraphiée</option>
-      <option>Accueil + performance</option>
-      <option>Expérience complète</option>
-      <option>Création sur-mesure</option>
-      
+      <option data-key="opt-perf-welcome">Accueil élégant</option>
+      <option data-key="opt-perf-choreo">Performance chorégraphiée</option>
+      <option data-key="opt-perf-both">Accueil + performance</option>
+      <option data-key="opt-perf-full">Expérience complète</option>
+      <option data-key="opt-perf-custom">Création sur-mesure</option>
     </select>
-    <div class="hint" id="hint">
-      Ce type de configuration nécessite généralement un budget plus élevé.
-    </div>
+    
+    <div class="hint" id="hint" data-key="step3-hint">Ce type de configuration nécessite généralement un budget plus élevé.</div>
+    
     <div class="btn-row">
-      <button type="button" class="btn-back" onclick="prevStep()">← Retour</button>
-      <button type="button" onclick="nextStep()">Suivant</button>
+      <button type="button" class="btn-back" onclick="prevStep()" data-key="btn-back">← Retour</button>
+      <button type="button" onclick="nextStep()" data-key="btn-next">Suivant</button>
     </div>
   </div>
 
+  <!-- STEP 4: BUDGET -->
   <div class="step">
-
-<div style="width:100%; display:flex; justify-content:flex-end; margin-bottom:28px;">
-  <a href="index.html" style="
-    font-family:'Cormorant Garamond', serif;
-    font-size:0.95rem;
-    font-weight:300;
-    color:#c8b89a;
-    text-decoration:none;
-    line-height:1;
-  ">← Retour vers le site</a>
-</div>
-
-    <h1>Investissement estimé *</h1>
+    <div class="back-home">
+      <a href="index.html" data-key="back-home">← Retour vers le site</a>
+    </div>
+    <h1 data-key="step4-title">Investissement estimé *</h1>
+    
     <select name="budget" required>
-      <option>1k – 3k</option>
-      <option>3k – 5k</option>
-      <option>5k – 10k</option>
-      <option>10k – 20k</option>
-      <option>20k+</option>
+      <option data-key="opt-budget-1">1k – 3k</option>
+      <option data-key="opt-budget-2">3k – 5k</option>
+      <option data-key="opt-budget-3">5k – 10k</option>
+      <option data-key="opt-budget-4">10k – 20k</option>
+      <option data-key="opt-budget-5">20k+</option>
     </select>
-    <div class="note">
-      À Paris : les tarifs sont indiqués TTC.<br>
-      Hors Paris : frais de déplacement, hébergement et restauration en supplément.
-    </div>
+    
+    <div class="note" data-key="step4-note">À Paris : les tarifs sont indiqués TTC.<br>Hors Paris : frais de déplacement, hébergement et restauration en supplément.</div>
+    
     <div class="btn-row">
-      <button type="button" class="btn-back" onclick="prevStep()">← Retour</button>
-      <button type="button" onclick="nextStep()">Suivant</button>
+      <button type="button" class="btn-back" onclick="prevStep()" data-key="btn-back">← Retour</button>
+      <button type="button" onclick="nextStep()" data-key="btn-next">Suivant</button>
     </div>
   </div>
 
+  <!-- STEP 5: CONTACT -->
   <div class="step">
-
-<div style="width:100%; display:flex; justify-content:flex-end; margin-bottom:28px;">
-  <a href="index.html" style="
-    font-family:'Cormorant Garamond', serif;
-    font-size:0.95rem;
-    font-weight:300;
-    color:#c8b89a;
-    text-decoration:none;
-    line-height:1;
-  ">← Retour vers le site</a>
-</div>
-
-    <h1>Dernière étape</h1>
-    <label>Nom *</label>
+    <div class="back-home">
+      <a href="index.html" data-key="back-home">← Retour vers le site</a>
+    </div>
+    <h1 data-key="step5-title">Dernière étape</h1>
+    
+    <label data-key="step5-name-label">Nom *</label>
     <input name="nom" required>
-    <label>Prénom</label>
+    
+    <label data-key="step5-firstname-label">Prénom</label>
     <input name="prenom">
-    <label>Email *</label>
+    
+    <label data-key="step5-email-label">Email *</label>
     <input type="email" name="email" required>
-    <label>Téléphone *</label>
+    
+    <label data-key="step5-phone-label">Téléphone *</label>
     <input name="phone" required>
-    <label>Comment nous avez-vous connus ?</label>
+    
+    <label data-key="step5-source-label">Comment nous avez-vous connus ?</label>
     <select name="source">
-      <option>Réseaux sociaux</option>
-      <option>Wedding planner</option>
-      <option>Recommandation du lieu</option>
-      <option>Recommandation</option>
-      <option>Google</option>
-      <option>Événement précédent</option>
-      <option>Autre</option>
+      <option data-key="opt-source-socials">Réseaux sociaux</option>
+      <option data-key="opt-source-planner">Wedding planner</option>
+      <option data-key="opt-source-venue">Recommandation du lieu</option>
+      <option data-key="opt-source-ref">Recommandation</option>
+      <option data-key="opt-source-google">Google</option>
+      <option data-key="opt-source-previous">Événement précédent</option>
+      <option data-key="opt-source-other">Autre</option>
     </select>
-    <label>Votre vision</label>
-    <textarea name="vision" placeholder="Décrivez l'émotion que vous souhaitez créer"></textarea>
+    
+    <label data-key="step5-vision-label">Votre vision</label>
+    <textarea name="vision" data-key="step5-vision-placeholder" placeholder="Décrivez l'émotion que vous souhaitez créer"></textarea>
+    
     <div class="btn-row">
-      <button type="button" class="btn-back" onclick="prevStep()">← Retour</button>
-      <button type="submit">Créer mon expérience</button>
+      <button type="button" class="btn-back" onclick="prevStep()" data-key="btn-back">← Retour</button>
+      <button type="submit" data-key="step5-submit">Créer mon expérience</button>
     </div>
   </div>
 
 </form>
 
+<!-- SUCCESS MESSAGE -->
 <div id="success">
-  <h1>Votre proposition sur-mesure est en préparation.</h1>
-  <p>Notre équipe étudie votre événement avec attention<br>et vous contactera très prochainement.</p>
+  <h1 data-key="success-title">Votre proposition sur-mesure est en préparation.</h1>
+  <p data-key="success-msg">Notre équipe étudie votre événement avec attention<br>et vous contactera très prochainement.</p>
 </div>
 
 </div>
 
+<!-- TRANSLATIONS DATABASE -->
 <script>
+const translations = {
+  'fr': {
+    'back-home': '← Retour vers le site',
+    'step1-title': 'Chaque projet est une création unique.',
+    'step1-btn': 'Commencer l\'expérience',
+    'step2-title': 'Votre projet',
+    'step2-event-label': 'Votre type de célébration *',
+    'step2-venue-label': 'Nom du lieu',
+    'step2-venue-placeholder': 'Ex : Ritz Paris',
+    'step2-location-label': 'Lieu (ville + pays) *',
+    'step2-location-placeholder': 'Ex : Paris, France',
+    'step2-guests-label': 'Nombre d\'invités *',
+    'step2-date-label': 'Date *',
+    'opt-wedding': 'Mariage',
+    'opt-private': 'Soirée privée',
+    'opt-corporate': 'Événement corporate',
+    'opt-hotel': 'Hôtel / Palace',
+    'opt-custom': 'Projet sur-mesure',
+    'opt-guests-50': 'Moins de 50 invités',
+    'opt-guests-100': '50 – 100 invités',
+    'opt-guests-200': '100 – 200 invités',
+    'opt-guests-400': '200 – 400 invités',
+    'opt-guests-plus': '400+',
+    'step3-title': 'Le rythme de l\'événement',
+    'step3-artistes-label': 'Nombre d\'artistes',
+    'step3-perf-label': 'Expérience souhaitée *',
+    'opt-perf-welcome': 'Accueil élégant',
+    'opt-perf-choreo': 'Performance chorégraphiée',
+    'opt-perf-both': 'Accueil + performance',
+    'opt-perf-full': 'Expérience complète',
+    'opt-perf-custom': 'Création sur-mesure',
+    'step3-hint': 'Ce type de configuration nécessite généralement un budget plus élevé.',
+    'step4-title': 'Investissement estimé *',
+    'opt-budget-1': '1k – 3k',
+    'opt-budget-2': '3k – 5k',
+    'opt-budget-3': '5k – 10k',
+    'opt-budget-4': '10k – 20k',
+    'opt-budget-5': '20k+',
+    'step4-note': 'À Paris : les tarifs sont indiqués TTC.<br>Hors Paris : frais de déplacement, hébergement et restauration en supplément.',
+    'step5-title': 'Dernière étape',
+    'step5-name-label': 'Nom *',
+    'step5-firstname-label': 'Prénom',
+    'step5-email-label': 'Email *',
+    'step5-phone-label': 'Téléphone *',
+    'step5-source-label': 'Comment nous avez-vous connus ?',
+    'opt-source-socials': 'Réseaux sociaux',
+    'opt-source-planner': 'Wedding planner',
+    'opt-source-venue': 'Recommandation du lieu',
+    'opt-source-ref': 'Recommandation',
+    'opt-source-google': 'Google',
+    'opt-source-previous': 'Événement précédent',
+    'opt-source-other': 'Autre',
+    'step5-vision-label': 'Votre vision',
+    'step5-vision-placeholder': 'Décrivez l\'émotion que vous souhaitez créer',
+    'btn-back': '← Retour',
+    'btn-next': 'Suivant',
+    'step5-submit': 'Créer mon expérience',
+    'success-title': 'Votre proposition sur-mesure est en préparation.',
+    'success-msg': 'Notre équipe étudie votre événement avec attention<br>et vous contactera très prochainement.'
+  },
+  'en': {
+    'back-home': '← Back to website',
+    'step1-title': 'Every project is a unique creation.',
+    'step1-btn': 'Start the experience',
+    'step2-title': 'Your project',
+    'step2-event-label': 'Your celebration type *',
+    'step2-venue-label': 'Venue name',
+    'step2-venue-placeholder': 'Ex: Ritz Paris',
+    'step2-location-label': 'Location (city + country) *',
+    'step2-location-placeholder': 'Ex: Paris, France',
+    'step2-guests-label': 'Number of guests *',
+    'step2-date-label': 'Date *',
+    'opt-wedding': 'Wedding',
+    'opt-private': 'Private event',
+    'opt-corporate': 'Corporate event',
+    'opt-hotel': 'Hotel / Palace',
+    'opt-custom': 'Custom project',
+    'opt-guests-50': 'Less than 50 guests',
+    'opt-guests-100': '50 – 100 guests',
+    'opt-guests-200': '100 – 200 guests',
+    'opt-guests-400': '200 – 400 guests',
+    'opt-guests-plus': '400+',
+    'step3-title': 'Event rhythm',
+    'step3-artistes-label': 'Number of artists',
+    'step3-perf-label': 'Desired experience *',
+    'opt-perf-welcome': 'Elegant welcome',
+    'opt-perf-choreo': 'Choreographed performance',
+    'opt-perf-both': 'Welcome + performance',
+    'opt-perf-full': 'Complete experience',
+    'opt-perf-custom': 'Custom creation',
+    'step3-hint': 'This configuration typically requires a higher budget.',
+    'step4-title': 'Estimated investment *',
+    'opt-budget-1': '1k – 3k',
+    'opt-budget-2': '3k – 5k',
+    'opt-budget-3': '5k – 10k',
+    'opt-budget-4': '10k – 20k',
+    'opt-budget-5': '20k+',
+    'step4-note': 'In Paris: prices are indicated TTC.<br>Outside Paris: travel, accommodation and meals are additional.',
+    'step5-title': 'Final step',
+    'step5-name-label': 'Name *',
+    'step5-firstname-label': 'First name',
+    'step5-email-label': 'Email *',
+    'step5-phone-label': 'Phone *',
+    'step5-source-label': 'How did you find us?',
+    'opt-source-socials': 'Social media',
+    'opt-source-planner': 'Wedding planner',
+    'opt-source-venue': 'Venue recommendation',
+    'opt-source-ref': 'Recommendation',
+    'opt-source-google': 'Google',
+    'opt-source-previous': 'Previous event',
+    'opt-source-other': 'Other',
+    'step5-vision-label': 'Your vision',
+    'step5-vision-placeholder': 'Describe the emotion you want to create',
+    'btn-back': '← Back',
+    'btn-next': 'Next',
+    'step5-submit': 'Create my experience',
+    'success-title': 'Your custom proposal is being prepared.',
+    'success-msg': 'Our team is carefully studying your event<br>and will contact you very soon.'
+  },
+  'it': {
+    'back-home': '← Torna al sito',
+    'step1-title': 'Ogni progetto è una creazione unica.',
+    'step1-btn': 'Inizia l\'esperienza',
+    'step2-title': 'Il tuo progetto',
+    'step2-event-label': 'Il tuo tipo di celebrazione *',
+    'step2-venue-label': 'Nome della location',
+    'step2-venue-placeholder': 'Es: Ritz Paris',
+    'step2-location-label': 'Luogo (città + paese) *',
+    'step2-location-placeholder': 'Es: Parigi, Francia',
+    'step2-guests-label': 'Numero di ospiti *',
+    'step2-date-label': 'Data *',
+    'opt-wedding': 'Matrimonio',
+    'opt-private': 'Evento privato',
+    'opt-corporate': 'Evento aziendale',
+    'opt-hotel': 'Hotel / Palace',
+    'opt-custom': 'Progetto personalizzato',
+    'opt-guests-50': 'Meno di 50 ospiti',
+    'opt-guests-100': '50 – 100 ospiti',
+    'opt-guests-200': '100 – 200 ospiti',
+    'opt-guests-400': '200 – 400 ospiti',
+    'opt-guests-plus': '400+',
+    'step3-title': 'Ritmo dell\'evento',
+    'step3-artistes-label': 'Numero di artisti',
+    'step3-perf-label': 'Esperienza desiderata *',
+    'opt-perf-welcome': 'Benvenuto elegante',
+    'opt-perf-choreo': 'Performance coreografata',
+    'opt-perf-both': 'Benvenuto + performance',
+    'opt-perf-full': 'Esperienza completa',
+    'opt-perf-custom': 'Creazione personalizzata',
+    'step3-hint': 'Questa configurazione richiede solitamente un budget più elevato.',
+    'step4-title': 'Investimento stimato *',
+    'opt-budget-1': '1k – 3k',
+    'opt-budget-2': '3k – 5k',
+    'opt-budget-3': '5k – 10k',
+    'opt-budget-4': '10k – 20k',
+    'opt-budget-5': '20k+',
+    'step4-note': 'A Parigi: i prezzi sono indicati IVA inclusa.<br>Fuori Parigi: costi di viaggio, alloggio e vitto sono aggiuntivi.',
+    'step5-title': 'Ultimo passo',
+    'step5-name-label': 'Cognome *',
+    'step5-firstname-label': 'Nome',
+    'step5-email-label': 'Email *',
+    'step5-phone-label': 'Telefono *',
+    'step5-source-label': 'Come ci hai trovato?',
+    'opt-source-socials': 'Social media',
+    'opt-source-planner': 'Wedding planner',
+    'opt-source-venue': 'Consiglio della location',
+    'opt-source-ref': 'Consiglio',
+    'opt-source-google': 'Google',
+    'opt-source-previous': 'Evento precedente',
+    'opt-source-other': 'Altro',
+    'step5-vision-label': 'La tua visione',
+    'step5-vision-placeholder': 'Descrivi l\'emozione che vuoi creare',
+    'btn-back': '← Indietro',
+    'btn-next': 'Avanti',
+    'step5-submit': 'Crea la mia esperienza',
+    'success-title': 'La tua proposta personalizzata è in preparazione.',
+    'success-msg': 'Il nostro team sta attentamente esaminando il tuo evento<br>e ti contatterà molto presto.'
+  },
+  'zh': {
+    'back-home': '← 返回网站',
+    'step1-title': '每个项目都是独特的创作。',
+    'step1-btn': '开始体验',
+    'step2-title': '您的项目',
+    'step2-event-label': '您的庆典类型 *',
+    'step2-venue-label': '场地名称',
+    'step2-venue-placeholder': '例：Ritz Paris',
+    'step2-location-label': '地点（城市 + 国家）*',
+    'step2-location-placeholder': '例：法国巴黎',
+    'step2-guests-label': '来宾数量 *',
+    'step2-date-label': '日期 *',
+    'opt-wedding': '婚礼',
+    'opt-private': '私人活动',
+    'opt-corporate': '企业活动',
+    'opt-hotel': '酒店/宫殿',
+    'opt-custom': '定制项目',
+    'opt-guests-50': '少于50位来宾',
+    'opt-guests-100': '50 – 100位来宾',
+    'opt-guests-200': '100 – 200位来宾',
+    'opt-guests-400': '200 – 400位来宾',
+    'opt-guests-plus': '400+',
+    'step3-title': '活动节奏',
+    'step3-artistes-label': '艺术家数量',
+    'step3-perf-label': '期望的体验 *',
+    'opt-perf-welcome': '优雅欢迎',
+    'opt-perf-choreo': '编舞表演',
+    'opt-perf-both': '欢迎 + 表演',
+    'opt-perf-full': '完整体验',
+    'opt-perf-custom': '定制创作',
+    'step3-hint': '这种配置通常需要更高的预算。',
+    'step4-title': '预估投资 *',
+    'opt-budget-1': '1k – 3k',
+    'opt-budget-2': '3k – 5k',
+    'opt-budget-3': '5k – 10k',
+    'opt-budget-4': '10k – 20k',
+    'opt-budget-5': '20k+',
+    'step4-note': '在巴黎：价格包括增值税。<br>巴黎以外：旅行、住宿和膳食费用另计。',
+    'step5-title': '最后一步',
+    'step5-name-label': '姓氏 *',
+    'step5-firstname-label': '名字',
+    'step5-email-label': '电子邮件 *',
+    'step5-phone-label': '电话 *',
+    'step5-source-label': '您是如何找到我们的？',
+    'opt-source-socials': '社交媒体',
+    'opt-source-planner': '婚礼策划师',
+    'opt-source-venue': '场地推荐',
+    'opt-source-ref': '推荐',
+    'opt-source-google': 'Google',
+    'opt-source-previous': '之前的活动',
+    'opt-source-other': '其他',
+    'step5-vision-label': '您的愿景',
+    'step5-vision-placeholder': '描述您想创造的情感',
+    'btn-back': '← 返回',
+    'btn-next': '下一步',
+    'step5-submit': '创建我的体验',
+    'success-title': '您的定制提案正在准备中。',
+    'success-msg': '我们的团队正在仔细研究您的活动<br>并将很快与您联系。'
+  }
+};
+
+// Detect language from URL parameter or localStorage
+function detectLanguage() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  
+  if (urlLang && translations[urlLang]) {
+    return urlLang;
+  }
+  
+  const stored = localStorage.getItem('sublimes-lang');
+  if (stored && translations[stored]) {
+    return stored;
+  }
+  
+  return 'fr'; // Default to French
+}
+
+// Apply translations to the page
+function applyTranslations(lang) {
+  const trans = translations[lang] || translations['fr'];
+  
+  document.documentElement.lang = lang;
+  
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.getAttribute('data-key');
+    const text = trans[key];
+    
+    if (text) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = text;
+      } else if (el.tagName === 'OPTION') {
+        el.textContent = text;
+      } else if (el.tagName === 'A') {
+        el.textContent = text;
+      } else {
+        // For HTML content (like <br>)
+        el.innerHTML = text;
+      }
+    }
+  });
+  
+  localStorage.setItem('sublimes-lang', lang);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const lang = detectLanguage();
+  applyTranslations(lang);
+});
+
+// Form navigation
 let current = 0;
 const steps = document.querySelectorAll('.step');
 const dots = document.querySelectorAll('.step-dot');
@@ -495,6 +778,7 @@ function prevStep(){
   window.scrollTo(0,0);
 }
 
+// Logic for hint on step 3
 const artistes = document.getElementById("artistes");
 const performances = document.getElementById("performances");
 const hint = document.getElementById("hint");
@@ -508,6 +792,7 @@ function checkLogic(){
 artistes.addEventListener("change", checkLogic);
 performances.addEventListener("change", checkLogic);
 
+// Form submission
 document.getElementById('form').addEventListener('submit', async e => {
   e.preventDefault();
   const data = new FormData(e.target);
@@ -525,31 +810,60 @@ document.getElementById('form').addEventListener('submit', async e => {
   document.getElementById('stepIndicator').style.display = 'none';
   document.getElementById('success').style.display = 'block';
 });
-</script>
 
-
-<script>
+// Custom validation messages
 document.querySelectorAll("input, select").forEach(field => {
   field.addEventListener("invalid", function () {
-    if (this.name === "event") {
-      this.setCustomValidity("Merci de sélectionner votre type de célébration.");
-    } else if (this.name === "location") {
-      this.setCustomValidity("Merci d’indiquer le lieu de votre événement.");
-    } else if (this.name === "date") {
-      this.setCustomValidity("Merci d’indiquer la date de votre événement.");
-    } else if (this.name === "performances") {
-      this.setCustomValidity("Merci de sélectionner l’expérience souhaitée.");
-    } else if (this.name === "budget") {
-      this.setCustomValidity("Merci de sélectionner votre investissement estimé.");
-    } else if (this.name === "guests") {
-      this.setCustomValidity("Merci d’indiquer le nombre d’invités.");
-    } else if (this.name === "nom") {
-      this.setCustomValidity("Merci de renseigner votre nom.");
-    } else if (this.name === "email") {
-      this.setCustomValidity("Merci de renseigner votre adresse email.");
-    } else if (this.name === "phone") {
-      this.setCustomValidity("Votre numéro nous permet de préparer votre proposition plus rapidement.");
-    }
+    const lang = localStorage.getItem('sublimes-lang') || 'fr';
+    const messages = {
+      'fr': {
+        'event': 'Merci de sélectionner votre type de célébration.',
+        'location': 'Merci d\'indiquer le lieu de votre événement.',
+        'date': 'Merci d\'indiquer la date de votre événement.',
+        'performances': 'Merci de sélectionner l\'expérience souhaitée.',
+        'budget': 'Merci de sélectionner votre investissement estimé.',
+        'guests': 'Merci d\'indiquer le nombre d\'invités.',
+        'nom': 'Merci de renseigner votre nom.',
+        'email': 'Merci de renseigner votre adresse email.',
+        'phone': 'Votre numéro nous permet de préparer votre proposition plus rapidement.'
+      },
+      'en': {
+        'event': 'Please select your celebration type.',
+        'location': 'Please indicate your event location.',
+        'date': 'Please indicate your event date.',
+        'performances': 'Please select the desired experience.',
+        'budget': 'Please select your estimated investment.',
+        'guests': 'Please indicate the number of guests.',
+        'nom': 'Please enter your name.',
+        'email': 'Please enter your email address.',
+        'phone': 'Your number helps us prepare your proposal faster.'
+      },
+      'it': {
+        'event': 'Per favore seleziona il tuo tipo di celebrazione.',
+        'location': 'Per favore indica la posizione del tuo evento.',
+        'date': 'Per favore indica la data del tuo evento.',
+        'performances': 'Per favore seleziona l\'esperienza desiderata.',
+        'budget': 'Per favore seleziona il tuo investimento stimato.',
+        'guests': 'Per favore indica il numero di ospiti.',
+        'nom': 'Per favore inserisci il tuo nome.',
+        'email': 'Per favore inserisci il tuo indirizzo email.',
+        'phone': 'Il tuo numero ci aiuta a preparare la tua proposta più velocemente.'
+      },
+      'zh': {
+        'event': '请选择您的庆典类型。',
+        'location': '请指定您的活动地点。',
+        'date': '请指定您的活动日期。',
+        'performances': '请选择所需的体验。',
+        'budget': '请选择您的预估投资。',
+        'guests': '请指定来宾数量。',
+        'nom': '请输入您的名字。',
+        'email': '请输入您的电子邮件地址。',
+        'phone': '您的号码帮助我们更快地准备您的提案。'
+      }
+    };
+    
+    const msg = messages[lang]?.[this.name] || messages['fr'][this.name];
+    if (msg) this.setCustomValidity(msg);
   });
 
   field.addEventListener("input", function () {
