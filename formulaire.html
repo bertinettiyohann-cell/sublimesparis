@@ -319,15 +319,28 @@ button:hover {
 </div>
 
     <h1>Votre projet</h1>
-    <label>Type d'événement</label>
+    <label>Votre type de célébration</label>
     <select name="event">
-      <option>Corporate</option>
       <option>Mariage</option>
-      <option>Privé</option>
+      <option>Soirée privée</option>
+      <option>Événement corporate</option>
       <option>Hôtel / Palace</option>
+      <option>Projet sur-mesure</option>
     </select>
+    <label>Nom du lieu</label>
+    <input name="venue" placeholder="Ex : Ritz Paris">
+    
     <label>Lieu (ville + pays)</label>
     <input name="location" placeholder="Ex : Paris, France">
+    <label>Nombre d'invités</label>
+    <select name="guests">
+      <option>Moins de 50 invités</option>
+      <option>50 – 100 invités</option>
+      <option>100 – 200 invités</option>
+      <option>200 – 400 invités</option>
+      <option>400+</option>
+    </select>
+    
     <label>Date</label>
     <input type="date" name="date">
     <div class="btn-row">
@@ -359,14 +372,14 @@ button:hover {
       <option>9</option>
       <option>11</option>
     </select>
-    <label>Performances</label>
+    <label>Expérience souhaitée</label>
     <select id="performances" name="performances">
-      <option>Accueil</option>
-      <option>1 performance</option>
-      <option>2 performances</option>
-      <option>3 performances</option>
-      <option>Accueil + 2 performances</option>
-      <option>Accueil + 3 performances</option>
+      <option>Accueil élégant</option>
+      <option>Performance chorégraphiée</option>
+      <option>Accueil + performance</option>
+      <option>Expérience complète</option>
+      <option>Création sur-mesure</option>
+      
     </select>
     <div class="hint" id="hint">
       Ce type de configuration nécessite généralement un budget plus élevé.
@@ -390,7 +403,7 @@ button:hover {
   ">← Retour vers le site</a>
 </div>
 
-    <h1>Budget estimé</h1>
+    <h1>Investissement estimé</h1>
     <select name="budget">
       <option>1k – 3k</option>
       <option>3k – 5k</option>
@@ -426,10 +439,20 @@ button:hover {
     <input name="nom">
     <label>Prénom</label>
     <input name="prenom">
-    <label>Email</label>
+    <label>Email *</label>
     <input type="email" name="email" required>
-    <label>Téléphone</label>
-    <input name="phone">
+    <label>Téléphone *</label>
+    <input name="phone" required>
+    <label>Comment nous avez-vous connus ?</label>
+    <select name="source">
+      <option>Réseaux sociaux</option>
+      <option>Wedding Planner</option>
+      <option>Venue Recommendation</option>
+      <option>Referral</option>
+      <option>Google</option>
+      <option>Previous Event</option>
+      <option>Other</option>
+    </select>
     <label>Votre vision</label>
     <textarea name="vision" placeholder="Décrivez l'émotion que vous souhaitez créer"></textarea>
     <div class="btn-row">
@@ -441,8 +464,8 @@ button:hover {
 </form>
 
 <div id="success">
-  <h1>Merci.</h1>
-  <p>Votre demande a bien été reçue.<br>Nous vous répondons dans les plus brefs délais.</p>
+  <h1>Votre proposition sur-mesure est en préparation.</h1>
+  <p>Notre équipe étudie votre événement avec attention<br>et vous contactera très prochainement.</p>
 </div>
 
 </div>
