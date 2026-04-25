@@ -622,7 +622,7 @@ input,select,textarea{
 <div class="hero-bg">
 <video id="heroVideo" autoplay muted loop playsinline
   style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:max(100vw, 177.78vh);height:max(100vh, 56.25vw);pointer-events:none;object-fit:cover;">
-  <source src="/videos/hero-bg.mp4" type="video/mp4">
+  <source src="videos/hero-bg.mp4" type="video/mp4">
 </video>
 </div>
 <div class="hero-content">
@@ -777,9 +777,9 @@ input,select,textarea{
 <p class="sound-notice reveal" data-i18n="sound_notice">Survolez une vidéo pour la lire — cliquez Son pour activer l'audio</p>
 
 <div style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;" aria-hidden="true">
-<a href="/spectacle-luxe-paris.html" tabindex="-1">Spectacle luxe Paris</a>
-<a href="/animation-mariage-luxe.html" tabindex="-1">Mariage haut de gamme</a>
-<a href="/cabaret-evenement-paris.html" tabindex="-1">Cabaret événement</a>
+<a href="spectacle-luxe-paris.html" tabindex="-1">Spectacle luxe Paris</a>
+<a href="animation-mariage-luxe.html" tabindex="-1">Mariage haut de gamme</a>
+<a href="cabaret-evenement-paris.html" tabindex="-1">Cabaret événement</a>
 </div>
 </section>
 <!-- CREATIONS -->
@@ -829,7 +829,7 @@ input,select,textarea{
 <div class="contact-item"><h4>Yohann — Coordinateur</h4><a href="https://wa.me/33679655266" target="_blank">+33 6 79 65 52 66</a></div>
 </div>
 <div class="contact-downloads reveal">
-<a class="btn-dl" href="formulaire.html" id="form-link" target="_blank">
+<a class="btn-dl" href="formulaire.html" id="form-link">
 <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"></path><rect height="4" rx="1" width="6" x="9" y="3"></rect></svg>
 <span data-i18n="form_btn">Déposer une demande</span>
 </a>
@@ -1058,12 +1058,14 @@ function toggleHeroSound(){
   }
 }
 
-function toggleVimeoSound(btn){
-  const iframe = btn.closest('.video-card').querySelector('iframe');
+function toggleVimeoSound(btn, videoId){
+  const iframe = btn.closest('.video-card').querySelector('iframe.vimeo-bg');
+  if(!iframe) return;
   const player = new Vimeo.Player(iframe);
   player.getVolume().then(v=>{
-    if(v === 0){ player.setVolume(1); btn.innerHTML='🔊 <span data-i18n="sound">Son</span>'; }
-    else { player.setVolume(0); btn.innerHTML='🔇 <span data-i18n="sound">Son</span>'; }
+    const soundLabel = currentLang && i18n[currentLang] ? i18n[currentLang].sound : 'Son';
+    if(v === 0){ player.setVolume(1); btn.innerHTML='🔊 <span data-i18n="sound">'+soundLabel+'</span>'; }
+    else { player.setVolume(0); btn.innerHTML='🔇 <span data-i18n="sound">'+soundLabel+'</span>'; }
   });
 }
 
