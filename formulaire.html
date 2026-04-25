@@ -810,6 +810,37 @@ const formI18n = {
 function applyAllTranslations(lang) {
   const trans = formI18n[lang] || formI18n['fr'];
   
+  // Messages de validation par langue
+  const validationMessages = {
+    'fr': 'Veuillez remplir ce champ.',
+    'en': 'Please fill in this field.',
+    'it': 'Si prega di compilare questo campo.',
+    'zh': '请填写此字段。'
+  };
+  const validationEmail = {
+    'fr': 'Veuillez saisir une adresse email valide.',
+    'en': 'Please enter a valid email address.',
+    'it': 'Inserisci un indirizzo email valido.',
+    'zh': '请输入有效的电子邮件地址。'
+  };
+  
+  const validMsg = validationMessages[lang] || validationMessages['fr'];
+  const validEmail = validationEmail[lang] || validationEmail['fr'];
+  
+  // Applique les messages de validation à tous les champs required
+  document.querySelectorAll('input[required], select[required], textarea[required]').forEach(field => {
+    field.oninvalid = function(e) {
+      if (e.target.validity.typeMismatch && e.target.type === 'email') {
+        e.target.setCustomValidity(validEmail);
+      } else {
+        e.target.setCustomValidity(validMsg);
+      }
+    };
+    field.oninput = function(e) {
+      e.target.setCustomValidity('');
+    };
+  });
+  
   // Mapping label texte FR -> clé
   const labelMap = {
     'Votre type de célébration *': 'step2-event-label',
