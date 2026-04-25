@@ -807,7 +807,7 @@ input,select,textarea{
 <div class="tv-text reveal reveal-delay-1">
 <h2 data-i18n="tv_title">Médias &amp;<br/><em>Lieux d'Exception</em></h2>
 <p data-i18n="tv_p1">Choisi par les plus grands palaces et les plus grandes productions télévisées, Sublimes Paris est la référence du spectacle haut de gamme.</p>
-<p data-i18n="tv_p2"></p>
+<p data-i18n="tv_p2">Sur scène, Sublimes Paris s'est produit dans les plus beaux écrins en France et à l'international : l'Intercontinental Paris, le Ritz, le Plaza Athénée, Maxim's, l'Hôtel de Paris Monaco, l'Hippodrome de Cannes… Des adresses d'exception où chaque représentation devient une expérience inoubliable.</p>
 <div class="tv-clients" id="tvClients">
 <span>Four Seasons Hotel George V — Paris 8e</span><span>Hôtel de Crillon — Paris 8e</span><span>Hôtel de Paris Monte-Carlo — Monaco</span><span>Hôtel InterContinental Paris Le Grand — Paris 9e</span><span>Hippodrome de Cannes — Cannes</span><span>Maxim's — Paris 8e</span><span>Park Hyatt Paris-Vendôme — Paris 2e</span><span>Plaza Athénée — Paris 8e</span><span>Ritz Paris — Paris 1er</span><span>The Peninsula Paris — Paris 16e</span><span>Danse avec les Stars — TF1</span><span>Le plus grand Cabaret — France 2</span><span>Georgia's Got Talent — Tbilissi</span>
 </div>
@@ -1058,12 +1058,12 @@ function toggleHeroSound(){
   }
 }
 
-function toggleVimeoSound(btn, videoId){
+function toggleVimeoSound(btn){
   const iframe = btn.closest('.video-card').querySelector('iframe.vimeo-bg');
   if(!iframe) return;
   const player = new Vimeo.Player(iframe);
+  const soundLabel = (typeof currentLang !== 'undefined' && i18n[currentLang]) ? i18n[currentLang].sound : 'Son';
   player.getVolume().then(v=>{
-    const soundLabel = currentLang && i18n[currentLang] ? i18n[currentLang].sound : 'Son';
     if(v === 0){ player.setVolume(1); btn.innerHTML='🔊 <span data-i18n="sound">'+soundLabel+'</span>'; }
     else { player.setVolume(0); btn.innerHTML='🔇 <span data-i18n="sound">'+soundLabel+'</span>'; }
   });
@@ -1121,7 +1121,7 @@ if(window.innerWidth <= 768){
     if(!match) return;
     const videoId = match[1];
     const titleEl = card.querySelector('.video-card-title h3');
-    const title = titleEl ? titleEl.textContent : '';
+    const title = titleEl ? titleEl.innerHTML.replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, '').trim() : '';
 
     card.addEventListener('click', function(){
       const modal = document.getElementById('video-modal');
