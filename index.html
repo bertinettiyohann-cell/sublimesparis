@@ -1227,11 +1227,11 @@ if(window.innerWidth>=769&&window.innerWidth<=1024){
   <div id="video-modal-title"></div>
 </div>
 <div class="mobile-menu" id="mobileMenu">
-<a href="#adn" data-i18n="nav_adn" onclick="closeMenu()">ADN</a>
-<a href="#team" data-i18n="nav_team" onclick="closeMenu()">Team</a>
-<a href="#shows" data-i18n="nav_shows" onclick="closeMenu()">Shows</a>
-<a href="#creations" data-i18n="nav_creations" onclick="closeMenu()">Créations</a>
-<a href="#contact" data-i18n="nav_contact" onclick="closeMenu()">Contact</a>
+<a href="#adn" onclick="closeMenu()">ADN</a>
+<a href="#team" onclick="closeMenu()">Team</a>
+<a href="#shows" onclick="closeMenu()">Shows</a>
+<a href="#creations" onclick="closeMenu()">Créations</a>
+<a href="#contact" onclick="closeMenu()">Contact</a>
 </div>
 <script>
 function toggleClients(){
@@ -1299,26 +1299,31 @@ if(window.innerWidth <= 768){
 </div>
 
 </html>
-<!-- LANGUAGE FIX FOR MOBILE MENU -->
+<!-- INTERCEPT setLang TO ADD LOCALSTORAGE + PASS TO FORM -->
 <script>
-// Intercepte setLang pour mettre à jour aussi le menu mobile
+// Stocke la fonction setLang originale
 const originalSetLang = window.setLang;
+
+// Remplace setLang
 window.setLang = function(lang, label, el) {
-  originalSetLang(lang, label, el);
+  // Sauvegarde dans localStorage
   localStorage.setItem('sublimes-lang', lang);
-  console.log('✅ Langue sauvegardée:', lang);
+  console.log('✅ Langue sauvegardée dans localStorage:', lang);
+  
+  // Appelle la fonction originale
+  originalSetLang(lang, label, el);
 };
 
-// Quand on clique formulaire, passe la langue
+// Quand on va cliquer sur un lien formulaire, ajoute ?lang=XX
 document.addEventListener('click', function(e) {
-  const link = e.target.closest('a[href*="formulaire"]');
-  if (link) {
+  const link = e.target.closest('a');
+  if (link && link.href.includes('formulaire')) {
     const lang = localStorage.getItem('sublimes-lang') || 'fr';
-    const url = new URL(link.href, window.location.origin);
-    url.searchParams.set('lang', lang);
-    link.href = url.toString();
+    const url = link.href.split('?')[0] + '?lang=' + lang;
+    link.href = url;
+    console.log('📋 Formulaire URL:', url);
   }
-});
+}, true);
 </script>
 
 </body>

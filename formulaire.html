@@ -52,6 +52,7 @@ label {
   color:#c8b89a;
 }
 
+/* ── CHAMPS UNIFORMES — rectangle strict partout ── */
 select, input, textarea {
   width:100%;
   padding:12px 14px;
@@ -72,6 +73,7 @@ select:focus, input:focus, textarea:focus {
   border-color:rgba(200,184,154,.55);
 }
 
+/* Flèche custom dorée sur tous les selects */
 select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23c8b89a'/%3E%3C/svg%3E");
   background-repeat:no-repeat;
@@ -96,6 +98,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   cursor:pointer;
 }
 
+/* Placeholder */
 ::placeholder {
   color:rgba(255,255,255,.3);
   font-size:.75rem;
@@ -137,6 +140,7 @@ button:hover {
   line-height:1.8;
 }
 
+/* ── INDICATEUR D'ÉTAPES ── */
 .step-indicator {
   display:flex;
   gap:6px;
@@ -180,6 +184,7 @@ button:hover {
   background:none;
 }
 
+/* ── SUCCESS ── */
 #success {
   display:none;
   text-align:center;
@@ -199,19 +204,63 @@ button:hover {
   line-height:2;
 }
 
+/* ── MOBILE ── */
 @media(max-width:768px){
-  .container { padding:48px 24px 40px; align-items:flex-start; }
-  .step, #success { width:100%; max-width:420px; margin:0 auto; }
-  h1 { font-size:1.6rem; line-height:1.25; margin-bottom:14px; }
+
+  .container {
+    padding:48px 24px 40px;
+    align-items:flex-start;
+  }
+
+  .step, #success {
+    width:100%;
+    max-width:420px;
+    margin:0 auto;
+  }
+
+  h1 {
+    font-size:1.6rem;
+    line-height:1.25;
+    margin-bottom:14px;
+  }
+
   #success h1 { font-size:2rem; }
-  label { font-size:.58rem; letter-spacing:.18em; margin:16px 0 6px; }
-  select, input, textarea { font-size:16px; padding:13px 12px; }
-  select { background-position:right 12px center; padding-right:34px; }
+
+  label {
+    font-size:.58rem;
+    letter-spacing:.18em;
+    margin:16px 0 6px;
+  }
+
+  select, input, textarea {
+    font-size:16px; /* évite zoom iOS */
+    padding:13px 12px;
+  }
+
+  select {
+    background-position:right 12px center;
+    padding-right:34px;
+  }
+
   textarea { min-height:90px; }
-  button { width:100%; margin-top:22px; padding:14px 20px; font-size:.58rem; letter-spacing:.22em; text-align:center; }
-  .btn-row { flex-direction:row; gap:8px; margin-top:22px; }
+
+  button {
+    width:100%;
+    margin-top:22px;
+    padding:14px 20px;
+    font-size:.58rem;
+    letter-spacing:.22em;
+    text-align:center;
+  }
+
+  .btn-row {
+    flex-direction:row;
+    gap:8px;
+    margin-top:22px;
+  }
   .btn-row button { width:auto; flex:1; margin-top:0; }
   .btn-back { padding:14px 12px; font-size:.55rem; flex:0 0 auto; }
+
   .note { font-size:.65rem; line-height:1.75; }
   .hint { font-size:.65rem; }
   .step-indicator { margin-bottom:24px; }
@@ -221,10 +270,6 @@ button:hover {
   .step, #success { max-width:100%; }
   h1 { font-size:1.35rem; }
 }
-
-.back-home { width:100%; display:flex; justify-content:flex-end; margin-bottom:28px; }
-.back-home a { font-family:'Cormorant Garamond', serif; font-size:0.95rem; font-weight:300; color:#c8b89a; text-decoration:none; line-height:1; }
-.back-home a:hover { opacity:0.8; }
 </style>
 <link rel="canonical" href="https://www.sublimesparis.com/formulaire.html">
 </head>
@@ -242,16 +287,38 @@ button:hover {
     <div class="step-dot"></div>
   </div>
 
-  <!-- STEP 1 -->
   <div class="step active">
-    <div class="back-home"><a href="index.html">← Retour vers le site</a></div>
-    <h1>Chaque projet est une création unique.</h1>
+
+<div style="width:100%; display:flex; justify-content:flex-end; margin-bottom:28px;">
+  <a href="index.html" style="
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.95rem;
+    font-weight:300;
+    color:#c8b89a;
+    text-decoration:none;
+    line-height:1;
+  ">← Retour vers le site</a>
+</div>
+
+    
+
+<h1>Chaque projet est une création unique.</h1>
     <button type="button" onclick="nextStep()">Commencer l'expérience</button>
   </div>
 
-  <!-- STEP 2 -->
   <div class="step">
-    <div class="back-home"><a href="index.html">← Retour vers le site</a></div>
+
+<div style="width:100%; display:flex; justify-content:flex-end; margin-bottom:28px;">
+  <a href="index.html" style="
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.95rem;
+    font-weight:300;
+    color:#c8b89a;
+    text-decoration:none;
+    line-height:1;
+  ">← Retour vers le site</a>
+</div>
+
     <h1>Votre projet</h1>
     <label>Votre type de célébration *</label>
     <select name="event" required>
@@ -263,6 +330,7 @@ button:hover {
     </select>
     <label>Nom du lieu</label>
     <input name="venue" placeholder="Ex : Ritz Paris">
+    
     <label>Lieu (ville + pays) *</label>
     <input name="location" placeholder="Ex : Paris, France" required>
     <label>Nombre d'invités *</label>
@@ -273,6 +341,7 @@ button:hover {
       <option>200 – 400 invités</option>
       <option>400+</option>
     </select>
+    
     <label>Date *</label>
     <input type="date" name="date" required>
     <div class="btn-row">
@@ -281,9 +350,19 @@ button:hover {
     </div>
   </div>
 
-  <!-- STEP 3 -->
   <div class="step">
-    <div class="back-home"><a href="index.html">← Retour vers le site</a></div>
+
+<div style="width:100%; display:flex; justify-content:flex-end; margin-bottom:28px;">
+  <a href="index.html" style="
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.95rem;
+    font-weight:300;
+    color:#c8b89a;
+    text-decoration:none;
+    line-height:1;
+  ">← Retour vers le site</a>
+</div>
+
     <h1>Le rythme de l'événement</h1>
     <label>Nombre d'artistes</label>
     <select id="artistes" name="artistes">
@@ -301,17 +380,30 @@ button:hover {
       <option>Accueil + performance</option>
       <option>Expérience complète</option>
       <option>Création sur-mesure</option>
+      
     </select>
-    <div class="hint" id="hint">Ce type de configuration nécessite généralement un budget plus élevé.</div>
+    <div class="hint" id="hint">
+      Ce type de configuration nécessite généralement un budget plus élevé.
+    </div>
     <div class="btn-row">
       <button type="button" class="btn-back" onclick="prevStep()">← Retour</button>
       <button type="button" onclick="nextStep()">Suivant</button>
     </div>
   </div>
 
-  <!-- STEP 4 -->
   <div class="step">
-    <div class="back-home"><a href="index.html">← Retour vers le site</a></div>
+
+<div style="width:100%; display:flex; justify-content:flex-end; margin-bottom:28px;">
+  <a href="index.html" style="
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.95rem;
+    font-weight:300;
+    color:#c8b89a;
+    text-decoration:none;
+    line-height:1;
+  ">← Retour vers le site</a>
+</div>
+
     <h1>Investissement estimé *</h1>
     <select name="budget" required>
       <option>1k – 3k</option>
@@ -320,16 +412,29 @@ button:hover {
       <option>10k – 20k</option>
       <option>20k+</option>
     </select>
-    <div class="note">À Paris : les tarifs sont indiqués TTC.<br>Hors Paris : frais de déplacement, hébergement et restauration en supplément.</div>
+    <div class="note">
+      À Paris : les tarifs sont indiqués TTC.<br>
+      Hors Paris : frais de déplacement, hébergement et restauration en supplément.
+    </div>
     <div class="btn-row">
       <button type="button" class="btn-back" onclick="prevStep()">← Retour</button>
       <button type="button" onclick="nextStep()">Suivant</button>
     </div>
   </div>
 
-  <!-- STEP 5 -->
   <div class="step">
-    <div class="back-home"><a href="index.html">← Retour vers le site</a></div>
+
+<div style="width:100%; display:flex; justify-content:flex-end; margin-bottom:28px;">
+  <a href="index.html" style="
+    font-family:'Cormorant Garamond', serif;
+    font-size:0.95rem;
+    font-weight:300;
+    color:#c8b89a;
+    text-decoration:none;
+    line-height:1;
+  ">← Retour vers le site</a>
+</div>
+
     <h1>Dernière étape</h1>
     <label>Nom *</label>
     <input name="nom" required>
@@ -359,7 +464,6 @@ button:hover {
 
 </form>
 
-<!-- SUCCESS -->
 <div id="success">
   <h1>Votre proposition sur-mesure est en préparation.</h1>
   <p>Notre équipe étudie votre événement avec attention<br>et vous contactera très prochainement.</p>
@@ -368,96 +472,6 @@ button:hover {
 </div>
 
 <script>
-// ===== TRANSLATIONS =====
-const translations = {
-  'fr': {
-    'step1-title': 'Chaque projet est une création unique.',
-    'step1-btn': 'Commencer l\'expérience',
-    'step2-title': 'Votre projet',
-    'step3-title': 'Le rythme de l\'événement',
-    'step4-title': 'Investissement estimé *',
-    'step5-title': 'Dernière étape',
-  },
-  'en': {
-    'step1-title': 'Every project is a unique creation.',
-    'step1-btn': 'Start the experience',
-    'step2-title': 'Your project',
-    'step3-title': 'Event rhythm',
-    'step4-title': 'Estimated investment *',
-    'step5-title': 'Final step',
-  },
-  'it': {
-    'step1-title': 'Ogni progetto è una creazione unica.',
-    'step1-btn': 'Inizia l\'esperienza',
-    'step2-title': 'Il tuo progetto',
-    'step3-title': 'Ritmo dell\'evento',
-    'step4-title': 'Investimento stimato *',
-    'step5-title': 'Ultimo passo',
-  },
-  'zh': {
-    'step1-title': '每个项目都是独特的创作。',
-    'step1-btn': '开始体验',
-    'step2-title': '您的项目',
-    'step3-title': '活动节奏',
-    'step4-title': '预估投资 *',
-    'step5-title': '最后一步',
-  }
-};
-
-// ===== DETECT LANGUAGE =====
-function detectLanguage() {
-  // 1. Check URL parameter FIRST
-  const urlParams = new URLSearchParams(window.location.search);
-  const urlLang = urlParams.get('lang');
-  
-  if (urlLang && translations[urlLang]) {
-    console.log('🌍 Langue depuis URL:', urlLang);
-    localStorage.setItem('sublimes-lang', urlLang);
-    return urlLang;
-  }
-  
-  // 2. Check localStorage
-  const stored = localStorage.getItem('sublimes-lang');
-  if (stored && translations[stored]) {
-    console.log('🌍 Langue depuis localStorage:', stored);
-    return stored;
-  }
-  
-  // 3. Default to French
-  console.log('🌍 Langue par défaut: FR');
-  return 'fr';
-}
-
-// ===== APPLY TRANSLATIONS =====
-function applyTranslations(lang) {
-  console.log('📝 Application des traductions pour:', lang);
-  document.documentElement.lang = lang;
-  
-  // Simple translations pour les titres
-  const trans = translations[lang] || translations['fr'];
-  
-  if (trans['step1-title']) {
-    const h1s = document.querySelectorAll('h1');
-    if (h1s[0]) h1s[0].textContent = trans['step1-title'];
-    if (h1s[1]) h1s[1].textContent = trans['step2-title'];
-    if (h1s[2]) h1s[2].textContent = trans['step3-title'];
-    if (h1s[3]) h1s[3].textContent = trans['step4-title'];
-    if (h1s[4]) h1s[4].textContent = trans['step5-title'];
-  }
-  
-  if (trans['step1-btn']) {
-    const buttons = document.querySelectorAll('button[type="button"]:not(.btn-back):not([type="submit"])');
-    if (buttons[0]) buttons[0].textContent = trans['step1-btn'];
-  }
-}
-
-// ===== INITIALIZE =====
-document.addEventListener('DOMContentLoaded', function() {
-  const lang = detectLanguage();
-  applyTranslations(lang);
-});
-
-// ===== FORM NAVIGATION =====
 let current = 0;
 const steps = document.querySelectorAll('.step');
 const dots = document.querySelectorAll('.step-dot');
@@ -481,7 +495,6 @@ function prevStep(){
   window.scrollTo(0,0);
 }
 
-// ===== HINT LOGIC =====
 const artistes = document.getElementById("artistes");
 const performances = document.getElementById("performances");
 const hint = document.getElementById("hint");
@@ -495,7 +508,6 @@ function checkLogic(){
 artistes.addEventListener("change", checkLogic);
 performances.addEventListener("change", checkLogic);
 
-// ===== FORM SUBMIT =====
 document.getElementById('form').addEventListener('submit', async e => {
   e.preventDefault();
   const data = new FormData(e.target);
@@ -505,13 +517,372 @@ document.getElementById('form').addEventListener('submit', async e => {
       headers:{'Accept':'application/json'},
       body:data
     });
-    if(!res.ok){ alert("Erreur d'envoi"); return; }
+    if(!res.ok){ alert("Erreur d'envoi, merci de réessayer."); return; }
   } catch(err) {
-    alert("Erreur réseau"); return;
+    alert("Problème réseau, merci de réessayer."); return;
   }
   e.target.style.display = 'none';
   document.getElementById('stepIndicator').style.display = 'none';
   document.getElementById('success').style.display = 'block';
+});
+</script>
+
+
+<script>
+document.querySelectorAll("input, select").forEach(field => {
+  field.addEventListener("invalid", function () {
+    if (this.name === "event") {
+      this.setCustomValidity("Merci de sélectionner votre type de célébration.");
+    } else if (this.name === "location") {
+      this.setCustomValidity("Merci d’indiquer le lieu de votre événement.");
+    } else if (this.name === "date") {
+      this.setCustomValidity("Merci d’indiquer la date de votre événement.");
+    } else if (this.name === "performances") {
+      this.setCustomValidity("Merci de sélectionner l’expérience souhaitée.");
+    } else if (this.name === "budget") {
+      this.setCustomValidity("Merci de sélectionner votre investissement estimé.");
+    } else if (this.name === "guests") {
+      this.setCustomValidity("Merci d’indiquer le nombre d’invités.");
+    } else if (this.name === "nom") {
+      this.setCustomValidity("Merci de renseigner votre nom.");
+    } else if (this.name === "email") {
+      this.setCustomValidity("Merci de renseigner votre adresse email.");
+    } else if (this.name === "phone") {
+      this.setCustomValidity("Votre numéro nous permet de préparer votre proposition plus rapidement.");
+    }
+  });
+
+  field.addEventListener("input", function () {
+    this.setCustomValidity("");
+  });
+
+  field.addEventListener("change", function () {
+    this.setCustomValidity("");
+  });
+});
+</script>
+
+</html>
+<script>
+const formI18n = {
+  'fr': {
+    'step1-h1': 'Chaque projet est une création unique.',
+    'step1-btn': 'Commencer l\'expérience',
+    'step2-h1': 'Votre projet',
+    'step2-event-label': 'Votre type de célébration *',
+    'step2-event-1': 'Mariage',
+    'step2-event-2': 'Soirée privée',
+    'step2-event-3': 'Événement corporate',
+    'step2-event-4': 'Hôtel / Palace',
+    'step2-event-5': 'Projet sur-mesure',
+    'step2-venue-label': 'Nom du lieu',
+    'step2-venue-placeholder': 'Ex : Ritz Paris',
+    'step2-location-label': 'Lieu (ville + pays) *',
+    'step2-location-placeholder': 'Ex : Paris, France',
+    'step2-guests-label': 'Nombre d\'invités *',
+    'step2-guests-1': 'Moins de 50 invités',
+    'step2-guests-2': '50 – 100 invités',
+    'step2-guests-3': '100 – 200 invités',
+    'step2-guests-4': '200 – 400 invités',
+    'step2-guests-5': '400+',
+    'step2-date-label': 'Date *',
+    'step2-back': '← Retour',
+    'step2-next': 'Suivant',
+    'step3-h1': 'Le rythme de l\'événement',
+    'step3-artists-label': 'Nombre d\'artistes',
+    'step3-experience-label': 'Expérience souhaitée *',
+    'step3-exp-1': 'Accueil élégant',
+    'step3-exp-2': 'Performance chorégraphiée',
+    'step3-exp-3': 'Accueil + performance',
+    'step3-exp-4': 'Expérience complète',
+    'step3-exp-5': 'Création sur-mesure',
+    'step3-back': '← Retour',
+    'step3-next': 'Suivant',
+    'step4-h1': 'Investissement estimé *',
+    'step4-budget-1': '1k – 3k',
+    'step4-budget-2': '3k – 5k',
+    'step4-budget-3': '5k – 10k',
+    'step4-budget-4': '10k – 20k',
+    'step4-budget-5': '20k+',
+    'step4-back': '← Retour',
+    'step4-next': 'Suivant',
+    'step5-h1': 'Dernière étape',
+    'step5-name-label': 'Nom *',
+    'step5-firstname-label': 'Prénom',
+    'step5-email-label': 'Email *',
+    'step5-phone-label': 'Téléphone *',
+    'step5-source-label': 'Comment nous avez-vous connus ?',
+    'step5-source-1': 'Réseaux sociaux',
+    'step5-source-2': 'Wedding planner',
+    'step5-source-3': 'Recommandation du lieu',
+    'step5-source-4': 'Recommandation',
+    'step5-source-5': 'Google',
+    'step5-source-6': 'Événement précédent',
+    'step5-source-7': 'Autre',
+    'step5-vision-label': 'Votre vision',
+    'step5-vision-placeholder': 'Décrivez votre vision...',
+    'step5-back': '← Retour',
+    'step5-submit': 'Créer mon expérience',
+    'back-home': '← Retour vers le site'
+  },
+  'en': {
+    'step1-h1': 'Every project is a unique creation.',
+    'step1-btn': 'Start the experience',
+    'step2-h1': 'Your project',
+    'step2-event-label': 'Your celebration type *',
+    'step2-event-1': 'Wedding',
+    'step2-event-2': 'Private event',
+    'step2-event-3': 'Corporate event',
+    'step2-event-4': 'Hotel / Palace',
+    'step2-event-5': 'Custom project',
+    'step2-venue-label': 'Venue name',
+    'step2-venue-placeholder': 'Ex: Ritz Paris',
+    'step2-location-label': 'Location (city + country) *',
+    'step2-location-placeholder': 'Ex: Paris, France',
+    'step2-guests-label': 'Number of guests *',
+    'step2-guests-1': 'Less than 50 guests',
+    'step2-guests-2': '50 – 100 guests',
+    'step2-guests-3': '100 – 200 guests',
+    'step2-guests-4': '200 – 400 guests',
+    'step2-guests-5': '400+',
+    'step2-date-label': 'Date *',
+    'step2-back': '← Back',
+    'step2-next': 'Next',
+    'step3-h1': 'Event rhythm',
+    'step3-artists-label': 'Number of artists',
+    'step3-experience-label': 'Desired experience *',
+    'step3-exp-1': 'Elegant welcome',
+    'step3-exp-2': 'Choreographed performance',
+    'step3-exp-3': 'Welcome + performance',
+    'step3-exp-4': 'Complete experience',
+    'step3-exp-5': 'Custom creation',
+    'step3-back': '← Back',
+    'step3-next': 'Next',
+    'step4-h1': 'Estimated investment *',
+    'step4-budget-1': '1k – 3k',
+    'step4-budget-2': '3k – 5k',
+    'step4-budget-3': '5k – 10k',
+    'step4-budget-4': '10k – 20k',
+    'step4-budget-5': '20k+',
+    'step4-back': '← Back',
+    'step4-next': 'Next',
+    'step5-h1': 'Final step',
+    'step5-name-label': 'Name *',
+    'step5-firstname-label': 'First name',
+    'step5-email-label': 'Email *',
+    'step5-phone-label': 'Phone *',
+    'step5-source-label': 'How did you find us?',
+    'step5-source-1': 'Social media',
+    'step5-source-2': 'Wedding planner',
+    'step5-source-3': 'Venue recommendation',
+    'step5-source-4': 'Recommendation',
+    'step5-source-5': 'Google',
+    'step5-source-6': 'Previous event',
+    'step5-source-7': 'Other',
+    'step5-vision-label': 'Your vision',
+    'step5-vision-placeholder': 'Describe your vision...',
+    'step5-back': '← Back',
+    'step5-submit': 'Create my experience',
+    'back-home': '← Back to website'
+  },
+  'it': {
+    'step1-h1': 'Ogni progetto è una creazione unica.',
+    'step1-btn': 'Inizia l\'esperienza',
+    'step2-h1': 'Il tuo progetto',
+    'step2-event-label': 'Il tuo tipo di celebrazione *',
+    'step2-event-1': 'Matrimonio',
+    'step2-event-2': 'Evento privato',
+    'step2-event-3': 'Evento aziendale',
+    'step2-event-4': 'Hotel / Palace',
+    'step2-event-5': 'Progetto personalizzato',
+    'step2-venue-label': 'Nome della location',
+    'step2-venue-placeholder': 'Es: Ritz Parigi',
+    'step2-location-label': 'Luogo (città + paese) *',
+    'step2-location-placeholder': 'Es: Parigi, Francia',
+    'step2-guests-label': 'Numero di ospiti *',
+    'step2-guests-1': 'Meno di 50 ospiti',
+    'step2-guests-2': '50 – 100 ospiti',
+    'step2-guests-3': '100 – 200 ospiti',
+    'step2-guests-4': '200 – 400 ospiti',
+    'step2-guests-5': '400+',
+    'step2-date-label': 'Data *',
+    'step2-back': '← Indietro',
+    'step2-next': 'Avanti',
+    'step3-h1': 'Ritmo dell\'evento',
+    'step3-artists-label': 'Numero di artisti',
+    'step3-experience-label': 'Esperienza desiderata *',
+    'step3-exp-1': 'Benvenuto elegante',
+    'step3-exp-2': 'Performance coreografata',
+    'step3-exp-3': 'Benvenuto + performance',
+    'step3-exp-4': 'Esperienza completa',
+    'step3-exp-5': 'Creazione personalizzata',
+    'step3-back': '← Indietro',
+    'step3-next': 'Avanti',
+    'step4-h1': 'Investimento stimato *',
+    'step4-budget-1': '1k – 3k',
+    'step4-budget-2': '3k – 5k',
+    'step4-budget-3': '5k – 10k',
+    'step4-budget-4': '10k – 20k',
+    'step4-budget-5': '20k+',
+    'step4-back': '← Indietro',
+    'step4-next': 'Avanti',
+    'step5-h1': 'Ultimo passo',
+    'step5-name-label': 'Cognome *',
+    'step5-firstname-label': 'Nome',
+    'step5-email-label': 'Email *',
+    'step5-phone-label': 'Telefono *',
+    'step5-source-label': 'Come ci hai trovato?',
+    'step5-source-1': 'Social media',
+    'step5-source-2': 'Wedding planner',
+    'step5-source-3': 'Consiglio della location',
+    'step5-source-4': 'Consiglio',
+    'step5-source-5': 'Google',
+    'step5-source-6': 'Evento precedente',
+    'step5-source-7': 'Altro',
+    'step5-vision-label': 'La tua visione',
+    'step5-vision-placeholder': 'Descrivi la tua visione...',
+    'step5-back': '← Indietro',
+    'step5-submit': 'Crea la mia esperienza',
+    'back-home': '← Torna al sito'
+  },
+  'zh': {
+    'step1-h1': '每个项目都是独特的创作。',
+    'step1-btn': '开始体验',
+    'step2-h1': '您的项目',
+    'step2-event-label': '您的庆典类型 *',
+    'step2-event-1': '婚礼',
+    'step2-event-2': '私人活动',
+    'step2-event-3': '企业活动',
+    'step2-event-4': '酒店/宫殿',
+    'step2-event-5': '定制项目',
+    'step2-venue-label': '场地名称',
+    'step2-venue-placeholder': '例: 丽兹酒店巴黎',
+    'step2-location-label': '地点（城市 + 国家）*',
+    'step2-location-placeholder': '例: 巴黎，法国',
+    'step2-guests-label': '来宾数量 *',
+    'step2-guests-1': '少于50位来宾',
+    'step2-guests-2': '50 – 100位来宾',
+    'step2-guests-3': '100 – 200位来宾',
+    'step2-guests-4': '200 – 400位来宾',
+    'step2-guests-5': '400+',
+    'step2-date-label': '日期 *',
+    'step2-back': '← 返回',
+    'step2-next': '下一步',
+    'step3-h1': '活动节奏',
+    'step3-artists-label': '艺术家数量',
+    'step3-experience-label': '期望的体验 *',
+    'step3-exp-1': '优雅欢迎',
+    'step3-exp-2': '编舞表演',
+    'step3-exp-3': '欢迎 + 表演',
+    'step3-exp-4': '完整体验',
+    'step3-exp-5': '定制创作',
+    'step3-back': '← 返回',
+    'step3-next': '下一步',
+    'step4-h1': '预估投资 *',
+    'step4-budget-1': '1k – 3k',
+    'step4-budget-2': '3k – 5k',
+    'step4-budget-3': '5k – 10k',
+    'step4-budget-4': '10k – 20k',
+    'step4-budget-5': '20k+',
+    'step4-back': '← 返回',
+    'step4-next': '下一步',
+    'step5-h1': '最后一步',
+    'step5-name-label': '姓氏 *',
+    'step5-firstname-label': '名字',
+    'step5-email-label': '电子邮件 *',
+    'step5-phone-label': '电话 *',
+    'step5-source-label': '您是如何找到我们的？',
+    'step5-source-1': '社交媒体',
+    'step5-source-2': '婚礼策划师',
+    'step5-source-3': '场地推荐',
+    'step5-source-4': '推荐',
+    'step5-source-5': 'Google',
+    'step5-source-6': '之前的活动',
+    'step5-source-7': '其他',
+    'step5-vision-label': '您的愿景',
+    'step5-vision-placeholder': '描述您的愿景...',
+    'step5-back': '← 返回',
+    'step5-submit': '创建我的体验',
+    'back-home': '← 返回网站'
+  }
+};
+
+function applyAllTranslations(lang) {
+  const trans = formI18n[lang] || formI18n['fr'];
+  
+  // Mapping label texte FR -> clé
+  const labelMap = {
+    'Votre type de célébration *': 'step2-event-label',
+    'Nom du lieu': 'step2-venue-label',
+    'Lieu (ville + pays) *': 'step2-location-label',
+    'Nombre d\'invités *': 'step2-guests-label',
+    'Date *': 'step2-date-label',
+    'Nombre d\'artistes': 'step3-artists-label',
+    'Expérience souhaitée *': 'step3-experience-label',
+    'Nom *': 'step5-name-label',
+    'Prénom': 'step5-firstname-label',
+    'Email *': 'step5-email-label',
+    'Téléphone *': 'step5-phone-label',
+    'Comment nous avez-vous connus ?': 'step5-source-label',
+    'Votre vision': 'step5-vision-label'
+  };
+  
+  // Mémorise le texte original FR la première fois
+  const labels = document.querySelectorAll('label');
+  labels.forEach(label => {
+    if (!label.dataset.originalFr) {
+      label.dataset.originalFr = label.textContent.trim();
+    }
+    const originalText = label.dataset.originalFr;
+    const key = labelMap[originalText];
+    if (key && trans[key]) {
+      label.textContent = trans[key];
+    }
+  });
+  
+  // Traduit les h1
+  const h1s = document.querySelectorAll('h1');
+  const h1Keys = ['step1-h1', 'step2-h1', 'step3-h1', 'step4-h1', 'step5-h1'];
+  h1s.forEach((h1, i) => {
+    if (trans[h1Keys[i]]) h1.textContent = trans[h1Keys[i]];
+  });
+  
+  // Traduit les buttons
+  const buttons = document.querySelectorAll('button');
+  const btnKeys = ['step1-btn', 'step2-back', 'step2-next', 'step3-back', 'step3-next', 'step4-back', 'step4-next', 'step5-back', 'step5-submit'];
+  buttons.forEach((btn, i) => {
+    if (trans[btnKeys[i]]) btn.textContent = trans[btnKeys[i]];
+  });
+  
+  // Traduit les options
+  const options = document.querySelectorAll('option');
+  const optKeys = [
+    'step2-event-1', 'step2-event-2', 'step2-event-3', 'step2-event-4', 'step2-event-5',
+    'step2-guests-1', 'step2-guests-2', 'step2-guests-3', 'step2-guests-4', 'step2-guests-5',
+    'step3-exp-1', 'step3-exp-2', 'step3-exp-3', 'step3-exp-4', 'step3-exp-5',
+    'step4-budget-1', 'step4-budget-2', 'step4-budget-3', 'step4-budget-4', 'step4-budget-5',
+    'step5-source-1', 'step5-source-2', 'step5-source-3', 'step5-source-4', 'step5-source-5', 'step5-source-6', 'step5-source-7'
+  ];
+  options.forEach((opt, i) => {
+    if (trans[optKeys[i]]) opt.textContent = trans[optKeys[i]];
+  });
+  
+  // Traduit les placeholders
+  const inputs = document.querySelectorAll('input, textarea');
+  const inputKeys = ['step2-venue-placeholder', 'step2-location-placeholder', 'step5-vision-placeholder'];
+  inputs.forEach((input, i) => {
+    if (trans[inputKeys[i]]) input.placeholder = trans[inputKeys[i]];
+  });
+  
+  // Traduit les liens
+  document.querySelectorAll('a[href="index.html"]').forEach(link => {
+    link.textContent = trans['back-home'];
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const lang = localStorage.getItem('sublimes-lang') || 'fr';
+  applyAllTranslations(lang);
 });
 </script>
 
