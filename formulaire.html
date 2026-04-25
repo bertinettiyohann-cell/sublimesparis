@@ -403,7 +403,7 @@ button:hover {
   ">← Retour vers le site</a>
 </div>
 
-    <h1>Investissement estimé</h1>
+    <h1>Investissement estimé *</h1>
     <select name="budget" required>
       <option>1k – 3k</option>
       <option>3k – 5k</option>
@@ -523,6 +523,41 @@ document.getElementById('form').addEventListener('submit', async e => {
   e.target.style.display = 'none';
   document.getElementById('stepIndicator').style.display = 'none';
   document.getElementById('success').style.display = 'block';
+});
+</script>
+
+
+<script>
+document.querySelectorAll("input, select").forEach(field => {
+  field.addEventListener("invalid", function () {
+    if (this.name === "event") {
+      this.setCustomValidity("Merci de sélectionner votre type de célébration.");
+    } else if (this.name === "location") {
+      this.setCustomValidity("Merci d’indiquer le lieu de votre événement.");
+    } else if (this.name === "date") {
+      this.setCustomValidity("Merci d’indiquer la date de votre événement.");
+    } else if (this.name === "performances") {
+      this.setCustomValidity("Merci de sélectionner l’expérience souhaitée.");
+    } else if (this.name === "budget") {
+      this.setCustomValidity("Merci de sélectionner votre investissement estimé.");
+    } else if (this.name === "guests") {
+      this.setCustomValidity("Merci d’indiquer le nombre d’invités.");
+    } else if (this.name === "nom") {
+      this.setCustomValidity("Merci de renseigner votre nom.");
+    } else if (this.name === "email") {
+      this.setCustomValidity("Merci de renseigner votre adresse email.");
+    } else if (this.name === "phone") {
+      this.setCustomValidity("Votre numéro nous permet de préparer votre proposition plus rapidement.");
+    }
+  });
+
+  field.addEventListener("input", function () {
+    this.setCustomValidity("");
+  });
+
+  field.addEventListener("change", function () {
+    this.setCustomValidity("");
+  });
 });
 </script>
 
