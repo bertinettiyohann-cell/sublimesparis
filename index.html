@@ -1322,14 +1322,14 @@ window.setLang = function(lang, label, el) {
   originalSetLang(lang, label, el);
 };
 
-// Quand on va cliquer sur un lien formulaire, ajoute ?lang=XX
+// Quand on va cliquer sur un lien formulaire ou maison_nicolas, ajoute ?lang=XX
 document.addEventListener('click', function(e) {
   const link = e.target.closest('a');
-  if (link && link.href.includes('formulaire')) {
+  if (link && (link.href.includes('formulaire') || link.href.includes('maison_nicolas'))) {
     const lang = localStorage.getItem('sublimes-lang') || 'fr';
     const url = link.href.split('?')[0] + '?lang=' + lang;
     link.href = url;
-    console.log('📋 Formulaire URL:', url);
+    console.log('🔗 URL avec langue:', url);
   }
 }, true);
 </script>
