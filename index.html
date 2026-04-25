@@ -1299,40 +1299,36 @@ if(window.innerWidth <= 768){
 </div>
 
 </html>
-<!-- ===== LANG INTEGRATION SCRIPT ===== -->
+<!-- ===== LANGUAGE INTEGRATION FIX ===== -->
 <script>
-(function() {
-  function getSelectedLanguage() {
-    const activeOption = document.querySelector('.lang-option.active');
-    if (activeOption) {
-      const lang = activeOption.getAttribute('data-lang');
-      if (lang) return lang;
+// Capture la fonction setLang originale
+const originalSetLang = window.setLang || function() {};
+
+window.setLang = function(lang, display, element) {
+  // Appelle la fonction originale
+  if (originalSetLang && originalSetLang !== window.setLang) {
+    originalSetLang(lang, display, element);
+  }
+  
+  // Sauvegarde la langue correctement
+  localStorage.setItem('sublimes-lang', lang);
+  console.log('Langue définie à:', lang);
+};
+
+// Quand on clique sur un lien formulaire, passe la langue
+document.addEventListener('click', function(e) {
+  const link = e.target.closest('a[href*="formulaire"]');
+  if (link) {
+    const lang = localStorage.getItem('sublimes-lang') || 'fr';
+    console.log('Envoi vers formulaire avec langue:', lang);
+    
+    if (['fr', 'en', 'it', 'zh'].includes(lang)) {
+      const url = new URL(link.href, window.location.origin);
+      url.searchParams.set('lang', lang);
+      link.href = url.toString();
     }
-    const stored = localStorage.getItem('sublimes-lang');
-    if (stored) return stored;
-    return 'fr';
   }
-
-  function setupLanguagePassthrough() {
-    document.addEventListener('click', function(e) {
-      const link = e.target.closest('a[href*="formulaire"]');
-      if (link) {
-        const lang = getSelectedLanguage();
-        if (lang && ['fr', 'en', 'it', 'zh'].includes(lang)) {
-          const url = new URL(link.href, window.location.origin);
-          url.searchParams.set('lang', lang);
-          link.href = url.toString();
-        }
-      }
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupLanguagePassthrough);
-  } else {
-    setupLanguagePassthrough();
-  }
-})();
+});
 </script>
 
 </body>
