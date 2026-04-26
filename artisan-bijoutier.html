@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nicolas Deschaux — L'Artisan Bijoutier | Sublimes Paris</title>
+<meta name="description" content="Nicolas Deschaux, artisan bijoutier et directeur artistique de Sublimes Paris. Créations sur-mesure pour mode, scène, cinéma et maisons de luxe." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;
+  --white:#f5f3ef;
+  --grey-light:#e8e5e0;
+  --grey-mid:#999490;
+  --grey-dark:#2a2826;
+  --accent:#c8b89a;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Montserrat',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:var(--white);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.8;
+  overflow-x:hidden;
+}
+
+/* NAV minimaliste */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:28px 56px;
+  transition:background .4s,padding .4s;
+  background:rgba(10,10,10,.7);
+  backdrop-filter:blur(8px);
+}
+nav.scrolled{background:rgba(10,10,10,.95);padding:18px 56px}
+.nav-logo{
+  font-family:var(--serif);font-size:1.15rem;letter-spacing:.35em;
+  text-transform:uppercase;color:var(--white);text-decoration:none;
+  font-weight:300;
+}
+.nav-back{
+  font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  border:1px solid rgba(200,184,154,.35);
+  padding:9px 16px;transition:background .3s,border-color .3s;
+}
+.nav-back:hover{background:rgba(200,184,154,.1);border-color:var(--accent)}
+
+/* NAV RIGHT GROUP */
+.nav-right{display:flex;align-items:center;gap:14px}
+
+/* LANGUAGE DROPDOWN */
+.lang-dropdown{position:relative}
+.lang-trigger{
+  display:flex;align-items:center;gap:6px;
+  font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);background:rgba(0,0,0,.4);
+  border:1px solid rgba(200,184,154,.35);
+  padding:8px 12px;cursor:pointer;
+  font-family:var(--sans);
+  transition:border-color .3s,background .3s;
+}
+.lang-trigger:hover{border-color:var(--accent);background:rgba(200,184,154,.1)}
+.lang-arrow{font-size:.4rem;transition:transform .3s;display:inline-block}
+.lang-dropdown.open .lang-arrow{transform:rotate(180deg)}
+.lang-menu{
+  display:none;position:absolute;top:calc(100% + 6px);right:0;
+  background:rgba(10,10,10,.97);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(200,184,154,.18);
+  min-width:140px;
+  box-shadow:0 18px 40px rgba(0,0,0,.5);
+}
+.lang-dropdown.open .lang-menu{display:block}
+.lang-option{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 14px;
+  font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(245,243,239,.55);cursor:pointer;
+  transition:background .2s,color .2s;
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.lang-option:last-child{border-bottom:none}
+.lang-option:hover{background:rgba(200,184,154,.07);color:var(--white)}
+.lang-option.active{color:var(--accent)}
+.lang-flag{font-size:12px}
+.lang-check{font-size:.4rem;color:var(--accent);margin-left:auto}
+
+/* SECTIONS */
+section{padding:130px 56px;position:relative}
+.section-label{
+  font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:48px;
+  display:flex;align-items:center;gap:20px;
+}
+.section-label::before{
+  content:'';display:block;width:40px;height:1px;background:var(--accent);
+}
+
+h1,h2,h3{font-family:var(--serif);font-weight:300;line-height:1.05}
+h1{font-size:clamp(3rem,6vw,5.8rem);margin-bottom:32px}
+h1 em{font-style:italic;color:var(--grey-light)}
+h2{font-size:clamp(2.2rem,4vw,3.8rem);margin-bottom:32px}
+h2 em{font-style:italic;color:var(--grey-light)}
+
+p{
+  font-size:.78rem;color:#c8c5be;
+  max-width:680px;letter-spacing:.03em;
+  line-height:2.1;text-align:justify;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  padding:130px 56px 110px;
+}
+.hero-content .name-tag{
+  display:block;
+  font-family:var(--sans);
+  font-size:clamp(.65rem,.9vw,.8rem);
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:20px;
+}
+.hero-content .role-tag{
+  display:block;
+  font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--grey-mid);margin-bottom:36px;
+}
+.hero-content h1{margin-bottom:40px}
+.hero-content p{margin-bottom:32px;max-width:520px}
+.quote{
+  font-family:var(--serif);font-size:1.5rem;font-style:italic;
+  color:var(--white);border-left:1px solid var(--accent);
+  padding-left:28px;margin:40px 0;line-height:1.5;
+  max-width:520px;text-align:justify;
+}
+.hero-image{
+  position:relative;
+  height:65vh;
+  max-height:560px;
+  max-width:440px;
+  margin:0 auto;
+  width:100%;
+}
+.hero-image img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:grayscale(.1);
+}
+.hero-image::after{
+  content:'';position:absolute;
+  top:24px;right:-24px;bottom:-24px;left:24px;
+  border:1px solid rgba(200,184,154,.25);
+  z-index:-1;
+}
+
+/* SAVOIR-FAIRE */
+.savoir-faire{background:#0d0d0d}
+.grid-two{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+}
+.grid-two .image-block{position:relative;max-width:420px;margin:0 auto;width:100%}
+.grid-two .image-block img{
+  width:100%;aspect-ratio:4/5;object-fit:cover;display:block;
+}
+.grid-two .image-block::after{
+  content:'';position:absolute;
+  top:-20px;left:-20px;bottom:20px;right:20px;
+  border:1px solid rgba(200,184,154,.2);
+  z-index:-1;
+}
+.grid-two .text-block p + p{margin-top:24px}
+
+/* RÉFÉRENCES — Style éditorial */
+.references{background:var(--black)}
+.refs-intro{
+  max-width:880px;margin-bottom:60px;
+}
+.refs-intro h2{margin-bottom:24px}
+.refs-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(200,184,154,.15);
+  border:1px solid rgba(200,184,154,.15);
+}
+.ref-card{
+  background:var(--black);
+  padding:48px 32px;
+  text-align:center;
+  transition:background .4s;
+}
+.ref-card:hover{background:#0d0d0d}
+.ref-card h3{
+  font-family:var(--serif);
+  font-size:1.8rem;font-weight:300;
+  margin-bottom:10px;color:var(--white);
+}
+.ref-card p{
+  font-family:var(--sans);
+  font-size:.55rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent);
+  text-align:center;margin:0;line-height:1.6;
+}
+.refs-text{margin-top:60px;max-width:880px}
+.refs-text p{margin-bottom:24px}
+.refs-text strong{color:var(--white);font-weight:400}
+
+/* PORTFOLIO */
+.portfolio{background:#0d0d0d}
+.gallery{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.card{position:relative;overflow:hidden;cursor:pointer}
+.card img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;display:block;
+  transition:transform .8s ease, filter .4s;filter:grayscale(.05);
+}
+.card:hover img{transform:scale(1.04);filter:grayscale(0) brightness(1.05)}
+.card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,.5) 0%, transparent 50%);
+  opacity:0;transition:opacity .4s;pointer-events:none;
+}
+.card:hover::after{opacity:1}
+.card-zoom{
+  position:absolute;top:14px;right:14px;
+  width:36px;height:36px;
+  border:1px solid rgba(255,255,255,.4);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .4s, background .3s;
+  pointer-events:none;
+  background:rgba(0,0,0,.3);
+  backdrop-filter:blur(4px);
+}
+.card:hover .card-zoom{opacity:1}
+.card-zoom svg{width:14px;height:14px;stroke:var(--white);fill:none;stroke-width:1.5}
+.card-info{
+  padding-top:20px;
+}
+.card h4{
+  font-family:var(--serif);font-size:1.3rem;
+  font-weight:300;font-style:italic;color:var(--white);
+  margin-bottom:6px;
+}
+.card span{
+  font-size:.52rem;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--accent);
+}
+
+/* PRESSBOOK GALLERY */
+.pressbook{background:var(--black);position:relative}
+.pressbook-intro{
+  max-width:780px;margin:0 auto 64px;text-align:center;
+}
+.pressbook-intro p{
+  font-size:.95rem;color:var(--grey-mid);line-height:1.9;
+  font-style:italic;font-family:var(--serif);font-size:1.15rem;
+}
+.pressbook-mosaic{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:160px;
+  gap:14px;
+  margin-bottom:60px;
+}
+.pb-card{
+  position:relative;overflow:hidden;cursor:pointer;
+  background:#0d0d0d;
+}
+.pb-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .9s cubic-bezier(.2,.6,.2,1), filter .5s;
+  filter:brightness(.92);
+}
+.pb-card:hover img{transform:scale(1.05);filter:brightness(1.05)}
+.pb-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.85) 100%);
+  opacity:0;transition:opacity .5s;z-index:1;pointer-events:none;
+}
+.pb-card:hover::before{opacity:1}
+.pb-caption{
+  position:absolute;bottom:18px;left:20px;right:20px;z-index:2;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .5s ease, transform .5s ease;
+  pointer-events:none;
+}
+.pb-card:hover .pb-caption{opacity:1;transform:translateY(0)}
+.pb-caption h4{
+  font-family:var(--serif);font-size:1.05rem;
+  font-weight:300;font-style:italic;color:var(--white);
+  margin-bottom:4px;line-height:1.3;
+}
+.pb-caption span{
+  font-size:.5rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--accent);
+}
+.pb-zoom{
+  position:absolute;top:14px;right:14px;z-index:2;
+  width:34px;height:34px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:50%;
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .5s;
+}
+.pb-card:hover .pb-zoom{opacity:1}
+.pb-zoom svg{width:13px;height:13px;stroke:var(--white);fill:none;stroke-width:1.5}
+
+/* Tailles spécifiques mosaïque (12-col) */
+.pb-card.size-hero    {grid-column:span 7;grid-row:span 3}
+.pb-card.size-tall    {grid-column:span 5;grid-row:span 3}
+.pb-card.size-wide    {grid-column:span 8;grid-row:span 2}
+.pb-card.size-medium  {grid-column:span 4;grid-row:span 2}
+.pb-card.size-square  {grid-column:span 4;grid-row:span 2}
+.pb-card.size-small   {grid-column:span 3;grid-row:span 2}
+
+/* PDF DOWNLOAD CTA */
+.pressbook-cta{
+  text-align:center;margin-top:50px;
+  padding:50px 30px;
+  border-top:1px solid rgba(200,184,154,.18);
+  border-bottom:1px solid rgba(200,184,154,.18);
+}
+.pressbook-cta-label{
+  font-size:.55rem;letter-spacing:.4em;
+  text-transform:uppercase;color:var(--accent);
+  margin-bottom:18px;
+}
+.pressbook-cta h3{
+  font-family:var(--serif);font-size:1.8rem;
+  font-weight:300;font-style:italic;color:var(--white);
+  margin-bottom:28px;
+}
+.btn-download-pdf{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:18px 38px;
+  border:1px solid var(--accent);
+  color:var(--white);
+  text-decoration:none;
+  font-size:.6rem;letter-spacing:.3em;
+  text-transform:uppercase;
+  background:transparent;
+  transition:background .35s, color .35s;
+}
+.btn-download-pdf:hover{
+  background:var(--accent);color:var(--black);
+}
+.btn-download-pdf svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5}
+
+/* BOUTON APPELER MOBILE-ONLY */
+.btn-call-mobile{display:none}
+
+/* LIGHTBOX MODAL */
+.lightbox{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(10,10,10,.97);
+  backdrop-filter:blur(20px);
+  z-index:1000;
+  align-items:center;justify-content:center;
+  padding:40px;
+  animation:fadeIn .3s ease;
+}
+.lightbox.active{display:flex}
+.lightbox-content{
+  position:relative;
+  max-width:90vw;max-height:90vh;
+  display:flex;flex-direction:column;align-items:center;
+}
+.lightbox-content img{
+  max-width:100%;max-height:80vh;
+  object-fit:contain;display:block;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+}
+.lightbox-info{
+  text-align:center;margin-top:24px;
+}
+.lightbox-info h4{
+  font-family:var(--serif);font-size:1.6rem;
+  font-weight:300;font-style:italic;color:var(--white);
+  margin-bottom:8px;
+}
+.lightbox-info span{
+  font-size:.55rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--accent);
+}
+.lightbox-close{
+  position:absolute;top:24px;right:24px;
+  width:48px;height:48px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(0,0,0,.5);
+  color:var(--white);
+  font-size:1.2rem;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .3s, border-color .3s;
+  border-radius:50%;
+}
+.lightbox-close:hover{
+  background:rgba(200,184,154,.15);
+  border-color:var(--accent);
+}
+.lightbox-prev,
+.lightbox-next{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:54px;height:54px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(0,0,0,.5);
+  color:var(--white);
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .3s, border-color .3s;
+  border-radius:50%;
+  font-family:var(--serif);font-size:1.4rem;
+}
+.lightbox-prev{left:24px}
+.lightbox-next{right:24px}
+.lightbox-prev:hover,
+.lightbox-next:hover{
+  background:rgba(200,184,154,.15);
+  border-color:var(--accent);
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* VIDEO */
+.video-section{background:var(--black)}
+.video-section h2{max-width:680px;margin-bottom:32px}
+.video-section p{max-width:680px;margin-bottom:50px}
+.video-wrapper{
+  position:relative;width:100%;
+  aspect-ratio:16/9;
+  background:#000;overflow:hidden;
+}
+.video-wrapper::after{
+  content:'';position:absolute;
+  top:24px;right:-24px;bottom:-24px;left:24px;
+  border:1px solid rgba(200,184,154,.2);
+  z-index:-1;
+}
+.video-wrapper video{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+
+/* VISION */
+.vision{background:#0d0d0d;text-align:left}
+.vision h2{margin-bottom:32px;max-width:680px}
+.vision > p{margin-bottom:50px;max-width:680px}
+.contact-links{
+  display:flex;flex-wrap:wrap;gap:14px;margin-top:50px;
+}
+.contact-btn{
+  font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--white);text-decoration:none;
+  border:1px solid rgba(200,184,154,.35);
+  padding:14px 24px;
+  transition:background .3s,border-color .3s,color .3s;
+}
+.contact-btn:hover{
+  background:rgba(200,184,154,.1);
+  border-color:var(--accent);
+  color:var(--accent);
+}
+
+/* FOOTER */
+footer{
+  padding:60px 56px;text-align:center;
+  border-top:1px solid rgba(255,255,255,.06);
+  background:var(--black);
+}
+footer p{
+  font-size:.55rem;letter-spacing:.25em;
+  text-transform:uppercase;color:var(--grey-mid);
+  margin:0 auto;text-align:center;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+  nav{padding:18px 20px}
+  nav.scrolled{padding:14px 20px}
+  .nav-logo{font-size:.85rem;letter-spacing:.28em}
+  .nav-back{font-size:.5rem;padding:7px 12px;letter-spacing:.18em}
+  .nav-right{gap:8px}
+  .lang-trigger{font-size:.45rem;padding:7px 9px;gap:4px;letter-spacing:.1em}
+  .lang-arrow{font-size:.35rem}
+  .lang-menu{min-width:128px;right:0}
+  .lang-option{font-size:.45rem;padding:9px 11px;letter-spacing:.1em}
+
+  section{padding:70px 22px}
+  .section-label{font-size:.5rem;letter-spacing:.32em;margin-bottom:32px}
+  .section-label::before{width:24px}
+
+  h1{font-size:2.4rem;margin-bottom:24px;text-align:left}
+  h2{font-size:1.9rem;margin-bottom:24px;text-align:left}
+  p{font-size:.78rem;line-height:1.95;text-align:justify}
+
+  /* HERO mobile */
+  .hero{
+    grid-template-columns:1fr;
+    gap:40px;
+    padding:100px 22px 30px;
+    min-height:auto;
+    align-items:start;
+  }
+  .hero-content .name-tag{font-size:.6rem;letter-spacing:.3em;margin-bottom:14px}
+  .hero-content .role-tag{font-size:.5rem;letter-spacing:.25em;margin-bottom:24px}
+  .hero-image{
+    height:auto;max-height:none;
+    order:-1;
+    margin-bottom:8px;
+  }
+  .hero-image img{
+    aspect-ratio:4/5;height:auto;
+    max-width:280px;
+    margin:0 auto;
+    display:block;
+  }
+  .hero-image::after{display:none}
+  .quote{
+    font-size:1.15rem;
+    border-left:none;border-top:1px solid var(--accent);
+    padding-left:0;padding-top:24px;
+    margin:32px 0;
+  }
+
+  /* SAVOIR FAIRE */
+  .savoir-faire{padding-top:40px}
+  .grid-two{grid-template-columns:1fr;gap:32px}
+  .grid-two .image-block::after{display:none}
+  .grid-two .image-block img{
+    aspect-ratio:4/5;
+    max-width:280px;
+    margin:0 auto;
+    display:block;
+  }
+
+  /* REFERENCES - réduire bas */
+  .references{padding-bottom:40px}
+  /* PORTFOLIO - réduire haut */
+  .portfolio{padding-top:40px}
+
+  /* REFERENCES */
+  .refs-grid{grid-template-columns:1fr 1fr}
+  .ref-card{padding:30px 18px}
+  .ref-card h3{font-size:1.2rem;margin-bottom:6px}
+  .ref-card p{font-size:.46rem;letter-spacing:.16em}
+
+  /* PORTFOLIO mobile - grille 3 colonnes style insta */
+  .gallery{grid-template-columns:repeat(3,1fr);gap:6px}
+  .card-info{display:none}
+  .card-zoom{width:26px;height:26px;top:6px;right:6px;opacity:.8}
+  .card-zoom svg{width:10px;height:10px}
+
+  /* PRESSBOOK mobile */
+  .pressbook-mosaic{
+    grid-template-columns:repeat(2,1fr);
+    grid-auto-rows:200px;
+    gap:8px;
+  }
+  .pb-card.size-hero,
+  .pb-card.size-tall{grid-column:span 2;grid-row:span 2}
+  .pb-card.size-wide{grid-column:span 2;grid-row:span 1}
+  .pb-card.size-medium,
+  .pb-card.size-square,
+  .pb-card.size-small{grid-column:span 1;grid-row:span 1}
+  .pb-card .pb-caption{opacity:1;transform:none;bottom:10px;left:12px;right:12px}
+  .pb-card::before{opacity:.55}
+  .pb-caption h4{font-size:.78rem}
+  .pb-caption span{font-size:.42rem;letter-spacing:.18em}
+  .pressbook-intro{margin-bottom:40px}
+  .pressbook-intro p{font-size:1rem;line-height:1.7}
+  .pressbook-cta{padding:36px 18px;margin-top:32px}
+  .pressbook-cta h3{font-size:1.35rem;margin-bottom:22px}
+  .btn-download-pdf{padding:14px 24px;font-size:.55rem;letter-spacing:.22em;gap:10px}
+
+  /* BOUTON APPELER MOBILE - visible uniquement < 768px */
+  .btn-call-mobile{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 28px;
+    background:var(--accent);
+    color:var(--black);
+    text-decoration:none;
+    font-size:.55rem;letter-spacing:.28em;
+    text-transform:uppercase;
+    border:1px solid var(--accent);
+    transition:background .3s, color .3s;
+  }
+  .btn-call-mobile:hover{
+    background:transparent;color:var(--accent);
+  }
+  .btn-call-mobile svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+
+  /* LIGHTBOX mobile */
+  .lightbox{padding:20px}
+  .lightbox-close{
+    top:16px;right:16px;
+    width:40px;height:40px;font-size:1rem;
+  }
+  .lightbox-prev,
+  .lightbox-next{
+    width:42px;height:42px;font-size:1.2rem;
+  }
+  .lightbox-prev{left:12px}
+  .lightbox-next{right:12px}
+  .lightbox-content img{max-height:70vh}
+  .lightbox-info h4{font-size:1.2rem}
+  .lightbox-info span{font-size:.5rem;letter-spacing:.22em}
+
+  /* VIDEO */
+  .video-wrapper::after{display:none}
+
+  /* CONTACT */
+  .contact-links{flex-direction:column;gap:10px}
+  .contact-btn{
+    width:100%;text-align:center;
+    padding:14px 18px;font-size:.55rem;
+  }
+
+  footer{padding:40px 22px}
+}
+
+@media(max-width:380px){
+  h1{font-size:2rem}
+  h2{font-size:1.6rem}
+  .refs-grid{grid-template-columns:1fr}
+  .ref-card{padding:24px 18px}
+  .pressbook-mosaic{grid-auto-rows:160px;gap:6px}
+  .pb-caption h4{font-size:.7rem}
+  .pb-caption span{font-size:.38rem}
+  .pressbook-cta h3{font-size:1.15rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">SUBLIMES PARIS</a>
+  <div class="nav-right">
+    <div class="lang-dropdown" id="langDropdown">
+      <button class="lang-trigger" onclick="toggleLangDropdown()" aria-label="Language">
+        <span id="currentLangLabel">🇫🇷 FR</span>
+        <span class="lang-arrow">▼</span>
+      </button>
+      <div class="lang-menu">
+        <div class="lang-option active" data-lang="fr" onclick="setLang('fr','🇫🇷 FR',this)"><span class="lang-flag">🇫🇷</span> Français <span class="lang-check">✓</span></div>
+        <div class="lang-option" data-lang="en" onclick="setLang('en','🇬🇧 EN',this)"><span class="lang-flag">🇬🇧</span> English</div>
+        <div class="lang-option" data-lang="it" onclick="setLang('it','🇮🇹 IT',this)"><span class="lang-flag">🇮🇹</span> Italiano</div>
+        <div class="lang-option" data-lang="zh" onclick="setLang('zh','🇨🇳 中文',this)"><span class="lang-flag">🇨🇳</span> 中文</div>
+      </div>
+    </div>
+    <a href="index.html" class="nav-back" data-i18n="nav-back">← Retour</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="name-tag">Nicolas Deschaux</span>
+    <span class="role-tag" data-i18n="role-tag">Sublimes Paris — Maison de Création</span>
+    <h1 data-i18n="hero-title">L'<em>artisan</em><br>bijoutier</h1>
+    <p data-i18n="hero-p1">Fondateur, directeur artistique et artisan joaillier, Nicolas Deschaux imagine des pièces de scène où la haute couture rencontre l'émotion du spectacle vivant.</p>
+    <p data-i18n="hero-p2">Chaque création naît dans l'atelier, pensée comme une œuvre sculptée pour la lumière, le mouvement et l'instant spectaculaire.</p>
+    <div class="quote" data-i18n="hero-quote">« Chaque bijou doit raconter une histoire avant même d'entrer en scène. »</div>
+  </div>
+  <div class="hero-image">
+    <img src="images/IMG_0048.jpg" alt="Nicolas Deschaux artisan bijoutier">
+  </div>
+</section>
+
+<!-- SAVOIR-FAIRE -->
+<section class="savoir-faire">
+  <div class="section-label" data-i18n="label-savoir">Le savoir-faire</div>
+  <div class="grid-two">
+    <div class="image-block">
+      <img src="images/Preview.jpg" alt="Atelier joaillerie spectacle">
+    </div>
+    <div class="text-block">
+      <h2 data-i18n="savoir-title">Entre <em>artisanat</em><br>et haute scène</h2>
+      <p data-i18n="savoir-p1">Son univers puise dans l'effervescence de la mode contemporaine, l'élégance parisienne et l'éclat du music-hall. Cristaux, plumes, structures sculptées, bijoux de corps et pièces signatures sont réalisés à la main avec une exigence absolue.</p>
+      <p data-i18n="savoir-p2">Certains tableaux nécessitent plus de 16 000 cristaux sertis à la main, transformant chaque costume en pièce d'exception pensée pour captiver immédiatement le regard.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RÉFÉRENCES -->
+<section class="references">
+  <div class="section-label" data-i18n="label-refs">Références &amp; Collaborations</div>
+  <div class="refs-intro">
+    <h2 data-i18n="refs-title">Ils ont fait appel<br>à son <em>savoir-faire</em></h2>
+  </div>
+  <div class="refs-grid">
+    <div class="ref-card">
+      <h3>Cardi B</h3>
+      <p data-i18n="ref-1">MTV Video Music Awards</p>
+    </div>
+    <div class="ref-card">
+      <h3>Eva Longoria</h3>
+      <p data-i18n="ref-2">Red Carpet &amp; Couture</p>
+    </div>
+    <div class="ref-card">
+      <h3>Luc Besson</h3>
+      <p data-i18n="ref-3">Cinéma &amp; créations visuelles</p>
+    </div>
+    <div class="ref-card">
+      <h3>CHANEL</h3>
+      <p data-i18n="ref-4">Sapin iconique &amp; luxe</p>
+    </div>
+    <div class="ref-card">
+      <h3>Alexandre Vauthier</h3>
+      <p data-i18n="ref-5">Chaîne Gangster</p>
+    </div>
+    <div class="ref-card">
+      <h3>TF1 · France 2</h3>
+      <p data-i18n="ref-6">Productions télévisées</p>
+    </div>
+  </div>
+  <div class="refs-text">
+    <p data-i18n="refs-p1">Le travail de Nicolas Deschaux s'inscrit dans les univers où l'image doit être immédiatement spectaculaire. Son nom circule entre mode, télévision, cinéma et maisons de luxe, là où chaque détail doit provoquer l'effet wow immédiat.</p>
+    <p data-i18n="refs-p2">Son savoir-faire s'étend également au monde du cinéma, des grandes productions visuelles et des univers de prestige. Entre direction artistique, accessoires couture et pièces sculpturales pensées pour la caméra, Nicolas intervient là où l'objet doit devenir iconique à l'écran.</p>
+    <p data-i18n="refs-p3">Son savoir-faire accompagne également la maison <strong>Alexandre Vauthier</strong> avec la célèbre chaîne « Gangster », ainsi que de nombreuses productions télévisées, maisons de couture, palaces parisiens et événements internationaux. Chaque pièce est pensée comme une œuvre : précieuse, sculpturale et immédiatement reconnaissable.</p>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio">
+  <div class="section-label" data-i18n="label-portfolio">Portfolio</div>
+  <div class="gallery">
+    <div class="card" onclick="openLightbox(0)">
+      <img src="images/IMG_0032.jpg" alt="Bijou de tête">
+      <div class="card-zoom">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/><path d="M8 11h6M11 8v6"/></svg>
+      </div>
+      <div class="card-info">
+        <h4 data-i18n="port-1-title">Bijou de tête</h4>
+        <span data-i18n="port-1-tag">Pièces signatures</span>
+      </div>
+    </div>
+    <div class="card" onclick="openLightbox(1)">
+      <img src="images/IMG_3959_1.jpg" alt="Réplique coiffe Joséphine Baker">
+      <div class="card-zoom">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/><path d="M8 11h6M11 8v6"/></svg>
+      </div>
+      <div class="card-info">
+        <h4 data-i18n="port-2-title">Réplique coiffe Joséphine Baker</h4>
+        <span data-i18n="port-2-tag">Show signature</span>
+      </div>
+    </div>
+    <div class="card" onclick="openLightbox(2)">
+      <img src="images/red-feathers-hatcad.jpg" alt="Creazione look Show Girl">
+      <div class="card-zoom">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/><path d="M8 11h6M11 8v6"/></svg>
+      </div>
+      <div class="card-info">
+        <h4 data-i18n="port-3-title">歌舞女郎造型创作</h4>
+        <span data-i18n="port-3-tag">Haute scène</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX MODAL -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-prev" onclick="prevImage()">‹</button>
+  <button class="lightbox-next" onclick="nextImage()">›</button>
+  <div class="lightbox-content">
+    <img id="lightbox-img" src="" alt="">
+    <div class="lightbox-info">
+      <h4 id="lightbox-title"></h4>
+      <span id="lightbox-tag"></span>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEO -->
+<section class="video-section">
+  <div class="section-label" data-i18n="label-video">Vidéo Signature</div>
+  <h2 data-i18n="video-title">Le bijou en <em>mouvement</em></h2>
+  <p data-i18n="video-p">Une création prend toute sa dimension lorsqu'elle entre en scène. Lumière, reflet, mouvement, présence : chaque détail est pensé pour captiver immédiatement le regard et créer cet instant suspendu où le spectaculaire devient inoubliable.</p>
+  <div class="video-wrapper">
+    <video controls autoplay muted loop playsinline>
+      <source src="https://res.cloudinary.com/dey3m4cik/video/upload/v1777125022/VIDEO_BRACELET_6_ctf9dd.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+  </div>
+</section>
+
+<!-- PRESSBOOK -->
+
+
+<!-- VISION -->
+<section class="vision">
+  <div class="section-label" data-i18n="label-vision">Vision</div>
+  <h2 data-i18n="vision-title">Créer l'<em>inoubliable</em></h2>
+  <p data-i18n="vision-p">Au-delà du bijou, Nicolas conçoit une émotion visuelle. Chaque pièce doit provoquer ce moment suspendu où le public ressent immédiatement le luxe, la rareté et la puissance de l'instant. C'est cette exigence qui définit l'ADN de Sublimes Paris.</p>
+  <div class="contact-links">
+    <a href="https://wa.me/33667174466" class="contact-btn" data-i18n="btn-whatsapp">WhatsApp</a>
+    <a href="https://www.instagram.com/bijoutier.nicolasdeschaux/" target="_blank" class="contact-btn" data-i18n="btn-instagram">Instagram — @bijoutier.nicolasdeschaux</a>
+    <a href="mailto:lartisanbijoutierparis@gmail.com" class="contact-btn" data-i18n="btn-contact">Contact Privé</a>
+    <a href="tel:+33667174466" class="btn-call-mobile" data-i18n="btn-call">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Appeler
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p data-i18n="footer">Sublimes Paris — Maison de Création</p>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// ===== TRADUCTIONS =====
+const i18nNicolas = {
+  'fr': {
+    'nav-back': '← Retour',
+    'role-tag': 'Sublimes Paris — Maison de Création',
+    'hero-title': 'L\'<em>artisan</em><br>bijoutier',
+    'hero-p1': 'Fondateur, directeur artistique et artisan joaillier, Nicolas Deschaux imagine des pièces de scène où la haute couture rencontre l\'émotion du spectacle vivant.',
+    'hero-p2': 'Chaque création naît dans l\'atelier, pensée comme une œuvre sculptée pour la lumière, le mouvement et l\'instant spectaculaire.',
+    'hero-quote': '« Chaque bijou doit raconter une histoire avant même d\'entrer en scène. »',
+    'label-savoir': 'Le savoir-faire',
+    'savoir-title': 'Entre <em>artisanat</em><br>et haute scène',
+    'savoir-p1': 'Son univers puise dans l\'effervescence de la mode contemporaine, l\'élégance parisienne et l\'éclat du music-hall. Cristaux, plumes, structures sculptées, bijoux de corps et pièces signatures sont réalisés à la main avec une exigence absolue.',
+    'savoir-p2': 'Certains tableaux nécessitent plus de 16 000 cristaux sertis à la main, transformant chaque costume en pièce d\'exception pensée pour captiver immédiatement le regard.',
+    'label-refs': 'Références &amp; Collaborations',
+    'refs-title': 'Ils ont fait appel<br>à son <em>savoir-faire</em>',
+    'ref-1': 'MTV Video Music Awards',
+    'ref-2': 'Red Carpet & Couture',
+    'ref-3': 'Cinéma & créations visuelles',
+    'ref-4': 'Sapin iconique & luxe',
+    'ref-5': 'Chaîne Gangster',
+    'ref-6': 'Productions télévisées',
+    'refs-p1': 'Le travail de Nicolas Deschaux s\'inscrit dans les univers où l\'image doit être immédiatement spectaculaire. Son nom circule entre mode, télévision, cinéma et maisons de luxe, là où chaque détail doit provoquer l\'effet wow immédiat.',
+    'refs-p2': 'Son savoir-faire s\'étend également au monde du cinéma, des grandes productions visuelles et des univers de prestige. Entre direction artistique, accessoires couture et pièces sculpturales pensées pour la caméra, Nicolas intervient là où l\'objet doit devenir iconique à l\'écran.',
+    'refs-p3': 'Son savoir-faire accompagne également la maison <strong>Alexandre Vauthier</strong> avec la célèbre chaîne « Gangster », ainsi que de nombreuses productions télévisées, maisons de couture, palaces parisiens et événements internationaux. Chaque pièce est pensée comme une œuvre : précieuse, sculpturale et immédiatement reconnaissable.',
+    'label-portfolio': 'Portfolio',
+    'port-1-title': 'Bijou de tête',
+    'port-1-tag': 'Pièces signatures',
+    'port-2-title': 'Réplique coiffe Joséphine Baker',
+    'port-2-tag': 'Show signature',
+    'port-3-title': 'Création look Show Girl',
+    'port-3-tag': 'Haute scène',
+    'label-video': 'Vidéo Signature',
+    'video-title': 'Le bijou en <em>mouvement</em>',
+    'video-p': 'Une création prend toute sa dimension lorsqu\'elle entre en scène. Lumière, reflet, mouvement, présence : chaque détail est pensé pour captiver immédiatement le regard et créer cet instant suspendu où le spectaculaire devient inoubliable.',
+    'label-vision': 'Vision',
+    'vision-title': 'Créer l\'<em>inoubliable</em>',
+    'vision-p': 'Au-delà du bijou, Nicolas conçoit une émotion visuelle. Chaque pièce doit provoquer ce moment suspendu où le public ressent immédiatement le luxe, la rareté et la puissance de l\'instant. C\'est cette exigence qui définit l\'ADN de Sublimes Paris.',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-instagram': 'Instagram — @bijoutier.nicolasdeschaux',
+    'btn-contact': 'Contact Privé',
+    'btn-call': 'Appeler',
+    'label-pressbook': 'Pressbook',
+    'pressbook-title': 'Réalisations &amp; <em>collaborations</em>',
+    'pressbook-intro': 'Quelques pièces signatures et collaborations marquantes — de la haute couture parisienne aux scènes internationales, du cinéma d\'auteur aux maisons de luxe.',
+    'pb1-title': 'Show Sublimes Paris',
+    'pb1-tag': 'Coiffe plumes • Bijoux showgirl • 2020',
+    'pb2-title': 'Cardi B — MTV Video Music Awards',
+    'pb2-tag': 'Crête bijoux • 2022',
+    'pb3-title': 'Eva Longoria — InStyle',
+    'pb3-tag': 'Chaîne Gangster • Alexandre Vauthier SS21',
+    'pb4-title': 'Alexandre Vauthier — Chaîne Gangster',
+    'pb4-tag': 'Collection couture • SS 2021',
+    'pb5-title': 'DOGMAN — Luc Besson',
+    'pb5-tag': 'Affiche du film • 2023',
+    'pb6-title': 'Réplique collier Marilyn Monroe',
+    'pb6-tag': 'Pour DOGMAN — Luc Besson • 2023',
+    'pb7-title': 'Fondation Chanel',
+    'pb7-tag': 'Sapin de Noël en cristal 1m30 • 2022',
+    'pb8-title': 'Réplique coiffe Joséphine Baker',
+    'pb8-tag': 'Création iconique • 2020',
+    'pb9-title': 'Las Vegas — Show franges bijoux',
+    'pb9-tag': 'Création de scène internationale',
+    'pb10-title': 'Kylie Minogue — « Miss a Thing »',
+    'pb10-tag': 'Franges robe bijoux • 2023',
+    'pb11-title': 'Alexandre Vauthier — Franges robe',
+    'pb11-tag': 'Haute Couture • SS 2021',
+    'pb12-title': 'Alexandre Vauthier — Veste bijoux',
+    'pb12-tag': 'Haute Couture • SS 2023',
+    'pb13-title': 'Alexandre Vauthier — Top bijoux',
+    'pb13-tag': 'Haute Couture • SS 2021',
+    'pb14-title': 'Perruque bijoux',
+    'pb14-tag': 'Show • 2021',
+    'pb15-title': 'Gilet chute de reins',
+    'pb15-tag': 'Création show • 2018',
+    'pb16-title': 'Pièce centrale',
+    'pb16-tag': 'Ras de cou • 2018',
+    'pb17-title': 'Ras de cou Big Stones',
+    'pb17-tag': 'Commande privée',
+    'pb18-title': 'Soutien-gorge bijoux',
+    'pb18-tag': 'Music-hall • 2023',
+    'pressbook-cta-label': 'Pressbook complet',
+    'pressbook-cta-title': 'Découvrez l\'intégralité des réalisations',
+    'pressbook-cta-btn': 'Télécharger le PDF',
+    'footer': 'Sublimes Paris — Maison de Création'
+  },
+  'en': {
+    'nav-back': '← Back',
+    'role-tag': 'Sublimes Paris — Creative House',
+    'hero-title': 'The <em>artisan</em><br>jeweler',
+    'hero-p1': 'Founder, artistic director and master jeweler, Nicolas Deschaux creates stage pieces where haute couture meets the emotion of live performance.',
+    'hero-p2': 'Every creation is born in the workshop, conceived as a sculpture for light, movement and the spectacular moment.',
+    'hero-quote': '"Every jewel must tell a story even before stepping on stage."',
+    'label-savoir': 'The expertise',
+    'savoir-title': 'Between <em>craftsmanship</em><br>and high stage',
+    'savoir-p1': 'His universe draws from the effervescence of contemporary fashion, Parisian elegance and the glow of music-hall. Crystals, feathers, sculpted structures, body jewelry and signature pieces are crafted by hand with absolute precision.',
+    'savoir-p2': 'Some pieces require more than 16,000 hand-set crystals, transforming each costume into an exceptional creation designed to instantly captivate the eye.',
+    'label-refs': 'References &amp; Collaborations',
+    'refs-title': 'They called upon<br>his <em>expertise</em>',
+    'ref-1': 'MTV Video Music Awards',
+    'ref-2': 'Red Carpet & Couture',
+    'ref-3': 'Cinema & visual creations',
+    'ref-4': 'Iconic tree & luxury',
+    'ref-5': 'Gangster Chain',
+    'ref-6': 'Television productions',
+    'refs-p1': 'Nicolas Deschaux\'s work belongs to worlds where the image must be immediately spectacular. His name moves between fashion, television, cinema and luxury houses, where every detail must provoke the immediate wow effect.',
+    'refs-p2': 'His expertise also extends to cinema, major visual productions and prestigious universes. Between artistic direction, couture accessories and sculptural pieces designed for the camera, Nicolas intervenes wherever the object must become iconic on screen.',
+    'refs-p3': 'His expertise also accompanies the <strong>Alexandre Vauthier</strong> house with the famous "Gangster" chain, as well as numerous television productions, couture houses, Parisian palaces and international events. Each piece is conceived as a work of art: precious, sculptural and immediately recognizable.',
+    'label-portfolio': 'Portfolio',
+    'port-1-title': 'Head jewelry',
+    'port-1-tag': 'Signature pieces',
+    'port-2-title': 'Joséphine Baker headdress replica',
+    'port-2-tag': 'Signature show',
+    'port-3-title': 'Creation look Show Girl',
+    'port-3-tag': 'High stage',
+    'label-video': 'Signature Video',
+    'video-title': 'The jewel in <em>motion</em>',
+    'video-p': 'A creation reaches its full dimension when it enters the stage. Light, reflection, movement, presence: every detail is designed to immediately captivate the eye and create that suspended moment when the spectacular becomes unforgettable.',
+    'label-vision': 'Vision',
+    'vision-title': 'Creating the <em>unforgettable</em>',
+    'vision-p': 'Beyond the jewel, Nicolas designs a visual emotion. Each piece must provoke that suspended moment when the audience immediately feels the luxury, rarity and power of the instant. This is the demand that defines the DNA of Sublimes Paris.',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-instagram': 'Instagram — @bijoutier.nicolasdeschaux',
+    'btn-contact': 'Private Contact',
+    'btn-call': 'Call',
+    'label-pressbook': 'Pressbook',
+    'pressbook-title': 'Creations &amp; <em>collaborations</em>',
+    'pressbook-intro': 'A selection of signature pieces and notable collaborations — from Parisian haute couture to international stages, from auteur cinema to luxury houses.',
+    'pb1-title': 'Sublimes Paris Show',
+    'pb1-tag': 'Feather headdress • Showgirl jewelry • 2020',
+    'pb2-title': 'Cardi B — MTV Video Music Awards',
+    'pb2-tag': 'Crystal crest • 2022',
+    'pb3-title': 'Eva Longoria — InStyle',
+    'pb3-tag': 'Gangster Chain • Alexandre Vauthier SS21',
+    'pb4-title': 'Alexandre Vauthier — Gangster Chain',
+    'pb4-tag': 'Couture collection • SS 2021',
+    'pb5-title': 'DOGMAN — Luc Besson',
+    'pb5-tag': 'Film poster • 2023',
+    'pb6-title': 'Marilyn Monroe necklace replica',
+    'pb6-tag': 'For DOGMAN — Luc Besson • 2023',
+    'pb7-title': 'Chanel Foundation',
+    'pb7-tag': 'Crystal Christmas tree 1.3m • 2022',
+    'pb8-title': 'Joséphine Baker headdress replica',
+    'pb8-tag': 'Iconic creation • 2020',
+    'pb9-title': 'Las Vegas — Jewel-fringed show',
+    'pb9-tag': 'International stage creation',
+    'pb10-title': 'Kylie Minogue — "Miss a Thing"',
+    'pb10-tag': 'Jewel-fringed dress • 2023',
+    'pb11-title': 'Alexandre Vauthier — Fringed dress',
+    'pb11-tag': 'Haute Couture • SS 2021',
+    'pb12-title': 'Alexandre Vauthier — Jeweled jacket',
+    'pb12-tag': 'Haute Couture • SS 2023',
+    'pb13-title': 'Alexandre Vauthier — Jeweled top',
+    'pb13-tag': 'Haute Couture • SS 2021',
+    'pb14-title': 'Jeweled wig',
+    'pb14-tag': 'Show • 2021',
+    'pb15-title': 'Lower-back jeweled drape',
+    'pb15-tag': 'Show creation • 2018',
+    'pb16-title': 'Centerpiece',
+    'pb16-tag': 'Choker • 2018',
+    'pb17-title': 'Big Stones choker',
+    'pb17-tag': 'Private commission',
+    'pb18-title': 'Jeweled bra',
+    'pb18-tag': 'Music-hall • 2023',
+    'pressbook-cta-label': 'Full pressbook',
+    'pressbook-cta-title': 'Discover the full body of work',
+    'pressbook-cta-btn': 'Download the PDF',
+    'footer': 'Sublimes Paris — Creative House'
+  },
+  'it': {
+    'nav-back': '← Indietro',
+    'role-tag': 'Sublimes Paris — Maison di Creazione',
+    'hero-title': 'L\'<em>artigiano</em><br>gioielliere',
+    'hero-p1': 'Fondatore, direttore artistico e maestro gioielliere, Nicolas Deschaux immagina pezzi di scena dove l\'alta moda incontra l\'emozione dello spettacolo dal vivo.',
+    'hero-p2': 'Ogni creazione nasce nell\'atelier, pensata come un\'opera scolpita per la luce, il movimento e l\'istante spettacolare.',
+    'hero-quote': '« Ogni gioiello deve raccontare una storia ancor prima di entrare in scena. »',
+    'label-savoir': 'Il savoir-faire',
+    'savoir-title': 'Tra <em>artigianato</em><br>e alta scena',
+    'savoir-p1': 'Il suo universo attinge all\'effervescenza della moda contemporanea, all\'eleganza parigina e allo splendore del music-hall. Cristalli, piume, strutture scolpite, gioielli da corpo e pezzi signature sono realizzati a mano con esigenza assoluta.',
+    'savoir-p2': 'Alcuni quadri richiedono più di 16.000 cristalli incastonati a mano, trasformando ogni costume in un pezzo d\'eccezione pensato per catturare immediatamente lo sguardo.',
+    'label-refs': 'Riferimenti &amp; Collaborazioni',
+    'refs-title': 'Si sono affidati<br>al suo <em>savoir-faire</em>',
+    'ref-1': 'MTV Video Music Awards',
+    'ref-2': 'Red Carpet & Couture',
+    'ref-3': 'Cinema & creazioni visive',
+    'ref-4': 'Albero iconico & lusso',
+    'ref-5': 'Catena Gangster',
+    'ref-6': 'Produzioni televisive',
+    'refs-p1': 'Il lavoro di Nicolas Deschaux si inserisce negli universi in cui l\'immagine deve essere immediatamente spettacolare. Il suo nome circola tra moda, televisione, cinema e maison di lusso, là dove ogni dettaglio deve provocare l\'effetto wow immediato.',
+    'refs-p2': 'Il suo savoir-faire si estende anche al mondo del cinema, delle grandi produzioni visive e degli universi di prestigio. Tra direzione artistica, accessori couture e pezzi scultorei pensati per la telecamera, Nicolas interviene dove l\'oggetto deve diventare iconico sullo schermo.',
+    'refs-p3': 'Il suo savoir-faire accompagna anche la maison <strong>Alexandre Vauthier</strong> con la celebre catena « Gangster », così come numerose produzioni televisive, maison di couture, palace parigini ed eventi internazionali. Ogni pezzo è pensato come un\'opera: preziosa, scultorea e immediatamente riconoscibile.',
+    'label-portfolio': 'Portfolio',
+    'port-1-title': 'Gioiello da testa',
+    'port-1-tag': 'Pezzi signature',
+    'port-2-title': 'Replica copricapo Joséphine Baker',
+    'port-2-tag': 'Show signature',
+    'port-3-title': 'Creazione look Show Girl',
+    'port-3-tag': 'Alta scena',
+    'label-video': 'Video Signature',
+    'video-title': 'Il gioiello in <em>movimento</em>',
+    'video-p': 'Una creazione assume tutta la sua dimensione quando entra in scena. Luce, riflesso, movimento, presenza: ogni dettaglio è pensato per catturare immediatamente lo sguardo e creare quell\'istante sospeso in cui lo spettacolare diventa indimenticabile.',
+    'label-vision': 'Visione',
+    'vision-title': 'Creare l\'<em>indimenticabile</em>',
+    'vision-p': 'Al di là del gioiello, Nicolas concepisce un\'emozione visiva. Ogni pezzo deve provocare quel momento sospeso in cui il pubblico percepisce immediatamente il lusso, la rarità e la potenza dell\'istante. È questa esigenza che definisce il DNA di Sublimes Paris.',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-instagram': 'Instagram — @bijoutier.nicolasdeschaux',
+    'btn-contact': 'Contatto Privato',
+    'btn-call': 'Chiamare',
+    'label-pressbook': 'Pressbook',
+    'pressbook-title': 'Realizzazioni &amp; <em>collaborazioni</em>',
+    'pressbook-intro': 'Una selezione di pezzi signature e collaborazioni di rilievo — dall\'alta moda parigina ai palcoscenici internazionali, dal cinema d\'autore alle maison di lusso.',
+    'pb1-title': 'Show Sublimes Paris',
+    'pb1-tag': 'Copricapo di piume • Gioielli showgirl • 2020',
+    'pb2-title': 'Cardi B — MTV Video Music Awards',
+    'pb2-tag': 'Cresta gioiello • 2022',
+    'pb3-title': 'Eva Longoria — InStyle',
+    'pb3-tag': 'Catena Gangster • Alexandre Vauthier SS21',
+    'pb4-title': 'Alexandre Vauthier — Catena Gangster',
+    'pb4-tag': 'Collezione couture • SS 2021',
+    'pb5-title': 'DOGMAN — Luc Besson',
+    'pb5-tag': 'Locandina del film • 2023',
+    'pb6-title': 'Replica collana Marilyn Monroe',
+    'pb6-tag': 'Per DOGMAN — Luc Besson • 2023',
+    'pb7-title': 'Fondazione Chanel',
+    'pb7-tag': 'Albero di Natale in cristallo 1,30 m • 2022',
+    'pb8-title': 'Replica copricapo Joséphine Baker',
+    'pb8-tag': 'Creazione iconica • 2020',
+    'pb9-title': 'Las Vegas — Show frange gioiello',
+    'pb9-tag': 'Creazione di scena internazionale',
+    'pb10-title': 'Kylie Minogue — « Miss a Thing »',
+    'pb10-tag': 'Frange abito gioiello • 2023',
+    'pb11-title': 'Alexandre Vauthier — Frange abito',
+    'pb11-tag': 'Haute Couture • SS 2021',
+    'pb12-title': 'Alexandre Vauthier — Giacca gioiello',
+    'pb12-tag': 'Haute Couture • SS 2023',
+    'pb13-title': 'Alexandre Vauthier — Top gioiello',
+    'pb13-tag': 'Haute Couture • SS 2021',
+    'pb14-title': 'Parrucca gioiello',
+    'pb14-tag': 'Show • 2021',
+    'pb15-title': 'Drappo gioiello schiena',
+    'pb15-tag': 'Creazione show • 2018',
+    'pb16-title': 'Pezzo centrale',
+    'pb16-tag': 'Girocollo • 2018',
+    'pb17-title': 'Girocollo Big Stones',
+    'pb17-tag': 'Commissione privata',
+    'pb18-title': 'Reggiseno gioiello',
+    'pb18-tag': 'Music-hall • 2023',
+    'pressbook-cta-label': 'Pressbook completo',
+    'pressbook-cta-title': 'Scopri l\'intera opera di realizzazioni',
+    'pressbook-cta-btn': 'Scarica il PDF',
+    'footer': 'Sublimes Paris — Maison di Creazione'
+  },
+  'zh': {
+    'nav-back': '← 返回',
+    'role-tag': 'Sublimes Paris — 创作之家',
+    'hero-title': '<em>工匠</em><br>珠宝师',
+    'hero-p1': '创始人、艺术总监兼珠宝工匠尼古拉·德肖打造舞台珠宝，将高级定制与现场表演的激情完美结合。',
+    'hero-p2': '每一件作品都诞生于工坊，被精心设计为光、动作和精彩瞬间的雕塑作品。',
+    'hero-quote': '"每件珠宝在登台之前就应讲述一个故事。"',
+    'label-savoir': '工艺',
+    'savoir-title': '介于<em>手工艺</em><br>与高级舞台之间',
+    'savoir-p1': '他的世界汲取自当代时尚的活力、巴黎的优雅以及音乐厅的光辉。水晶、羽毛、雕刻结构、身体珠宝和标志性作品均以绝对精准的标准手工打造。',
+    'savoir-p2': '某些作品需要超过16,000颗手工镶嵌的水晶，将每件服装转化为旨在立即吸引眼球的非凡之作。',
+    'label-refs': '参考 &amp; 合作',
+    'refs-title': '他们曾选择<br>他的<em>工艺</em>',
+    'ref-1': 'MTV音乐录影带大奖',
+    'ref-2': '红毯与高级定制',
+    'ref-3': '电影与视觉创作',
+    'ref-4': '标志性圣诞树与奢华',
+    'ref-5': '黑帮链',
+    'ref-6': '电视制作',
+    'refs-p1': '尼古拉·德肖的作品属于那些图像必须立即令人惊艳的世界。他的名字穿梭于时尚、电视、电影和奢侈品牌之间，每一处细节都必须立即引发"哇"的效果。',
+    'refs-p2': '他的工艺也延伸至电影、大型视觉制作和声誉显赫的领域。在艺术指导、定制配饰和为镜头打造的雕塑作品之间，尼古拉介入到那些物品必须在荧幕上成为标志的地方。',
+    'refs-p3': '他的工艺还服务于<strong>Alexandre Vauthier</strong>之家著名的"黑帮"链，以及众多电视制作、高级定制之家、巴黎宫殿和国际盛事。每件作品都被构思为一件艺术品：珍贵、雕塑般且立即可识别。',
+    'label-portfolio': '作品集',
+    'port-1-title': '头部珠宝',
+    'port-1-tag': '标志性作品',
+    'port-2-title': '约瑟芬·贝克头饰复刻',
+    'port-2-tag': '招牌秀',
+    'port-3-title': '歌舞女郎造型创作',
+    'port-3-tag': '高级舞台',
+    'label-video': '签名视频',
+    'video-title': '<em>动态</em>中的珠宝',
+    'video-p': '一件作品在登台时才展现其完整魅力。光线、反射、动作、存在感：每个细节都旨在立即吸引眼球，创造那一悬停的瞬间，让壮观成为永恒。',
+    'label-vision': '愿景',
+    'vision-title': '创造<em>难忘</em>',
+    'vision-p': '超越珠宝本身，尼古拉构思着一种视觉情感。每件作品都必须激发观众立即感受到奢华、稀有和瞬间力量的悬停时刻。这就是定义Sublimes Paris DNA的要求。',
+    'btn-whatsapp': 'WhatsApp',
+    'btn-instagram': 'Instagram — @bijoutier.nicolasdeschaux',
+    'btn-contact': '私人联系',
+    'btn-call': '致电',
+    'label-pressbook': '作品集',
+    'pressbook-title': '创作 &amp; <em>合作</em>',
+    'pressbook-intro': '精选标志性作品与重要合作 — 从巴黎高级定制到国际舞台，从作者电影到奢华品牌。',
+    'pb1-title': 'Sublimes Paris 演出',
+    'pb1-tag': '羽毛头饰 • 歌舞女郎珠宝 • 2020',
+    'pb2-title': 'Cardi B — MTV 音乐录影带大奖',
+    'pb2-tag': '水晶冠饰 • 2022',
+    'pb3-title': 'Eva Longoria — InStyle',
+    'pb3-tag': '黑帮链 • Alexandre Vauthier SS21',
+    'pb4-title': 'Alexandre Vauthier — 黑帮链',
+    'pb4-tag': '高级定制系列 • SS 2021',
+    'pb5-title': 'DOGMAN — Luc Besson',
+    'pb5-tag': '电影海报 • 2023',
+    'pb6-title': '玛丽莲·梦露项链复刻',
+    'pb6-tag': '为 DOGMAN — Luc Besson • 2023',
+    'pb7-title': '香奈儿基金会',
+    'pb7-tag': '1.3米水晶圣诞树 • 2022',
+    'pb8-title': '约瑟芬·贝克头饰复刻',
+    'pb8-tag': '标志性创作 • 2020',
+    'pb9-title': '拉斯维加斯 — 珠宝流苏演出',
+    'pb9-tag': '国际舞台创作',
+    'pb10-title': 'Kylie Minogue — « Miss a Thing »',
+    'pb10-tag': '珠宝流苏礼服 • 2023',
+    'pb11-title': 'Alexandre Vauthier — 流苏礼服',
+    'pb11-tag': '高级定制 • SS 2021',
+    'pb12-title': 'Alexandre Vauthier — 珠宝外套',
+    'pb12-tag': '高级定制 • SS 2023',
+    'pb13-title': 'Alexandre Vauthier — 珠宝上衣',
+    'pb13-tag': '高级定制 • SS 2021',
+    'pb14-title': '珠宝假发',
+    'pb14-tag': '演出 • 2021',
+    'pb15-title': '后腰珠宝披饰',
+    'pb15-tag': '舞台创作 • 2018',
+    'pb16-title': '中央饰件',
+    'pb16-tag': '颈链 • 2018',
+    'pb17-title': '大宝石颈链',
+    'pb17-tag': '私人定制',
+    'pb18-title': '珠宝胸衣',
+    'pb18-tag': '歌舞厅 • 2023',
+    'pressbook-cta-label': '完整作品集',
+    'pressbook-cta-title': '探索全部作品',
+    'pressbook-cta-btn': '下载 PDF',
+    'footer': 'Sublimes Paris — 创作之家'
+  }
+};
+
+function applyNicolasTranslations(lang) {
+  const trans = i18nNicolas[lang] || i18nNicolas['fr'];
+  document.documentElement.lang = lang;
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (trans[key]) {
+      el.innerHTML = trans[key];
+    }
+  });
+  
+  // Met à jour aussi les données du portfolio pour la lightbox
+  if (trans['port-1-title']) {
+    portfolioImages[0].title = trans['port-1-title'];
+    portfolioImages[0].tag = trans['port-1-tag'];
+    portfolioImages[1].title = trans['port-2-title'];
+    portfolioImages[1].tag = trans['port-2-tag'];
+    portfolioImages[2].title = trans['port-3-title'];
+    portfolioImages[2].tag = trans['port-3-tag'];
+  }
+  // Pressbook entries (indices 3+) — utilisent titleKey/tagKey
+  portfolioImages.forEach(item => {
+    if (item.titleKey && trans[item.titleKey]) item.title = trans[item.titleKey];
+    if (item.tagKey && trans[item.tagKey]) item.tag = trans[item.tagKey];
+  });
+
+  // Synchronise l'état visuel du sélecteur de langue
+  syncLangSelector(lang);
+}
+
+// Met à jour le label + cocher la bonne langue dans le dropdown
+function syncLangSelector(lang) {
+  const labels = {fr:'🇫🇷 FR', en:'🇬🇧 EN', it:'🇮🇹 IT', zh:'🇨🇳 中文'};
+  const labelEl = document.getElementById('currentLangLabel');
+  if (labelEl && labels[lang]) labelEl.textContent = labels[lang];
+
+  document.querySelectorAll('.lang-option').forEach(o => {
+    o.classList.remove('active');
+    const c = o.querySelector('.lang-check');
+    if (c) c.remove();
+  });
+  const activeOption = document.querySelector('.lang-option[data-lang="'+lang+'"]');
+  if (activeOption) {
+    activeOption.classList.add('active');
+    const chk = document.createElement('span');
+    chk.className = 'lang-check';
+    chk.textContent = '✓';
+    activeOption.appendChild(chk);
+  }
+}
+
+// Sélection d'une langue depuis le dropdown
+function setLang(lang, label, el) {
+  localStorage.setItem('sublimes-lang', lang);
+  document.getElementById('langDropdown').classList.remove('open');
+  applyNicolasTranslations(lang);
+}
+
+// Ouvre/ferme le menu langue
+function toggleLangDropdown() {
+  document.getElementById('langDropdown').classList.toggle('open');
+}
+
+// Ferme le menu si on clique ailleurs
+document.addEventListener('click', e => {
+  const dd = document.getElementById('langDropdown');
+  if (dd && !dd.contains(e.target)) dd.classList.remove('open');
+});
+
+// Au chargement, applique la langue choisie
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Vérifie l'URL d'abord (si on vient d'index avec ?lang=XX)
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  
+  let lang = 'fr';
+  if (urlLang && i18nNicolas[urlLang]) {
+    lang = urlLang;
+    localStorage.setItem('sublimes-lang', urlLang);
+  } else {
+    // 2. Sinon, vérifie le localStorage
+    const stored = localStorage.getItem('sublimes-lang');
+    if (stored && i18nNicolas[stored]) lang = stored;
+  }
+  
+  applyNicolasTranslations(lang);
+});
+
+// LIGHTBOX
+const portfolioImages = [
+  { src: 'images/IMG_0032.jpg', title: 'Bijou de tête', tag: 'Pièces signatures' },
+  { src: 'images/IMG_3959_1.jpg', title: 'Réplique coiffe Joséphine Baker', tag: 'Show signature' },
+  { src: 'images/red-feathers-hatcad.jpg', title: 'Creation look Show Girl', tag: 'Haute scène' },
+  // Pressbook (indices 3 à 20)
+  { src: 'pressbook/images/coiffe-plumes.jpg', titleKey: 'pb1-title', tagKey: 'pb1-tag', title: 'Show Sublimes Paris', tag: 'Coiffe plumes • Bijoux showgirl • 2020' },
+  { src: 'pressbook/images/cardi-b.jpg', titleKey: 'pb2-title', tagKey: 'pb2-tag', title: 'Cardi B — MTV Video Music Awards', tag: 'Crête bijoux • 2022' },
+  { src: 'pressbook/images/eva-longoria.jpg', titleKey: 'pb3-title', tagKey: 'pb3-tag', title: 'Eva Longoria — InStyle', tag: 'Chaîne Gangster • Alexandre Vauthier SS21' },
+  { src: 'pressbook/images/vauthier-gangster.jpg', titleKey: 'pb4-title', tagKey: 'pb4-tag', title: 'Alexandre Vauthier — Chaîne Gangster', tag: 'Collection couture • SS 2021' },
+  { src: 'pressbook/images/dogman-affiche.jpg', titleKey: 'pb5-title', tagKey: 'pb5-tag', title: 'DOGMAN — Luc Besson', tag: 'Affiche du film • 2023' },
+  { src: 'pressbook/images/dogman-collier.jpg', titleKey: 'pb6-title', tagKey: 'pb6-tag', title: 'Réplique collier Marilyn Monroe', tag: 'Pour DOGMAN — Luc Besson • 2023' },
+  { src: 'pressbook/images/sapin-chanel.jpg', titleKey: 'pb7-title', tagKey: 'pb7-tag', title: 'Fondation Chanel', tag: 'Sapin de Noël en cristal 1m30 • 2022' },
+  { src: 'pressbook/images/josephine-baker.jpg', titleKey: 'pb8-title', tagKey: 'pb8-tag', title: 'Réplique coiffe Joséphine Baker', tag: 'Création iconique • 2020' },
+  { src: 'pressbook/images/las-vegas.jpg', titleKey: 'pb9-title', tagKey: 'pb9-tag', title: 'Las Vegas — Show franges bijoux', tag: 'Création de scène internationale' },
+  { src: 'pressbook/images/kylie-minogue.jpg', titleKey: 'pb10-title', tagKey: 'pb10-tag', title: 'Kylie Minogue — « Miss a Thing »', tag: 'Franges robe bijoux • 2023' },
+  { src: 'pressbook/images/vauthier-franges.jpg', titleKey: 'pb11-title', tagKey: 'pb11-tag', title: 'Alexandre Vauthier — Franges robe', tag: 'Haute Couture • SS 2021' },
+  { src: 'pressbook/images/vauthier-ss23.jpg', titleKey: 'pb12-title', tagKey: 'pb12-tag', title: 'Alexandre Vauthier — Veste bijoux', tag: 'Haute Couture • SS 2023' },
+  { src: 'pressbook/images/vauthier-top.jpg', titleKey: 'pb13-title', tagKey: 'pb13-tag', title: 'Alexandre Vauthier — Top bijoux', tag: 'Haute Couture • SS 2021' },
+  { src: 'pressbook/images/perruque.jpg', titleKey: 'pb14-title', tagKey: 'pb14-tag', title: 'Perruque bijoux', tag: 'Show • 2021' },
+  { src: 'pressbook/images/gilet-reins.jpg', titleKey: 'pb15-title', tagKey: 'pb15-tag', title: 'Gilet chute de reins', tag: 'Création show • 2018' },
+  { src: 'pressbook/images/piece-centrale.jpg', titleKey: 'pb16-title', tagKey: 'pb16-tag', title: 'Pièce centrale', tag: 'Ras de cou • 2018' },
+  { src: 'pressbook/images/ras-de-cou.jpg', titleKey: 'pb17-title', tagKey: 'pb17-tag', title: 'Ras de cou Big Stones', tag: 'Commande privée' },
+  { src: 'pressbook/images/soutien-gorge.jpg', titleKey: 'pb18-title', tagKey: 'pb18-tag', title: 'Soutien-gorge bijoux', tag: 'Music-hall • 2023' }
+];
+let currentImageIndex = 0;
+
+function openLightbox(index) {
+  currentImageIndex = index;
+  updateLightbox();
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function updateLightbox() {
+  const img = portfolioImages[currentImageIndex];
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox-img').alt = img.title;
+  document.getElementById('lightbox-title').textContent = img.title;
+  document.getElementById('lightbox-tag').textContent = img.tag;
+}
+
+function prevImage() {
+  currentImageIndex = (currentImageIndex - 1 + portfolioImages.length) % portfolioImages.length;
+  updateLightbox();
+}
+
+function nextImage() {
+  currentImageIndex = (currentImageIndex + 1) % portfolioImages.length;
+  updateLightbox();
+}
+
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') prevImage();
+  if (e.key === 'ArrowRight') nextImage();
+});
+</script>
+
+</body>
+</html>
