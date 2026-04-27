@@ -455,7 +455,7 @@ button:hover {
         <button type="button" onclick="switchLang('it')" data-lang-btn="it">IT</button>
         <button type="button" onclick="switchLang('zh')" data-lang-btn="zh">ZH</button>
       </div>
-      <div class="lang-dropdown" id="langDrop">
+      <div class="lang-dropdown">
         <button type="button" class="lang-dropdown-trigger" onclick="toggleLangDropdown()">
           <span id="langDrop-label">FR</span>
           <span class="lang-dropdown-arrow">▼</span>
@@ -482,7 +482,7 @@ button:hover {
         <button type="button" onclick="switchLang('it')" data-lang-btn="it">IT</button>
         <button type="button" onclick="switchLang('zh')" data-lang-btn="zh">ZH</button>
       </div>
-      <div class="lang-dropdown" id="langDrop">
+      <div class="lang-dropdown">
         <button type="button" class="lang-dropdown-trigger" onclick="toggleLangDropdown()">
           <span id="langDrop-label">FR</span>
           <span class="lang-dropdown-arrow">▼</span>
@@ -534,7 +534,7 @@ button:hover {
         <button type="button" onclick="switchLang('it')" data-lang-btn="it">IT</button>
         <button type="button" onclick="switchLang('zh')" data-lang-btn="zh">ZH</button>
       </div>
-      <div class="lang-dropdown" id="langDrop">
+      <div class="lang-dropdown">
         <button type="button" class="lang-dropdown-trigger" onclick="toggleLangDropdown()">
           <span id="langDrop-label">FR</span>
           <span class="lang-dropdown-arrow">▼</span>
@@ -586,7 +586,7 @@ button:hover {
         <button type="button" onclick="switchLang('it')" data-lang-btn="it">IT</button>
         <button type="button" onclick="switchLang('zh')" data-lang-btn="zh">ZH</button>
       </div>
-      <div class="lang-dropdown" id="langDrop">
+      <div class="lang-dropdown">
         <button type="button" class="lang-dropdown-trigger" onclick="toggleLangDropdown()">
           <span id="langDrop-label">FR</span>
           <span class="lang-dropdown-arrow">▼</span>
@@ -1072,13 +1072,14 @@ function switchLang(lang) {
 }
 
 function toggleLangDropdown() {
-  const drop = document.getElementById('langDrop');
+  const activeStep = document.querySelector('.step.active');
+  if(!activeStep) return;
+  const drop = activeStep.querySelector('.lang-dropdown');
   if(drop) drop.classList.toggle('open');
 }
 
 function closeLangDropdown() {
-  const drop = document.getElementById('langDrop');
-  if(drop) drop.classList.remove('open');
+  document.querySelectorAll('.lang-dropdown').forEach(d => d.classList.remove('open'));
 }
 
 // Fermer le dropdown si clic en dehors
