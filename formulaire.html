@@ -29,6 +29,8 @@ body {
   display:none;
   width:600px;
   max-width:95%;
+  box-sizing:border-box;
+  min-width:0;
 }
 
 .step.active {
@@ -211,6 +213,7 @@ button:hover {
   justify-content:space-between;
   align-items:center;
   margin-bottom:28px;
+  box-sizing:border-box;
 }
 
 .header-row a.back-link {
@@ -220,9 +223,16 @@ button:hover {
   color:#c8b89a;
   text-decoration:none;
   line-height:1;
+  white-space:nowrap;
+  flex-shrink:1;
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
-/* ── LANGUE SWITCHER ── */
+.lang-switcher { flex-shrink:0; }
+
+/* ── LANGUE SWITCHER (desktop) ── */
 .lang-switcher {
   display:flex;
   align-items:center;
@@ -255,18 +265,98 @@ button:hover {
   background:none;
 }
 
+/* ── LANGUE DROPDOWN (mobile uniquement) ── */
+.lang-dropdown {
+  display:none;
+  position:relative;
+}
+
+.lang-dropdown-trigger {
+  margin-top:0;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:5px 10px;
+  border:1px solid rgba(200,184,154,.35);
+  background:none;
+  color:#c8b89a;
+  font-family:'Montserrat', sans-serif;
+  font-size:.52rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:border-color .3s;
+}
+.lang-dropdown-trigger:hover { border-color:rgba(200,184,154,.7); background:none; }
+
+.lang-dropdown-arrow {
+  font-size:.4rem;
+  transition:transform .25s;
+  display:inline-block;
+  line-height:1;
+}
+.lang-dropdown.open .lang-dropdown-arrow { transform:rotate(180deg); }
+
+.lang-dropdown-menu {
+  display:none;
+  position:absolute;
+  top:calc(100% + 4px);
+  right:0;
+  background:rgba(10,10,10,.97);
+  border:1px solid rgba(200,184,154,.18);
+  min-width:80px;
+  z-index:99;
+}
+.lang-dropdown.open .lang-dropdown-menu { display:block; }
+
+.lang-dropdown-option {
+  display:block;
+  width:100%;
+  padding:8px 14px;
+  font-family:'Montserrat', sans-serif;
+  font-size:.48rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(245,243,239,.5);
+  background:none;
+  border:none;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  cursor:pointer;
+  text-align:left;
+  transition:color .2s, background .2s;
+  margin-top:0;
+}
+.lang-dropdown-option:last-child { border-bottom:none; }
+.lang-dropdown-option:hover { background:rgba(200,184,154,.07); color:#f5f3ef; }
+.lang-dropdown-option.active { color:#c8b89a; }
+
+@media(max-width:768px){
+  .lang-switcher { display:none; }
+  .lang-dropdown { display:block; }
+}
+
 /* ── MOBILE ── */
 @media(max-width:768px){
 
   .container {
     padding:48px 24px 40px;
-    align-items:flex-start;
+    align-items:stretch;
+    flex-direction:column;
   }
 
   .step, #success {
     width:100%;
-    max-width:420px;
+    max-width:100%;
     margin:0 auto;
+    box-sizing:border-box;
+  }
+
+  .back-link {
+    font-size:0.75rem;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:52%;
   }
 
   h1 {
@@ -286,6 +376,19 @@ button:hover {
   select, input, textarea {
     font-size:16px; /* évite zoom iOS */
     padding:13px 12px;
+    width:100%;
+    min-width:0;
+    box-sizing:border-box;
+  }
+
+  input[type="date"] {
+    width:100% !important;
+    min-width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box;
+    -webkit-appearance:none;
+    appearance:none;
+    display:block;
   }
 
   select {
@@ -317,6 +420,9 @@ button:hover {
   .step-indicator { margin-bottom:24px; }
 
   .lang-switcher button { padding:4px 6px; font-size:.45rem; }
+
+  .step:first-of-type h1 { margin-top:80px; }
+  .step:first-of-type .header-row { margin-bottom:60px; }
 }
 
 @media(max-width:380px){
@@ -349,6 +455,18 @@ button:hover {
         <button type="button" onclick="switchLang('it')" data-lang-btn="it">IT</button>
         <button type="button" onclick="switchLang('zh')" data-lang-btn="zh">ZH</button>
       </div>
+      <div class="lang-dropdown" id="langDrop">
+        <button type="button" class="lang-dropdown-trigger" onclick="toggleLangDropdown()">
+          <span id="langDrop-label">FR</span>
+          <span class="lang-dropdown-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown-menu">
+          <button type="button" class="lang-dropdown-option active" onclick="switchLang('fr');closeLangDropdown()">FR</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('en');closeLangDropdown()">EN</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('it');closeLangDropdown()">IT</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('zh');closeLangDropdown()">ZH</button>
+        </div>
+      </div>
     </div>
     <h1>Chaque projet est une création unique.</h1>
     <button type="button" onclick="nextStep()">Commencer l'expérience</button>
@@ -363,6 +481,18 @@ button:hover {
         <button type="button" onclick="switchLang('en')" data-lang-btn="en">EN</button>
         <button type="button" onclick="switchLang('it')" data-lang-btn="it">IT</button>
         <button type="button" onclick="switchLang('zh')" data-lang-btn="zh">ZH</button>
+      </div>
+      <div class="lang-dropdown" id="langDrop">
+        <button type="button" class="lang-dropdown-trigger" onclick="toggleLangDropdown()">
+          <span id="langDrop-label">FR</span>
+          <span class="lang-dropdown-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown-menu">
+          <button type="button" class="lang-dropdown-option active" onclick="switchLang('fr');closeLangDropdown()">FR</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('en');closeLangDropdown()">EN</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('it');closeLangDropdown()">IT</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('zh');closeLangDropdown()">ZH</button>
+        </div>
       </div>
     </div>
     <h1>Votre projet</h1>
@@ -404,6 +534,18 @@ button:hover {
         <button type="button" onclick="switchLang('it')" data-lang-btn="it">IT</button>
         <button type="button" onclick="switchLang('zh')" data-lang-btn="zh">ZH</button>
       </div>
+      <div class="lang-dropdown" id="langDrop">
+        <button type="button" class="lang-dropdown-trigger" onclick="toggleLangDropdown()">
+          <span id="langDrop-label">FR</span>
+          <span class="lang-dropdown-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown-menu">
+          <button type="button" class="lang-dropdown-option active" onclick="switchLang('fr');closeLangDropdown()">FR</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('en');closeLangDropdown()">EN</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('it');closeLangDropdown()">IT</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('zh');closeLangDropdown()">ZH</button>
+        </div>
+      </div>
     </div>
     <h1>Le rythme de l'événement</h1>
     <label>Nombre d'artistes</label>
@@ -443,6 +585,18 @@ button:hover {
         <button type="button" onclick="switchLang('en')" data-lang-btn="en">EN</button>
         <button type="button" onclick="switchLang('it')" data-lang-btn="it">IT</button>
         <button type="button" onclick="switchLang('zh')" data-lang-btn="zh">ZH</button>
+      </div>
+      <div class="lang-dropdown" id="langDrop">
+        <button type="button" class="lang-dropdown-trigger" onclick="toggleLangDropdown()">
+          <span id="langDrop-label">FR</span>
+          <span class="lang-dropdown-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown-menu">
+          <button type="button" class="lang-dropdown-option active" onclick="switchLang('fr');closeLangDropdown()">FR</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('en');closeLangDropdown()">EN</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('it');closeLangDropdown()">IT</button>
+          <button type="button" class="lang-dropdown-option" onclick="switchLang('zh');closeLangDropdown()">ZH</button>
+        </div>
       </div>
     </div>
     <h1>Pour mieux vous accompagner.</h1>
@@ -806,9 +960,16 @@ const formI18n = {
 function applyAllTranslations(lang) {
   const t = formI18n[lang] || formI18n['fr'];
 
-  // Mise à jour boutons langue actifs
+  // Mise à jour boutons langue actifs (desktop)
   document.querySelectorAll('[data-lang-btn]').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.langBtn === lang);
+  });
+
+  // Mise à jour dropdown mobile
+  const dropLabel = document.getElementById('langDrop-label');
+  if(dropLabel) dropLabel.textContent = lang.toUpperCase();
+  document.querySelectorAll('.lang-dropdown-option').forEach(opt => {
+    opt.classList.toggle('active', opt.textContent.trim().toLowerCase() === lang);
   });
 
   // H1
@@ -910,8 +1071,23 @@ function switchLang(lang) {
   applyAllTranslations(lang);
 }
 
+function toggleLangDropdown() {
+  const drop = document.getElementById('langDrop');
+  if(drop) drop.classList.toggle('open');
+}
+
+function closeLangDropdown() {
+  const drop = document.getElementById('langDrop');
+  if(drop) drop.classList.remove('open');
+}
+
+// Fermer le dropdown si clic en dehors
+document.addEventListener('click', function(e) {
+  const drop = document.getElementById('langDrop');
+  if(drop && !drop.contains(e.target)) drop.classList.remove('open');
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Priorité : paramètre URL ?lang=XX, sinon localStorage, sinon fr
   const urlParams = new URLSearchParams(window.location.search);
   const urlLang = urlParams.get('lang');
   const storedLang = localStorage.getItem('sublimes-lang');
